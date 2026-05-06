@@ -11,7 +11,7 @@ PROFIEL_LABELS = {
 }
 
 # Profielen waarvoor fase-beheer beschikbaar is (items-gebaseerd)
-FASES_PROFIELEN = ["engineer"]
+FASES_PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security"]
 
 
 def render(data: dict, gist_client) -> None:

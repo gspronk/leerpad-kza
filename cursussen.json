@@ -2796,37 +2796,52 @@
       {
         "num": 1,
         "desc": "QA Enabler programma en testmethoden",
-        "prefix": [
-          "enab"
-        ],
-        "naam": "Enabler Basis"
+        "naam": "Enabler Basis",
+        "items": [
+          "enab-prog1",
+          "enab-prog2",
+          "enab-tmap",
+          "enab-exptest",
+          "enab-bdd",
+          "enab-risk"
+        ]
       },
       {
         "num": 2,
         "desc": "Communicatie, samenwerken en agile frameworks",
-        "prefix": [
-          "ss",
-          "agile"
-        ],
-        "naam": "Soft Skills & Agile"
+        "naam": "Soft Skills & Agile",
+        "items": [
+          "ss-feedback",
+          "ss-stress",
+          "ss-conflict",
+          "agile-pspo",
+          "agile-kanban",
+          "agile-safe",
+          "agile-dasa",
+          "agile-ireb"
+        ]
       },
       {
         "num": 3,
         "desc": "FLOW, FMDP, stakeholders en kennisdeling",
-        "prefix": [
-          "lead",
-          "ai-fundament-en",
-          "ai-strategie",
-          "ai-tooling-en"
-        ],
-        "naam": "Leiderschap"
+        "naam": "Leiderschap",
+        "items": [
+          "lead-flow",
+          "lead-fmdp",
+          "lead-ttrain",
+          "lead-pubspk",
+          "lead-stake",
+          "lead-powerbi",
+          "ai-strategie"
+        ]
       }
     ],
     "academy": [
       {
         "num": 1,
         "desc": "Masterclasses, ISTQB en basisvaardigheden",
-        "prefix": [
+        "naam": "Jaar 1 – Fundament",
+        "items": [
           "ac-key",
           "ac-tmap",
           "ac-istqb",
@@ -2834,56 +2849,51 @@
           "ac-swat",
           "ac-vragen",
           "ac-context"
-        ],
-        "naam": "Jaar 1 – Fundament"
+        ]
       },
       {
         "num": 2,
         "desc": "Soft skills, tooling en eerste automatisering",
-        "prefix": [
+        "naam": "Jaar 2 – Doorontwikkelen",
+        "items": [
           "ac-insights",
           "ac-weerb",
-          "ac-js",
-          "ac-python",
           "ac-playwright",
           "ac-api"
-        ],
-        "naam": "Jaar 2 – Doorontwikkelen"
+        ]
       },
       {
         "num": 3,
         "desc": "QA Engineering, specialisaties en zichtbaarheid",
-        "prefix": [
+        "naam": "Jaar 3 – Impact vergroten",
+        "items": [
           "ac-qae1",
           "ac-qae2",
           "ac-sec",
           "ac-perf",
-          "ac-pubspeek",
-          "ac-ttrain",
           "ai-fundament-ac",
-          "ai-testen-ac",
           "ai-tooling-ac"
-        ],
-        "naam": "Jaar 3 – Impact vergroten"
+        ]
       }
     ],
     "security": [
       {
         "num": 1,
         "desc": "Masterclass, PortSwigger Apprentice, Linux en eerste certificering",
-        "prefix": [
+        "naam": "Niveau 0 – Instap",
+        "items": [
           "sx-masterclass",
           "sx-portswigger0",
           "sx-linux0",
           "sx-meekijken0",
           "sx-cert0"
-        ],
-        "naam": "Niveau 0 – Instap"
+        ]
       },
       {
         "num": 2,
         "desc": "Certificaat, meelopen, zelfstandig draaien en PortSwigger Advanced",
-        "prefix": [
+        "naam": "Niveau 1-2 – Praktijk",
+        "items": [
           "sx-cert1",
           "sx-portswigger1",
           "sx-meelopen1",
@@ -2895,13 +2905,13 @@
           "sx-mobile-basis",
           "sx-desktop-basis",
           "sx-actief2"
-        ],
-        "naam": "Niveau 1-2 – Praktijk"
+        ]
       },
       {
         "num": 3,
         "desc": "CPTS/OSCP certificaat, specialisaties en eigen research",
-        "prefix": [
+        "naam": "Niveau 3-4 – Specialist/Expert",
+        "items": [
           "sx-cpts-cert",
           "sx-mobile-full",
           "sx-desktop-full",
@@ -2910,52 +2920,41 @@
           "sx-extra-cert",
           "sx-cism",
           "sx-research",
-          "ai-fundament-sx",
-          "ai-testen-sx",
-          "ai-security",
-          "ai-tooling-sx"
-        ],
-        "naam": "Niveau 3-4 – Specialist/Expert"
+          "ai-security"
+        ]
       }
     ],
     "maatwerk": [
       {
         "num": 1,
         "desc": "Gerichte certificeringen op basis van jouw profiel",
-        "prefix": [
+        "naam": "Verdieping & Certificering",
+        "items": [
           "mw-tmap",
           "mw-dasa",
-          "mw-pspo",
-          "mw-oscp",
-          "mw-ireb"
-        ],
-        "naam": "Verdieping & Certificering"
+          "mw-oscp"
+        ]
       },
       {
         "num": 2,
         "desc": "FLOW, FMDP, conflicthantering en intervisie",
-        "prefix": [
+        "naam": "Leiderschap & Groei",
+        "items": [
           "mw-flow",
           "mw-fmdp",
-          "mw-conflict",
-          "mw-intervisie",
-          "ai-fundament-mw",
-          "ai-strategie-mw",
-          "ai-tooling-mw"
-        ],
-        "naam": "Leiderschap & Groei"
+          "mw-intervisie"
+        ]
       },
       {
         "num": 3,
         "desc": "Kennisdeling, mentorschap en thought leadership",
-        "prefix": [
+        "naam": "Impact & Zichtbaarheid",
+        "items": [
           "mw-gilde",
           "mw-blog",
           "mw-mentor",
-          "mw-powerbi",
           "mw-stake"
-        ],
-        "naam": "Impact & Zichtbaarheid"
+        ]
       }
     ]
   }
