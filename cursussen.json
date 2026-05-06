@@ -1,0 +1,3411 @@
+{
+  "profielen": {
+    "engineer": {
+      "kleur": "#0072B8",
+      "titel": "QA Engineer",
+      "sub": "Verdiep je in de technische kant van QA: cloud, security, performance en DevOps."
+    },
+    "enabler": {
+      "kleur": "#E5007D",
+      "titel": "QA Enabler",
+      "sub": "Vergroot je impact op team- en organisatieniveau: agile, leiderschap en business attitude."
+    },
+    "academy": {
+      "kleur": "#F0A500",
+      "titel": "KZAcademy",
+      "sub": "Het gestructureerde startersprogramma: fundament, doorontwikkelen en impact vergroten in 3 jaar."
+    },
+    "maatwerk": {
+      "kleur": "#A371F7",
+      "titel": "Ontwikkeling op maat",
+      "sub": "Geen standaardpad. Maatwerk voor senioren op basis van jouw kracht, ervaring en ambitie."
+    },
+    "security": {
+      "kleur": "#FF6B35",
+      "titel": "Security",
+      "sub": "Vijf niveaus van security-tester tot pentest-specialist. Van Portswigger Apprentice tot OSCP/CPTS en specialisatie in Mobile of Desktop."
+    }
+  },
+  "blokken": {
+    "engineer": [
+      {
+        "sectie": "QA Engineering",
+        "badge": "Fundament",
+        "items": [
+          {
+            "id": "qa2-cloud",
+            "naam": "Introductie Cloud & Containers",
+            "icon": "☁️",
+            "desc": "Introductie cloud en containerisatie via Openvalue/Roy Wasse. Onderdeel van QA Engineering 2.",
+            "tags": [
+              "Cloud",
+              "Docker",
+              "Containers",
+              "Azure"
+            ],
+            "duur": "2 sessies",
+            "kern": true,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "qa2-linux",
+            "naam": "Linux Basic",
+            "icon": "🐧",
+            "desc": "Basiskennis Linux voor testers en engineers. Gegeven door Guillaume, incl. OpenShift introductie.",
+            "tags": [
+              "Linux",
+              "CLI",
+              "OpenShift"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "qa2-cicd",
+            "naam": "CI/CD Testautomation",
+            "icon": "⚙️",
+            "desc": "CI/CD integratie voor testautomatisering. Onderdeel van QA Engineering 2 traject.",
+            "tags": [
+              "CI/CD",
+              "Pipeline",
+              "DevOps"
+            ],
+            "duur": "nvt",
+            "kern": true,
+            "cross": [
+              "maatwerk",
+              "academy"
+            ]
+          },
+          {
+            "id": "qa2-git",
+            "naam": "Version Control (GIT)",
+            "icon": "🔀",
+            "desc": "Git basics voor testers. Onderdeel van QA Engineering 1 masterclass en TA Playground.",
+            "tags": [
+              "Git",
+              "Version control"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "qa2-mocks",
+            "naam": "Mocks & Stubs",
+            "icon": "🎭",
+            "desc": "Concepten en toepassing van mocks en stubs in testautomatisering.",
+            "tags": [
+              "Mocks",
+              "Stubs",
+              "Unit testing"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "qa2-spring",
+            "naam": "Springboot",
+            "icon": "🍃",
+            "desc": "Introductie Springboot voor testers via Wilfred Luijk. Op aanvraag indien voldoende animo.",
+            "tags": [
+              "Java",
+              "Springboot",
+              "Backend"
+            ],
+            "duur": "nvt",
+            "kern": false,
+            "cross": []
+          }
+        ]
+      },
+      {
+        "sectie": "Test Automatisering",
+        "badge": "Tooling",
+        "items": [
+          {
+            "id": "ta-js",
+            "naam": "JavaScript voor testers",
+            "icon": "📜",
+            "desc": "4 avonden JavaScript voor testers via Roy de Kleijne (roy@testsmith.io).",
+            "tags": [
+              "JavaScript",
+              "TA",
+              "Scripting"
+            ],
+            "duur": "4 avonden",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "ta-java",
+            "naam": "Java voor testers",
+            "icon": "☕",
+            "desc": "4 avonden Java voor testers via Roy de Kleijne. Staat op de cursuskalender.",
+            "tags": [
+              "Java",
+              "TA",
+              "OOP"
+            ],
+            "duur": "4 avonden",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "ta-python",
+            "naam": "Python voor testers",
+            "icon": "🐍",
+            "desc": "4 avonden Python via Erik Droogh of Tycho als docent. Loopt of wordt ingepland.",
+            "tags": [
+              "Python",
+              "Scripting",
+              "Automatisering"
+            ],
+            "duur": "4 avonden",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "ta-python2",
+            "naam": "Python vervolg",
+            "icon": "🐍",
+            "desc": "Vervolgtraining Python via Erik Droogh. Te plannen zodra er voldoende animo is.",
+            "tags": [
+              "Python",
+              "Advanced"
+            ],
+            "duur": "3 avonden",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "ta-wdio",
+            "naam": "Testautomatisering WebdriverIO",
+            "icon": "🌐",
+            "desc": "3 avonden WebdriverIO via Roy de Kleijn. Mogelijk ingehaald door nieuwere tools.",
+            "tags": [
+              "WebdriverIO",
+              "E2E",
+              "JavaScript"
+            ],
+            "duur": "3 avonden",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "ta-api",
+            "naam": "API Testing Training",
+            "icon": "🔌",
+            "desc": "4 sessies API testing via Bas Dijkstra (bas@ontestautomation.com). Opnieuw op de kalender zetten.",
+            "tags": [
+              "API",
+              "REST",
+              "Postman"
+            ],
+            "duur": "4 sessies",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "ta-robot",
+            "naam": "Robot Framework",
+            "icon": "🤖",
+            "desc": "2 sessies introductie Robot Framework via Jeroen Diks.",
+            "tags": [
+              "Robot",
+              "Automatisering",
+              "Python"
+            ],
+            "duur": "2 sessies",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "ta-appium",
+            "naam": "Appium",
+            "icon": "📱",
+            "desc": "Mobiel testen met Appium via Sjoerd Jan. Ambitie om op te nemen in de TA Playground.",
+            "tags": [
+              "Appium",
+              "Mobiel",
+              "iOS",
+              "Android"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "ta-contract",
+            "naam": "Contract Testing",
+            "icon": "📄",
+            "desc": "Contract testing workshop via Bas Dijkstra. Trishan maakt workshop; indien niet klaar in Q1 inkopen.",
+            "tags": [
+              "Contract",
+              "Pact",
+              "API"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "ta-cucumber",
+            "naam": "Cucumber / BDD",
+            "icon": "🥒",
+            "desc": "BDD en Cucumber. Komt beschikbaar in de TA Playground.",
+            "tags": [
+              "Cucumber",
+              "BDD",
+              "Gherkin"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "ta-playwright",
+            "naam": "Playwright",
+            "icon": "🎭",
+            "desc": "E2E testautomatisering met Playwright. Zit in de Playground en op de cursuskalender. Docent: Wilco.",
+            "tags": [
+              "Playwright",
+              "E2E",
+              "Web"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Security",
+        "badge": "Specialisatie",
+        "items": [
+          {
+            "id": "sec-basics",
+            "naam": "Security Context Training",
+            "icon": "🔒",
+            "desc": "Basistraining security context voor testers via Remy. FN T, 1 sessie. JB: aanvullende training op kalender.",
+            "tags": [
+              "Security",
+              "OWASP",
+              "Basis"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "sec-pipeline",
+            "naam": "Shift Left & Security in Pipeline",
+            "icon": "🛡️",
+            "desc": "Security in CI/CD pipeline via Sjoerd Jan. Wordt kennissessie in Q2/Q3. Remy vraagbaak.",
+            "tags": [
+              "Shift-left",
+              "Pipeline",
+              "DevSecOps"
+            ],
+            "duur": "kennissessie",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sec-ceh",
+            "naam": "CEH – Certified Ethical Hacker",
+            "icon": "🔓",
+            "desc": "Stap 1 security pad: Certified Ethical Hacker. Aanvalstechnieken en penetratietesten.",
+            "tags": [
+              "CEH",
+              "Pentest",
+              "OWASP"
+            ],
+            "duur": "~8 wkn",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sec-ejpt",
+            "naam": "eJPT – Junior Pentester",
+            "icon": "🔍",
+            "desc": "Stap 2: eLearnSecurity Junior Penetration Tester. Hands-on netwerk- en webtesting.",
+            "tags": [
+              "eJPT",
+              "Netwerk",
+              "Web"
+            ],
+            "duur": "~6 wkn",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sec-ewpt",
+            "naam": "EWPT – WebApp Pentester",
+            "icon": "🌐",
+            "desc": "Stap 3: Web Application Penetration Tester. SQL injection, XSS en CSRF.",
+            "tags": [
+              "EWPT",
+              "Web",
+              "Burp Suite"
+            ],
+            "duur": "~8 wkn",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sec-cism",
+            "naam": "CISM – Risicomanagement",
+            "icon": "🔐",
+            "desc": "Certified Information Security Manager. Governance, risicomanagement en compliance.",
+            "tags": [
+              "CISM",
+              "Risk",
+              "Governance"
+            ],
+            "duur": "~10 wkn",
+            "kern": false,
+            "cross": [
+              "enabler",
+              "maatwerk"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Performance Testing",
+        "badge": "Specialisatie",
+        "items": [
+          {
+            "id": "perf-ctx",
+            "naam": "Context Performance Testing",
+            "icon": "⚡",
+            "desc": "Intro/praktijksessie performance testing via Roland van Leusden. Verdiepende training wordt georganiseerd.",
+            "tags": [
+              "Performance",
+              "Strategie",
+              "SLA"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "perf-k6",
+            "naam": "K6 – Load Testing",
+            "icon": "📈",
+            "desc": "Moderne load testing met k6. Scripts schrijven en resultaten visualiseren in Grafana.",
+            "tags": [
+              "k6",
+              "Grafana",
+              "JavaScript"
+            ],
+            "duur": "~3 wkn",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "perf-jmeter",
+            "naam": "JMeter",
+            "icon": "🔩",
+            "desc": "Apache JMeter voor uitgebreide load- en stresstests met CI/CD-integratie.",
+            "tags": [
+              "JMeter",
+              "Load",
+              "Stress"
+            ],
+            "duur": "~3 wkn",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "perf-artillery",
+            "naam": "Artillery",
+            "icon": "🚀",
+            "desc": "Lichtgewicht performance-testframework voor moderne APIs en microservices.",
+            "tags": [
+              "Artillery",
+              "API",
+              "Microservices"
+            ],
+            "duur": "~2 wkn",
+            "kern": false,
+            "cross": []
+          }
+        ]
+      },
+      {
+        "sectie": "Testmethoden",
+        "badge": "Verdieping",
+        "items": [
+          {
+            "id": "test-mut",
+            "naam": "Mutation Testing",
+            "icon": "🧬",
+            "desc": "Mutation testing via Infosupport, Rabo of Bas Dijkstra. FN 2, 1 sessie.",
+            "tags": [
+              "Mutation",
+              "Kwaliteit",
+              "Testpiramide"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "test-exp",
+            "naam": "Exploratory Testing",
+            "icon": "🔭",
+            "desc": "Exploratief testen: technieken, charters en sessie-based test management.",
+            "tags": [
+              "Exploratory",
+              "Sessie-based",
+              "Heuristics"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "test-ai",
+            "naam": "AI & Testing",
+            "icon": "🤖",
+            "desc": "Do's en don'ts van AI in QA via Paul Cirstean of Yonder. Casussen vanuit KZA invullen.",
+            "tags": [
+              "AI",
+              "ChatGPT",
+              "Prompt"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "academy",
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "test-bdd",
+            "naam": "BDD & Risk Storming",
+            "icon": "⚠️",
+            "desc": "BDD via Jeroen Diks en risk storming via Samantha van Hutten / Ide Koops. FN 1-2.",
+            "tags": [
+              "BDD",
+              "Risk storming",
+              "Requirements"
+            ],
+            "duur": "1-2 sessies",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "AI & Automatisering",
+        "badge": "AI",
+        "items": [
+          {
+            "id": "ai-fundament",
+            "naam": "AI Fundament & Prompt Engineering",
+            "icon": "🤖",
+            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
+            "tags": [
+              "AI",
+              "LLM",
+              "Prompting",
+              "ChatGPT"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ai-testen-eng",
+            "naam": "AI-ondersteund Testen",
+            "icon": "⚗️",
+            "desc": "AI inzetten bij testautomatisering: testscripts genereren met Copilot of ChatGPT, testdata aanmaken, exploratory testing met AI-assistentie. Valideren van AI-gegenereerde testcases.",
+            "tags": [
+              "Copilot",
+              "Testautomatisering",
+              "AI"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": [
+              "academy",
+              "security"
+            ]
+          },
+          {
+            "id": "ai-tooling",
+            "naam": "AI Tooling in de Praktijk",
+            "icon": "🧰",
+            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
+            "tags": [
+              "Copilot",
+              "Cursor",
+              "Claude",
+              "Gemini"
+            ],
+            "duur": "1 dag",
+            "kern": false,
+            "cross": [
+              "enabler",
+              "academy",
+              "maatwerk",
+              "security"
+            ]
+          }
+        ]
+      }
+    ],
+    "enabler": [
+      {
+        "sectie": "QA Enabler Programma",
+        "badge": "Fundament",
+        "items": [
+          {
+            "id": "enab-prog1",
+            "naam": "QA Enabler Programma",
+            "icon": "🎓",
+            "desc": "Lang lopend programma voor FN 2 in besloten groep i.o.m. BLs. Eerste sessies ingepland.",
+            "tags": [
+              "BDD",
+              "Testproces",
+              "Policy"
+            ],
+            "duur": "tbd",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "enab-prog2",
+            "naam": "QA Enabler Programma 2",
+            "icon": "🎓",
+            "desc": "Tweede groep QA Enabler programma. Lang lopend, besloten groep i.o.m. BLs. Start nieuw jaar.",
+            "tags": [
+              "BDD",
+              "Enabler",
+              "Policy"
+            ],
+            "duur": "tbd",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "enab-tmap",
+            "naam": "TMap Cross Functional Teams",
+            "icon": "🗂️",
+            "desc": "TMap voor cross-functionele teams via Ivo Rog. 4 avonden. FN T.",
+            "tags": [
+              "TMap",
+              "Cross-func",
+              "Teams"
+            ],
+            "duur": "4 avonden",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "enab-exptest",
+            "naam": "Exploratory Testing",
+            "icon": "🔭",
+            "desc": "Exploratief testen: technieken, charters en sessie-based test management.",
+            "tags": [
+              "Exploratory",
+              "Sessie-based"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "enab-bdd",
+            "naam": "BDD & Cucumber",
+            "icon": "🥒",
+            "desc": "BDD aanpak en Cucumber implementatie. Jeroen Diks. Komt in de TA Playground.",
+            "tags": [
+              "BDD",
+              "Cucumber",
+              "Gherkin"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "enab-risk",
+            "naam": "Risk Storming",
+            "icon": "⚠️",
+            "desc": "Risk storming workshop via Samantha van Hutten of Ide Koops. FN 2, 1 sessie.",
+            "tags": [
+              "Risk",
+              "Workshop",
+              "Strategie"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Soft Skills & Communicatie",
+        "badge": "Specialisatie",
+        "items": [
+          {
+            "id": "ss-context",
+            "naam": "Context is Key",
+            "icon": "🔑",
+            "desc": "Contextueel denken en communiceren via Jeroen Gouwentak. FN T.",
+            "tags": [
+              "Context",
+              "Communicatie",
+              "Mindset"
+            ],
+            "duur": "nvt",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "ss-feedback",
+            "naam": "Feedback Effectief Communiceren",
+            "icon": "💬",
+            "desc": "3 avonden effectief feedback geven en ontvangen via Edwin Heus. FN 2.",
+            "tags": [
+              "Feedback",
+              "Communicatie",
+              "Relatie"
+            ],
+            "duur": "3 avonden",
+            "kern": true,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "ss-vragen",
+            "naam": "Vaardig Vragen Stellen",
+            "icon": "❓",
+            "desc": "Gerichte vragen stellen via Ivo Rog of Jan Hage. 1 sessie, FN T.",
+            "tags": [
+              "Vragen",
+              "Communicatie",
+              "Analyse"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "ss-stress",
+            "naam": "Gezond Omgaan met Stress",
+            "icon": "🧘",
+            "desc": "Workshop stress-management via Marriane Geersing. 1 avond. FN T.",
+            "tags": [
+              "Stress",
+              "Weerbaarheid",
+              "Energie"
+            ],
+            "duur": "1 avond",
+            "kern": false,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "ss-conflict",
+            "naam": "Conflicthantering",
+            "icon": "🤜",
+            "desc": "2 avonden conflicthantering via Dirk van Uffelen. FN 3.",
+            "tags": [
+              "Conflict",
+              "Gesprekstechnieken"
+            ],
+            "duur": "2 avonden",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "ss-insights",
+            "naam": "Insights Discovery",
+            "icon": "🌈",
+            "desc": "Persoonlijkheidsprofiel en zelfinzicht via Marriet. FN 1, 1 sessie.",
+            "tags": [
+              "Insights",
+              "Persoonlijkheid",
+              "Team"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": [
+              "academy",
+              "maatwerk"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Agile & Frameworks",
+        "badge": "Specialisatie",
+        "items": [
+          {
+            "id": "agile-pspo",
+            "naam": "PSPO – Product Owner",
+            "icon": "🎯",
+            "desc": "Product Owner certificering via Joost Janssen. FN 2, 1 sessie.",
+            "tags": [
+              "PSPO",
+              "Product Owner",
+              "Agile"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "agile-kanban",
+            "naam": "Kanban / Lean",
+            "icon": "♻️",
+            "desc": "Kanban en Lean principes via Joost of Tycho. FN 2, 2 sessies.",
+            "tags": [
+              "Kanban",
+              "Lean",
+              "Flow"
+            ],
+            "duur": "2 sessies",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "agile-safe",
+            "naam": "SAFe / Agile Scaling",
+            "icon": "📐",
+            "desc": "Scaled Agile via het Gilde in de lead. FN 2.",
+            "tags": [
+              "SAFe",
+              "Agile",
+              "Scaling"
+            ],
+            "duur": "nvt",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "agile-dasa",
+            "naam": "DASA Fundamentals",
+            "icon": "♾️",
+            "desc": "DevOps fundamentals via Dave. 4 avonden, FN T.",
+            "tags": [
+              "DASA",
+              "DevOps",
+              "Fundamentals"
+            ],
+            "duur": "4 avonden",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "agile-ireb",
+            "naam": "IREB",
+            "icon": "📋",
+            "desc": "Requirements engineering certificering via Stefan Staal. FN 2.",
+            "tags": [
+              "IREB",
+              "Requirements",
+              "Analyse"
+            ],
+            "duur": "nvt",
+            "kern": false,
+            "cross": []
+          }
+        ]
+      },
+      {
+        "sectie": "Leiderschap & Stakeholders",
+        "badge": "Verdieping",
+        "items": [
+          {
+            "id": "lead-flow",
+            "naam": "FLOW – Persoonlijk Leiderschap",
+            "icon": "🌊",
+            "desc": "Eenjarig leiderschapstraject met 3 weekenden en intervisie o.b.v. Stephen Covey via Gunter Tieben. FN 2, tbd sessies.",
+            "tags": [
+              "Leiderschap",
+              "Covey",
+              "Intervisie"
+            ],
+            "duur": "~1 jaar",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "lead-fmdp",
+            "naam": "FMDP – Management Development",
+            "icon": "🏛️",
+            "desc": "Tweejarig internationaal managementprogramma bij de Baak plus TSS HR-cursussen.",
+            "tags": [
+              "FMDP",
+              "Management",
+              "de Baak"
+            ],
+            "duur": "~2 jaar",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "lead-ttrain",
+            "naam": "Train de Trainer",
+            "icon": "📢",
+            "desc": "4 avonden trainingen ontwerpen en begeleiden via Gunter. FN 1.",
+            "tags": [
+              "Training",
+              "Didactiek",
+              "Faciliteren"
+            ],
+            "duur": "4 avonden",
+            "kern": false,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "lead-pubspk",
+            "naam": "Public Speaking",
+            "icon": "🎤",
+            "desc": "2 avonden presenteren en public speaking via Reinout Bosman. FN 2.",
+            "tags": [
+              "Presenteren",
+              "Spreken",
+              "Impact"
+            ],
+            "duur": "2 avonden",
+            "kern": false,
+            "cross": [
+              "academy"
+            ]
+          },
+          {
+            "id": "lead-stake",
+            "naam": "Workshop Stakeholdermanagement",
+            "icon": "💼",
+            "desc": "Stakeholdermanagement workshop via Christel en Michiel.",
+            "tags": [
+              "Stakeholders",
+              "Invloed",
+              "Communicatie"
+            ],
+            "duur": "workshop",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "lead-powerbi",
+            "naam": "Power BI",
+            "icon": "📊",
+            "desc": "Power BI voor rapportage en inzicht via Jan Hage.",
+            "tags": [
+              "Power BI",
+              "Rapportage",
+              "Data"
+            ],
+            "duur": "nvt",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "AI & Strategie",
+        "badge": "AI",
+        "items": [
+          {
+            "id": "ai-fundament-en",
+            "naam": "AI Fundament & Prompt Engineering",
+            "icon": "🤖",
+            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
+            "tags": [
+              "AI",
+              "LLM",
+              "Prompting",
+              "ChatGPT"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ai-strategie",
+            "naam": "AI in QA Processen & Strategie",
+            "icon": "📐",
+            "desc": "AI-tools integreren in een QA-proces. Risicos van AI in het testproces, kwaliteitsborging van AI-gedreven systemen en non-deterministische systemen testen. Voor wie teams begeleidt of strategie bepaalt.",
+            "tags": [
+              "AI-strategie",
+              "Non-deterministisch",
+              "Kwaliteit"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "ai-tooling-en",
+            "naam": "AI Tooling in de Praktijk",
+            "icon": "🧰",
+            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
+            "tags": [
+              "Copilot",
+              "Cursor",
+              "Claude",
+              "Gemini"
+            ],
+            "duur": "1 dag",
+            "kern": false,
+            "cross": [
+              "engineer",
+              "academy",
+              "maatwerk",
+              "security"
+            ]
+          }
+        ]
+      }
+    ],
+    "academy": [
+      {
+        "sectie": "Jaar 1 – Fundament",
+        "badge": "Jaar 1",
+        "items": [
+          {
+            "id": "ac-key",
+            "naam": "KEY Masterclass",
+            "icon": "🔑",
+            "desc": "KZA onboarding: werkwijze, kernwaarden en rol van de QA-professional.",
+            "tags": [
+              "Onboarding",
+              "Cultuur",
+              "KZA"
+            ],
+            "duur": "~2 wkn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ac-tmap",
+            "naam": "TMap Masterclass",
+            "icon": "🗂️",
+            "desc": "Gestructureerd testen met TMap: testprocessen, technieken en testbeheer.",
+            "tags": [
+              "TMap",
+              "Testproces"
+            ],
+            "duur": "~3 wkn",
+            "kern": true,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "ac-istqb",
+            "naam": "ISTQB Foundation",
+            "icon": "📋",
+            "desc": "Internationaal erkende basis-certificering voor software testers.",
+            "tags": [
+              "ISTQB",
+              "Certificering"
+            ],
+            "duur": "~4 wkn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ac-psmi",
+            "naam": "PSM I – Scrum",
+            "icon": "🏃",
+            "desc": "Professional Scrum Master Level I. Scrum-framework begrijpen en toepassen.",
+            "tags": [
+              "PSM I",
+              "Scrum",
+              "Agile"
+            ],
+            "duur": "~3 wkn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ac-swat",
+            "naam": "SWAT Training",
+            "icon": "💡",
+            "desc": "Snelle testanalyse en risico-gebaseerd prioriteren. Tycho brengt het onder de aandacht bij nieuwe YPs.",
+            "tags": [
+              "SWAT",
+              "Analyse",
+              "Risico"
+            ],
+            "duur": "4 avonden",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ac-vragen",
+            "naam": "Vaardig Vragen Stellen",
+            "icon": "❓",
+            "desc": "Gerichte vragen stellen aan stakeholders via Ivo Rog of Jan Hage. FN T.",
+            "tags": [
+              "Communicatie",
+              "Requirements",
+              "Vragen"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "ac-context",
+            "naam": "Context is Key",
+            "icon": "🔑",
+            "desc": "Contextueel denken en communiceren via Jeroen Gouwentak. FN T.",
+            "tags": [
+              "Context",
+              "Communicatie",
+              "Mindset"
+            ],
+            "duur": "nvt",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Jaar 2 – Doorontwikkelen",
+        "badge": "Jaar 2",
+        "items": [
+          {
+            "id": "ac-insights",
+            "naam": "Insights Discovery",
+            "icon": "🌈",
+            "desc": "Persoonlijkheidsprofiel en zelfinzicht via Marriet. FN 1, 1 sessie.",
+            "tags": [
+              "Inzicht",
+              "Samenwerken",
+              "Profiel"
+            ],
+            "duur": "1 sessie",
+            "kern": true,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "ac-weerb",
+            "naam": "Weerbaarheid / Stress",
+            "icon": "🧱",
+            "desc": "Omgaan met werkdruk en lastige situaties. Workshop via Marriane Geersing.",
+            "tags": [
+              "Weerbaarheid",
+              "Stress",
+              "Soft skills"
+            ],
+            "duur": "1 avond",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ac-js",
+            "naam": "JavaScript voor testers",
+            "icon": "📜",
+            "desc": "4 avonden JavaScript voor testers via Roy de Kleijne. Plannen in Q2.",
+            "tags": [
+              "JavaScript",
+              "TA",
+              "Scripting"
+            ],
+            "duur": "4 avonden",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-python",
+            "naam": "Python voor testers",
+            "icon": "🐍",
+            "desc": "4 avonden Python via Erik Droogh of Tycho. Loopt of wordt ingepland.",
+            "tags": [
+              "Python",
+              "Scripting",
+              "Automatisering"
+            ],
+            "duur": "4 avonden",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-playwright",
+            "naam": "Playwright",
+            "icon": "🎭",
+            "desc": "E2E testautomatisering met Playwright. Zit in de Playground en op de kalender.",
+            "tags": [
+              "Playwright",
+              "E2E",
+              "Web"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-api",
+            "naam": "API Testing Training",
+            "icon": "🔌",
+            "desc": "4 sessies API testing via Bas Dijkstra. JB: opnieuw op de kalender zetten.",
+            "tags": [
+              "API",
+              "REST",
+              "Postman"
+            ],
+            "duur": "4 sessies",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Jaar 3 – Impact vergroten",
+        "badge": "Jaar 3",
+        "items": [
+          {
+            "id": "ac-qae1",
+            "naam": "QA Engineering Module 1",
+            "icon": "⚙️",
+            "desc": "Meerdere avonden toepassen van de testpiramide. FN 1, 10 dagdelen. April starten.",
+            "tags": [
+              "CI/CD",
+              "Testpiramide",
+              "Engineering"
+            ],
+            "duur": "10 dagdelen",
+            "kern": true,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-qae2",
+            "naam": "QA Engineering Module 2",
+            "icon": "🔧",
+            "desc": "1 week pipeline en development. Opfrissen na QA Engineering 1. Nieuw programma, later in het jaar.",
+            "tags": [
+              "Pipeline",
+              "Development",
+              "DevOps"
+            ],
+            "duur": "1 week",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-sec",
+            "naam": "Security Context Training",
+            "icon": "🔒",
+            "desc": "Basistraining security context voor testers via Remy. FN T, 1 sessie.",
+            "tags": [
+              "Security",
+              "OWASP",
+              "Basis"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-perf",
+            "naam": "Context Performance Testing",
+            "icon": "📈",
+            "desc": "Intro performance testing via Roland van Leusden. Verdiepende training volgt.",
+            "tags": [
+              "Performance",
+              "JMeter",
+              "k6"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-pubspeek",
+            "naam": "Public Speaking",
+            "icon": "🎤",
+            "desc": "2 avonden presenteren en spreken via Reinout Bosman. FN 2.",
+            "tags": [
+              "Presenteren",
+              "Spreken",
+              "Impact"
+            ],
+            "duur": "2 avonden",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "ac-ttrain",
+            "naam": "Train de Trainer",
+            "icon": "📢",
+            "desc": "4 avonden trainingen ontwerpen en begeleiden via Gunter. FN 1.",
+            "tags": [
+              "Training",
+              "Didactiek",
+              "Faciliteren"
+            ],
+            "duur": "4 avonden",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "AI & Automatisering",
+        "badge": "AI",
+        "items": [
+          {
+            "id": "ai-fundament-ac",
+            "naam": "AI Fundament & Prompt Engineering",
+            "icon": "🤖",
+            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
+            "tags": [
+              "AI",
+              "LLM",
+              "Prompting",
+              "ChatGPT"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ai-testen-ac",
+            "naam": "AI-ondersteund Testen",
+            "icon": "⚗️",
+            "desc": "AI inzetten bij testautomatisering: testscripts genereren met Copilot of ChatGPT, testdata aanmaken, exploratory testing met AI-assistentie. Valideren van AI-gegenereerde testcases.",
+            "tags": [
+              "Copilot",
+              "Testautomatisering",
+              "AI"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": [
+              "engineer",
+              "security"
+            ]
+          },
+          {
+            "id": "ai-tooling-ac",
+            "naam": "AI Tooling in de Praktijk",
+            "icon": "🧰",
+            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
+            "tags": [
+              "Copilot",
+              "Cursor",
+              "Claude",
+              "Gemini"
+            ],
+            "duur": "1 dag",
+            "kern": false,
+            "cross": [
+              "engineer",
+              "enabler",
+              "maatwerk",
+              "security"
+            ]
+          }
+        ]
+      }
+    ],
+    "maatwerk": [
+      {
+        "sectie": "Certificeringen",
+        "badge": "Verdieping",
+        "items": [
+          {
+            "id": "mw-tmap",
+            "naam": "TMap Next / CAT",
+            "icon": "🗂️",
+            "desc": "Gevorderde TMap-certificering of Certified Agile Tester voor senioren.",
+            "tags": [
+              "TMap Next",
+              "CAT",
+              "Certificering"
+            ],
+            "duur": "Flexibel",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "mw-dasa",
+            "naam": "DASA Fundamentals / Professional",
+            "icon": "♾️",
+            "desc": "DevOps fundamentals of professional certificering via Dave. Onderdeel cursuskalender.",
+            "tags": [
+              "DASA",
+              "DevOps"
+            ],
+            "duur": "4 avonden",
+            "kern": false,
+            "cross": [
+              "engineer",
+              "enabler"
+            ]
+          },
+          {
+            "id": "mw-pspo",
+            "naam": "PSPO – Product Owner",
+            "icon": "🎯",
+            "desc": "Product Owner certificering via Joost Janssen. Geschikt voor senioren met Agile scope.",
+            "tags": [
+              "PSPO",
+              "Agile",
+              "Product"
+            ],
+            "duur": "1 sessie",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "mw-oscp",
+            "naam": "OSCP – Offensive Security",
+            "icon": "🔓",
+            "desc": "Stap 4 security pad: Offensive Security Certified Professional. Geavanceerd pentesten.",
+            "tags": [
+              "OSCP",
+              "Pentest",
+              "Advanced"
+            ],
+            "duur": "Flexibel",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "mw-ireb",
+            "naam": "IREB",
+            "icon": "📋",
+            "desc": "Requirements engineering certificering via Stefan Staal.",
+            "tags": [
+              "IREB",
+              "Requirements",
+              "Analyse"
+            ],
+            "duur": "Flexibel",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Persoonlijk Leiderschap",
+        "badge": "Maatwerk",
+        "items": [
+          {
+            "id": "mw-flow",
+            "naam": "FLOW",
+            "icon": "🌊",
+            "desc": "Eenjarig leiderschapstraject via Gunter Tieben. 2 dagdelen per sessie, tbd planning. Loopt.",
+            "tags": [
+              "Leiderschap",
+              "Covey",
+              "FLOW"
+            ],
+            "duur": "~1 jaar",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "mw-fmdp",
+            "naam": "FMDP",
+            "icon": "🏛️",
+            "desc": "Tweejarig Management Development Programma bij de Baak, aangevuld met TSS HR-cursussen.",
+            "tags": [
+              "Management",
+              "de Baak",
+              "TSS"
+            ],
+            "duur": "~2 jaar",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "mw-conflict",
+            "naam": "Conflicthantering",
+            "icon": "🤜",
+            "desc": "2 avonden conflicthantering via Dirk van Uffelen. Voor FN 3.",
+            "tags": [
+              "Conflict",
+              "Gesprekstechnieken"
+            ],
+            "duur": "2 avonden",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "mw-intervisie",
+            "naam": "Intervisie & Peer Learning",
+            "icon": "🔁",
+            "desc": "Gestructureerde intervisiegroepen en casusbespreking. Doorlopend in de organisatie.",
+            "tags": [
+              "Intervisie",
+              "Peer learning"
+            ],
+            "duur": "Doorlopend",
+            "kern": false,
+            "cross": []
+          }
+        ]
+      },
+      {
+        "sectie": "Kennisdeling & Impact",
+        "badge": "Maatwerk",
+        "items": [
+          {
+            "id": "mw-gilde",
+            "naam": "Gilde Bijdrage",
+            "icon": "🏛️",
+            "desc": "Actief kennisdelen in het gilde: presentaties, workshops of themabeheer.",
+            "tags": [
+              "Gilde",
+              "Kennisdeling"
+            ],
+            "duur": "Doorlopend",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "mw-blog",
+            "naam": "Bloggen / Thought Leadership",
+            "icon": "✍️",
+            "desc": "KZA-blog schrijven, spreken op conferences of bijdragen aan vakpublicaties.",
+            "tags": [
+              "Blog",
+              "Spreken",
+              "Vakblad"
+            ],
+            "duur": "Flexibel",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "mw-mentor",
+            "naam": "Mentorschap",
+            "icon": "👥",
+            "desc": "Junior of medior collega begeleiden als mentor: loopbaangesprekken en opdracht-begeleiding.",
+            "tags": [
+              "Mentor",
+              "Begeleiding"
+            ],
+            "duur": "Doorlopend",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "mw-powerbi",
+            "naam": "Power BI",
+            "icon": "📊",
+            "desc": "Power BI voor rapportage en inzicht via Jan Hage. Geschikt voor senioren met data-scope.",
+            "tags": [
+              "Power BI",
+              "Rapportage",
+              "Data"
+            ],
+            "duur": "nvt",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "mw-stake",
+            "naam": "Stakeholdermanagement Workshop",
+            "icon": "💼",
+            "desc": "Workshop stakeholdermanagement via Christel en Michiel.",
+            "tags": [
+              "Stakeholders",
+              "Invloed"
+            ],
+            "duur": "workshop",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "AI & Innovatie",
+        "badge": "AI",
+        "items": [
+          {
+            "id": "ai-fundament-mw",
+            "naam": "AI Fundament & Prompt Engineering",
+            "icon": "🤖",
+            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
+            "tags": [
+              "AI",
+              "LLM",
+              "Prompting",
+              "ChatGPT"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ai-strategie-mw",
+            "naam": "AI in QA Processen & Strategie",
+            "icon": "📐",
+            "desc": "AI-tools integreren in een QA-proces. Risicos van AI in het testproces, kwaliteitsborging van AI-gedreven systemen en non-deterministische systemen testen.",
+            "tags": [
+              "AI-strategie",
+              "Non-deterministisch",
+              "Kwaliteit"
+            ],
+            "duur": "1-2 dgn",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          },
+          {
+            "id": "ai-tooling-mw",
+            "naam": "AI Tooling in de Praktijk",
+            "icon": "🧰",
+            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
+            "tags": [
+              "Copilot",
+              "Cursor",
+              "Claude",
+              "Gemini"
+            ],
+            "duur": "1 dag",
+            "kern": false,
+            "cross": [
+              "engineer",
+              "enabler",
+              "academy",
+              "security"
+            ]
+          }
+        ]
+      }
+    ],
+    "security": [
+      {
+        "sectie": "Niveau 0 – Instap",
+        "badge": "N0",
+        "items": [
+          {
+            "id": "sx-masterclass",
+            "naam": "Security Masterclass",
+            "icon": "🎓",
+            "desc": "Introductie in security voor testers: aanvalslandschap, OWASP Top 10, hoe denkt een aanvaller? Verplicht startpunt voor elk security-pad.",
+            "tags": [
+              "OWASP",
+              "Aanvalsdenken",
+              "Basis"
+            ],
+            "duur": "1 dag",
+            "kern": true,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "sx-portswigger0",
+            "naam": "PortSwigger Web Academy – Apprentice",
+            "icon": "🕷️",
+            "desc": "Gratis online leerplatform van Burp Suite. Apprentice-niveau: SQL injection, XSS, CSRF, authentication en path traversal. Zelfstandig te volgen.",
+            "tags": [
+              "PortSwigger",
+              "Burp Suite",
+              "Web"
+            ],
+            "duur": "Zelfstudium",
+            "kern": true,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "sx-linux0",
+            "naam": "Linux Command Line Basics",
+            "icon": "🐧",
+            "desc": "Basiskennis Linux: navigeren, bestandssysteem, rechten, scripting. Noodzakelijk voor pentest tooling.",
+            "tags": [
+              "Linux",
+              "CLI",
+              "Bash"
+            ],
+            "duur": "Zelfstudium",
+            "kern": true,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "sx-meekijken0",
+            "naam": "Meekijken bij pentest uitvoer",
+            "icon": "👀",
+            "desc": "Minimaal 1 uur meekijken bij een echte pentest-uitvoer door een N1/N2-er. Observeer methodiek, toolgebruik en rapportage.",
+            "tags": [
+              "Praktijk",
+              "Shadowing",
+              "Pentest"
+            ],
+            "duur": "1 uur+",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "sx-cert0",
+            "naam": "Certificering N0 (eWPT / JR HTB / BurpCert)",
+            "icon": "📜",
+            "desc": "Kies een van: eWPT (eLearnSecurity Web Pentester), Junior HackTheBox certificaat, of Burp Suite Certified Practitioner. Aantonen dat basis web-aanvallen begrepen en uitgevoerd worden.",
+            "tags": [
+              "eWPT",
+              "HackTheBox",
+              "BurpSuite",
+              "Certificering"
+            ],
+            "duur": "Examen",
+            "kern": true,
+            "cross": []
+          }
+        ]
+      },
+      {
+        "sectie": "Niveau 1 – Praktijkstarter",
+        "badge": "N1",
+        "items": [
+          {
+            "id": "sx-cert1",
+            "naam": "Web Certificaat (CEH / eJPT / Burp)",
+            "icon": "🏅",
+            "desc": "Certificaat op N1-niveau: Certified Ethical Hacker (CEH), eLearnSecurity Junior Penetration Tester (eJPT) of Burp Suite Certified Practitioner. Minimale tijd tussen certificaat en eerste uitvoer.",
+            "tags": [
+              "CEH",
+              "eJPT",
+              "BurpCert",
+              "Certificering"
+            ],
+            "duur": "~6-10 wkn",
+            "kern": true,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "sx-portswigger1",
+            "naam": "PortSwigger Web Academy – Advanced",
+            "icon": "🕷️",
+            "desc": "Gevorderde modules: SSRF, XXE, SSTI, deserialization, OAuth, JWT attacks, business logic. Doorwerken na N0-certificaat.",
+            "tags": [
+              "PortSwigger",
+              "SSRF",
+              "JWT",
+              "OAuth"
+            ],
+            "duur": "Zelfstudium",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "sx-meelopen1",
+            "naam": "Meelopen bij pentesten",
+            "icon": "👥",
+            "desc": "Eerst meelopen (observeren en assisteren). Minimaal 2 dagen per maand, streven naar 4. Opbouwen van een eigen bevindingen-portfolio.",
+            "tags": [
+              "Praktijk",
+              "Meelopen",
+              "Bevindingen"
+            ],
+            "duur": "Min. 2 dgn/mnd",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "sx-bevindingen1",
+            "naam": "Bevindingen portfolio opbouwen",
+            "icon": "📋",
+            "desc": "X aantal veel voorkomende bevindingen gezien en gedocumenteerd: XSS, SQLi, IDOR, CSRF, auth-bypass, misconfiguraties. Vastleggen in eigen format.",
+            "tags": [
+              "Bevindingen",
+              "Rapportage",
+              "OWASP"
+            ],
+            "duur": "Doorlopend",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "sx-htb1",
+            "naam": "HackTheBox / TryHackMe Machines",
+            "icon": "🖥️",
+            "desc": "Zelfstandig machines oplossen op HTB of THM. Minimaal 5 retired machines afgerond als voorbereiding op N2.",
+            "tags": [
+              "HackTheBox",
+              "TryHackMe",
+              "CTF"
+            ],
+            "duur": "Zelfstudium",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sx-rapportage1",
+            "naam": "Pentest Rapportage Training",
+            "icon": "📝",
+            "desc": "Leren schrijven van professionele pentest-rapporten: execsummary, technische bevinding, CVSS-score, aanbeveling.",
+            "tags": [
+              "Rapportage",
+              "CVSS",
+              "Communicatie"
+            ],
+            "duur": "1-2 sessies",
+            "kern": false,
+            "cross": [
+              "enabler"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Niveau 2 – Zelfstandig Pentester",
+        "badge": "N2",
+        "items": [
+          {
+            "id": "sx-portswigger2",
+            "naam": "PortSwigger – Expert (Blauw)",
+            "icon": "🕷️",
+            "desc": "Expert-modules van PortSwigger (blauwe labs): HTTP request smuggling, prototype pollution, web cache poisoning, GraphQL, advanced SSRF. Blauw-niveau afronden.",
+            "tags": [
+              "PortSwigger",
+              "Expert",
+              "Blauw"
+            ],
+            "duur": "Zelfstudium",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "sx-cpts-start",
+            "naam": "CPTS / OSCP Inlezen & Starten",
+            "icon": "📖",
+            "desc": "Starten met HTB CPTS (Certified Penetration Testing Specialist) of OSCP (OffSec Certified Professional). Cursusmateriaal doorwerken, lab-omgeving inrichten.",
+            "tags": [
+              "CPTS",
+              "OSCP",
+              "OffSec",
+              "HTB"
+            ],
+            "duur": "Studiestart",
+            "kern": true,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "sx-mobile-basis",
+            "naam": "Mobile Pentest Basis (iOS/Android)",
+            "icon": "📱",
+            "desc": "Basis van mobile applicatie security: OWASP Mobile Top 10, APK decompileren, Frida/Objection, SSL pinning bypass, traffic interceptie.",
+            "tags": [
+              "Mobile",
+              "Android",
+              "iOS",
+              "Frida"
+            ],
+            "duur": "Zelfstudium",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sx-desktop-basis",
+            "naam": "Desktop Pentest Basis",
+            "icon": "🖥️",
+            "desc": "Basis van desktop applicatie testing: DLL hijacking, privilege escalation, lokale bestandssysteem-analyse, Electron app security.",
+            "tags": [
+              "Desktop",
+              "DLL",
+              "PrivEsc",
+              "Electron"
+            ],
+            "duur": "Zelfstudium",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sx-actief2",
+            "naam": "Zelfstandig Dagen Draaien",
+            "icon": "💼",
+            "desc": "Vanuit N1 meelopen doorgroeien naar zelfstandig pentest-dagen draaien. Eigen scope uitvoeren, bevindingen rapporteren zonder begeleiding.",
+            "tags": [
+              "Praktijk",
+              "Zelfstandig",
+              "Scope"
+            ],
+            "duur": "Min. 4 dgn/mnd",
+            "kern": true,
+            "cross": []
+          }
+        ]
+      },
+      {
+        "sectie": "Niveau 3 – Specialist",
+        "badge": "N3",
+        "items": [
+          {
+            "id": "sx-cpts-cert",
+            "naam": "CPTS of OSCP Certificaat halen",
+            "icon": "🏆",
+            "desc": "Eindexamen CPTS (HackTheBox) of OSCP (OffSec). Bewijs van zelfstandig kunnen pentesten in een realistisch lab-scenario.",
+            "tags": [
+              "CPTS",
+              "OSCP",
+              "Certificering",
+              "Examen"
+            ],
+            "duur": "Examen",
+            "kern": true,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "sx-mobile-full",
+            "naam": "Mobile Pentest – Full",
+            "icon": "📱",
+            "desc": "Volledige mobile pentest zelfstandig uitvoeren: iOS en Android, dynamisch en statisch, rapportage op N3-niveau.",
+            "tags": [
+              "Mobile",
+              "iOS",
+              "Android",
+              "Pentest"
+            ],
+            "duur": "Praktijk",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sx-desktop-full",
+            "naam": "Desktop Pentest – Full",
+            "icon": "🖥️",
+            "desc": "Volledige desktop applicatie pentest zelfstandig uitvoeren: client-side aanvallen, privilege escalation, rapport.",
+            "tags": [
+              "Desktop",
+              "PrivEsc",
+              "Pentest"
+            ],
+            "duur": "Praktijk",
+            "kern": false,
+            "cross": []
+          },
+          {
+            "id": "sx-mentoring3",
+            "naam": "Junior Security-er Begeleiden",
+            "icon": "👥",
+            "desc": "N0/N1-ers actief begeleiden tijdens meekijkmomenten en labs. Kennisdeling als vast onderdeel van het werk.",
+            "tags": [
+              "Mentoring",
+              "Kennisdeling",
+              "Coach"
+            ],
+            "duur": "Doorlopend",
+            "kern": false,
+            "cross": [
+              "enabler",
+              "maatwerk"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "Niveau 4 – Expert & Specialisatie",
+        "badge": "N4",
+        "items": [
+          {
+            "id": "sx-specialisatie",
+            "naam": "Specialisatie (i.o.m. MT)",
+            "icon": "🎯",
+            "desc": "In overleg met het MT een specialisatie kiezen: Cloud Security, Red Teaming, Hardware/IoT, Thick Client, Mobile specialist, of andere richting.",
+            "tags": [
+              "Specialisatie",
+              "MT",
+              "Expert"
+            ],
+            "duur": "i.o.m. MT",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "sx-extra-cert",
+            "naam": "Aanvullende Certificering N4",
+            "icon": "📜",
+            "desc": "Vervolgcertificering passend bij specialisatie: OSEP (Evasion), OSED (Exploit Dev), OSMR (macOS/iOS), BSCP (AdvBurp), of andere OffSec/PNPT.",
+            "tags": [
+              "OSEP",
+              "OSED",
+              "OSMR",
+              "Certificering"
+            ],
+            "duur": "i.o.m. MT",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "sx-cism",
+            "naam": "CISM – Risicomanagement",
+            "icon": "🔐",
+            "desc": "Certified Information Security Manager. Risicomanagement, governance en compliance vanuit management-perspectief. Optioneel voor N4.",
+            "tags": [
+              "CISM",
+              "Risk",
+              "Governance"
+            ],
+            "duur": "~10 wkn",
+            "kern": false,
+            "cross": [
+              "enabler",
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "sx-research",
+            "naam": "Eigen Research / CVE / Blog",
+            "icon": "✍️",
+            "desc": "Zelfstandig security-onderzoek doen: 0-day zoeken, CVE aanvragen, blogpost schrijven, spreken op conferentie.",
+            "tags": [
+              "Research",
+              "CVE",
+              "Blog",
+              "Conferentie"
+            ],
+            "duur": "Doorlopend",
+            "kern": false,
+            "cross": [
+              "maatwerk"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "AI & Security",
+        "badge": "AI",
+        "items": [
+          {
+            "id": "ai-fundament-sx",
+            "naam": "AI Fundament & Prompt Engineering",
+            "icon": "🤖",
+            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
+            "tags": [
+              "AI",
+              "LLM",
+              "Prompting",
+              "ChatGPT"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": []
+          },
+          {
+            "id": "ai-testen-sx",
+            "naam": "AI-ondersteund Testen",
+            "icon": "⚗️",
+            "desc": "AI inzetten bij testautomatisering: testscripts genereren, testdata aanmaken en exploratory testing met AI-assistentie. Valideren van AI-gegenereerde testcases.",
+            "tags": [
+              "Copilot",
+              "Testautomatisering",
+              "AI"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": [
+              "engineer",
+              "academy"
+            ]
+          },
+          {
+            "id": "ai-security",
+            "naam": "Security & AI",
+            "icon": "🔐",
+            "desc": "AI-specifieke kwetsbaarheden: prompt injection, model poisoning, adversarial inputs en de OWASP LLM Top 10. Hoe test en pentest je AI-systemen? Essentieel voor wie AI-applicaties gaat testen of pentesten.",
+            "tags": [
+              "Prompt injection",
+              "LLM OWASP",
+              "Adversarial",
+              "AI pentest"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": [
+              "engineer",
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "ai-tooling-sx",
+            "naam": "AI Tooling in de Praktijk",
+            "icon": "🧰",
+            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
+            "tags": [
+              "Copilot",
+              "Cursor",
+              "Claude",
+              "Gemini"
+            ],
+            "duur": "1 dag",
+            "kern": false,
+            "cross": [
+              "engineer",
+              "enabler",
+              "academy",
+              "maatwerk"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "skills": {
+    "engineer": [
+      {
+        "cat": "Test Automatisering",
+        "icon": "🤖",
+        "items": [
+          {
+            "nm": "JavaScript",
+            "rel": [
+              "ta-js",
+              "ac-js"
+            ]
+          },
+          {
+            "nm": "Java",
+            "rel": [
+              "ta-java"
+            ]
+          },
+          {
+            "nm": "Python",
+            "rel": [
+              "ta-python",
+              "ta-python2",
+              "ac-python"
+            ]
+          },
+          {
+            "nm": "API testing",
+            "rel": [
+              "ta-api",
+              "ac-api"
+            ]
+          },
+          {
+            "nm": "Playwright",
+            "rel": [
+              "ta-playwright",
+              "ac-playwright"
+            ]
+          },
+          {
+            "nm": "Robot Framework",
+            "rel": [
+              "ta-robot"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Cloud & Infrastructure",
+        "icon": "☁️",
+        "items": [
+          {
+            "nm": "Cloud & containers",
+            "rel": [
+              "qa2-cloud"
+            ]
+          },
+          {
+            "nm": "CI/CD",
+            "rel": [
+              "qa2-cicd"
+            ]
+          },
+          {
+            "nm": "Linux",
+            "rel": [
+              "qa2-linux"
+            ]
+          },
+          {
+            "nm": "Git / Version control",
+            "rel": [
+              "qa2-git"
+            ]
+          },
+          {
+            "nm": "Mocks & Stubs",
+            "rel": [
+              "qa2-mocks"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Security",
+        "icon": "🔐",
+        "items": [
+          {
+            "nm": "Security context",
+            "rel": [
+              "sec-basics",
+              "ac-sec"
+            ]
+          },
+          {
+            "nm": "Shift-left security",
+            "rel": [
+              "sec-pipeline"
+            ]
+          },
+          {
+            "nm": "Penetratietesten (CEH)",
+            "rel": [
+              "sec-ceh"
+            ]
+          },
+          {
+            "nm": "WebApp pentesten",
+            "rel": [
+              "sec-ejpt",
+              "sec-ewpt"
+            ]
+          },
+          {
+            "nm": "Risicomanagement",
+            "rel": [
+              "sec-cism"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Performance",
+        "icon": "⚡",
+        "items": [
+          {
+            "nm": "Context & strategie",
+            "rel": [
+              "perf-ctx",
+              "ac-perf"
+            ]
+          },
+          {
+            "nm": "k6",
+            "rel": [
+              "perf-k6"
+            ]
+          },
+          {
+            "nm": "JMeter",
+            "rel": [
+              "perf-jmeter"
+            ]
+          },
+          {
+            "nm": "Artillery",
+            "rel": [
+              "perf-artillery"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Testmethoden",
+        "icon": "🔭",
+        "items": [
+          {
+            "nm": "BDD & Cucumber",
+            "rel": [
+              "ta-cucumber",
+              "test-bdd"
+            ]
+          },
+          {
+            "nm": "Exploratory testing",
+            "rel": [
+              "test-exp"
+            ]
+          },
+          {
+            "nm": "Mutation testing",
+            "rel": [
+              "test-mut"
+            ]
+          },
+          {
+            "nm": "Contract testing",
+            "rel": [
+              "ta-contract"
+            ]
+          },
+          {
+            "nm": "AI & testing",
+            "rel": [
+              "test-ai"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Engineering Tools",
+        "icon": "🧰",
+        "items": [
+          {
+            "nm": "WebdriverIO",
+            "rel": [
+              "ta-wdio"
+            ]
+          },
+          {
+            "nm": "Appium (mobiel)",
+            "rel": [
+              "ta-appium"
+            ]
+          },
+          {
+            "nm": "Springboot",
+            "rel": [
+              "qa2-spring"
+            ]
+          },
+          {
+            "nm": "Cucumber",
+            "rel": [
+              "ta-cucumber"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "AI & Automatisering",
+        "icon": "🤖",
+        "items": [
+          {
+            "nm": "AI Fundament & Prompting",
+            "rel": [
+              "ai-fundament"
+            ]
+          },
+          {
+            "nm": "AI-ondersteund testen",
+            "rel": [
+              "ai-testen-eng"
+            ]
+          },
+          {
+            "nm": "AI Tooling",
+            "rel": [
+              "ai-tooling"
+            ]
+          }
+        ]
+      }
+    ],
+    "enabler": [
+      {
+        "cat": "QA Enabler & Strategie",
+        "icon": "🎓",
+        "items": [
+          {
+            "nm": "QA Enabler programma",
+            "rel": [
+              "enab-prog1",
+              "enab-prog2"
+            ]
+          },
+          {
+            "nm": "TMap cross-func teams",
+            "rel": [
+              "enab-tmap"
+            ]
+          },
+          {
+            "nm": "Risk storming",
+            "rel": [
+              "enab-risk",
+              "test-bdd"
+            ]
+          },
+          {
+            "nm": "BDD & Cucumber",
+            "rel": [
+              "enab-bdd"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Soft Skills",
+        "icon": "💬",
+        "items": [
+          {
+            "nm": "Context is Key",
+            "rel": [
+              "ss-context",
+              "ac-context"
+            ]
+          },
+          {
+            "nm": "Feedback communiceren",
+            "rel": [
+              "ss-feedback"
+            ]
+          },
+          {
+            "nm": "Vaardig vragen",
+            "rel": [
+              "ss-vragen",
+              "ac-vragen"
+            ]
+          },
+          {
+            "nm": "Insights Discovery",
+            "rel": [
+              "ss-insights",
+              "ac-insights"
+            ]
+          },
+          {
+            "nm": "Conflicthantering",
+            "rel": [
+              "ss-conflict",
+              "mw-conflict"
+            ]
+          },
+          {
+            "nm": "Stress hanteren",
+            "rel": [
+              "ss-stress"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Agile & Frameworks",
+        "icon": "🏃",
+        "items": [
+          {
+            "nm": "Product Owner (PSPO)",
+            "rel": [
+              "agile-pspo",
+              "mw-pspo"
+            ]
+          },
+          {
+            "nm": "Kanban / Lean",
+            "rel": [
+              "agile-kanban"
+            ]
+          },
+          {
+            "nm": "SAFe",
+            "rel": [
+              "agile-safe"
+            ]
+          },
+          {
+            "nm": "DASA DevOps",
+            "rel": [
+              "agile-dasa",
+              "mw-dasa"
+            ]
+          },
+          {
+            "nm": "IREB",
+            "rel": [
+              "agile-ireb",
+              "mw-ireb"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Leiderschap",
+        "icon": "🌊",
+        "items": [
+          {
+            "nm": "FLOW",
+            "rel": [
+              "lead-flow",
+              "mw-flow"
+            ]
+          },
+          {
+            "nm": "FMDP",
+            "rel": [
+              "lead-fmdp",
+              "mw-fmdp"
+            ]
+          },
+          {
+            "nm": "Train de trainer",
+            "rel": [
+              "lead-ttrain",
+              "ac-ttrain"
+            ]
+          },
+          {
+            "nm": "Public speaking",
+            "rel": [
+              "lead-pubspk",
+              "ac-pubspeek"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Stakeholders & Impact",
+        "icon": "💼",
+        "items": [
+          {
+            "nm": "Stakeholdermanagement",
+            "rel": [
+              "lead-stake",
+              "mw-stake"
+            ]
+          },
+          {
+            "nm": "Power BI",
+            "rel": [
+              "lead-powerbi",
+              "mw-powerbi"
+            ]
+          },
+          {
+            "nm": "Mentorschap",
+            "rel": [
+              "mw-mentor"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Exploratory & Testmethoden",
+        "icon": "🔭",
+        "items": [
+          {
+            "nm": "Exploratory testing",
+            "rel": [
+              "enab-exptest",
+              "test-exp"
+            ]
+          },
+          {
+            "nm": "BDD",
+            "rel": [
+              "enab-bdd",
+              "ta-cucumber"
+            ]
+          },
+          {
+            "nm": "Risk storming",
+            "rel": [
+              "enab-risk"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "AI & Strategie",
+        "icon": "🤖",
+        "items": [
+          {
+            "nm": "AI Fundament & Prompting",
+            "rel": [
+              "ai-fundament-en"
+            ]
+          },
+          {
+            "nm": "AI in QA strategie",
+            "rel": [
+              "ai-strategie"
+            ]
+          },
+          {
+            "nm": "AI Tooling",
+            "rel": [
+              "ai-tooling-en"
+            ]
+          }
+        ]
+      }
+    ],
+    "academy": [
+      {
+        "cat": "Testkennis",
+        "icon": "📋",
+        "items": [
+          {
+            "nm": "TMap",
+            "rel": [
+              "ac-tmap"
+            ]
+          },
+          {
+            "nm": "ISTQB Foundation",
+            "rel": [
+              "ac-istqb"
+            ]
+          },
+          {
+            "nm": "SWAT analyse",
+            "rel": [
+              "ac-swat"
+            ]
+          },
+          {
+            "nm": "Context is Key",
+            "rel": [
+              "ac-context"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Tooling & Automatisering",
+        "icon": "🤖",
+        "items": [
+          {
+            "nm": "JavaScript",
+            "rel": [
+              "ac-js"
+            ]
+          },
+          {
+            "nm": "Python scripting",
+            "rel": [
+              "ac-python"
+            ]
+          },
+          {
+            "nm": "Playwright",
+            "rel": [
+              "ac-playwright"
+            ]
+          },
+          {
+            "nm": "API testing",
+            "rel": [
+              "ac-api"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Engineering",
+        "icon": "⚙️",
+        "items": [
+          {
+            "nm": "QA Engineering 1",
+            "rel": [
+              "ac-qae1"
+            ]
+          },
+          {
+            "nm": "QA Engineering 2",
+            "rel": [
+              "ac-qae2"
+            ]
+          },
+          {
+            "nm": "Security intro",
+            "rel": [
+              "ac-sec"
+            ]
+          },
+          {
+            "nm": "Performance intro",
+            "rel": [
+              "ac-perf"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Soft Skills",
+        "icon": "💬",
+        "items": [
+          {
+            "nm": "Insights Discovery",
+            "rel": [
+              "ac-insights"
+            ]
+          },
+          {
+            "nm": "Weerbaarheid",
+            "rel": [
+              "ac-weerb"
+            ]
+          },
+          {
+            "nm": "Vaardig vragen",
+            "rel": [
+              "ac-vragen"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Zichtbaarheid",
+        "icon": "🎤",
+        "items": [
+          {
+            "nm": "Public speaking",
+            "rel": [
+              "ac-pubspeek"
+            ]
+          },
+          {
+            "nm": "Train de trainer",
+            "rel": [
+              "ac-ttrain"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Fundament",
+        "icon": "🔑",
+        "items": [
+          {
+            "nm": "KZA kernwaarden",
+            "rel": [
+              "ac-key"
+            ]
+          },
+          {
+            "nm": "Scrum (PSM I)",
+            "rel": [
+              "ac-psmi"
+            ]
+          },
+          {
+            "nm": "SWAT",
+            "rel": [
+              "ac-swat"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "AI & Automatisering",
+        "icon": "🤖",
+        "items": [
+          {
+            "nm": "AI Fundament & Prompting",
+            "rel": [
+              "ai-fundament-ac"
+            ]
+          },
+          {
+            "nm": "AI-ondersteund testen",
+            "rel": [
+              "ai-testen-ac"
+            ]
+          },
+          {
+            "nm": "AI Tooling",
+            "rel": [
+              "ai-tooling-ac"
+            ]
+          }
+        ]
+      }
+    ],
+    "security": [
+      {
+        "cat": "Web Security",
+        "icon": "🕷️",
+        "items": [
+          {
+            "nm": "PortSwigger Apprentice",
+            "rel": [
+              "sx-portswigger0"
+            ]
+          },
+          {
+            "nm": "PortSwigger Advanced",
+            "rel": [
+              "sx-portswigger1"
+            ]
+          },
+          {
+            "nm": "PortSwigger Expert (Blauw)",
+            "rel": [
+              "sx-portswigger2"
+            ]
+          },
+          {
+            "nm": "Burp Suite",
+            "rel": [
+              "sx-cert0",
+              "sx-cert1"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Certificeringen",
+        "icon": "🏅",
+        "items": [
+          {
+            "nm": "eWPT / JR HTB / BurpCert",
+            "rel": [
+              "sx-cert0"
+            ]
+          },
+          {
+            "nm": "CEH / eJPT",
+            "rel": [
+              "sx-cert1"
+            ]
+          },
+          {
+            "nm": "CPTS / OSCP",
+            "rel": [
+              "sx-cpts-start",
+              "sx-cpts-cert"
+            ]
+          },
+          {
+            "nm": "Specialisatie cert",
+            "rel": [
+              "sx-extra-cert"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Praktijkervaring",
+        "icon": "💼",
+        "items": [
+          {
+            "nm": "Meekijken (N0)",
+            "rel": [
+              "sx-meekijken0"
+            ]
+          },
+          {
+            "nm": "Meelopen (N1)",
+            "rel": [
+              "sx-meelopen1"
+            ]
+          },
+          {
+            "nm": "Zelfstandig draaien (N2)",
+            "rel": [
+              "sx-actief2"
+            ]
+          },
+          {
+            "nm": "Bevindingen portfolio",
+            "rel": [
+              "sx-bevindingen1"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Technische Skills",
+        "icon": "🔧",
+        "items": [
+          {
+            "nm": "Linux CLI",
+            "rel": [
+              "sx-linux0"
+            ]
+          },
+          {
+            "nm": "HackTheBox / CTF",
+            "rel": [
+              "sx-htb1"
+            ]
+          },
+          {
+            "nm": "Mobile pentest",
+            "rel": [
+              "sx-mobile-basis",
+              "sx-mobile-full"
+            ]
+          },
+          {
+            "nm": "Desktop pentest",
+            "rel": [
+              "sx-desktop-basis",
+              "sx-desktop-full"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Rapportage & Kennis",
+        "icon": "📝",
+        "items": [
+          {
+            "nm": "Pentest rapportage",
+            "rel": [
+              "sx-rapportage1"
+            ]
+          },
+          {
+            "nm": "CVSS scoring",
+            "rel": [
+              "sx-rapportage1"
+            ]
+          },
+          {
+            "nm": "Research / CVE",
+            "rel": [
+              "sx-research"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Expert & Leadership",
+        "icon": "🎯",
+        "items": [
+          {
+            "nm": "Specialisatie (MT)",
+            "rel": [
+              "sx-specialisatie"
+            ]
+          },
+          {
+            "nm": "Junior begeleiden",
+            "rel": [
+              "sx-mentoring3"
+            ]
+          },
+          {
+            "nm": "CISM risicobeheer",
+            "rel": [
+              "sx-cism"
+            ]
+          },
+          {
+            "nm": "Blog / Conferentie",
+            "rel": [
+              "sx-research"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "AI & Security",
+        "icon": "🤖",
+        "items": [
+          {
+            "nm": "AI Fundament & Prompting",
+            "rel": [
+              "ai-fundament-sx"
+            ]
+          },
+          {
+            "nm": "AI-ondersteund testen",
+            "rel": [
+              "ai-testen-sx"
+            ]
+          },
+          {
+            "nm": "Security & AI (LLM)",
+            "rel": [
+              "ai-security"
+            ]
+          },
+          {
+            "nm": "AI Tooling",
+            "rel": [
+              "ai-tooling-sx"
+            ]
+          }
+        ]
+      }
+    ],
+    "maatwerk": [
+      {
+        "cat": "Certificeringen",
+        "icon": "🏅",
+        "items": [
+          {
+            "nm": "TMap Next / CAT",
+            "rel": [
+              "mw-tmap"
+            ]
+          },
+          {
+            "nm": "DASA DevOps",
+            "rel": [
+              "mw-dasa",
+              "agile-dasa"
+            ]
+          },
+          {
+            "nm": "PSPO",
+            "rel": [
+              "mw-pspo",
+              "agile-pspo"
+            ]
+          },
+          {
+            "nm": "OSCP",
+            "rel": [
+              "mw-oscp"
+            ]
+          },
+          {
+            "nm": "IREB",
+            "rel": [
+              "mw-ireb"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Leiderschap",
+        "icon": "🌊",
+        "items": [
+          {
+            "nm": "FLOW",
+            "rel": [
+              "mw-flow",
+              "lead-flow"
+            ]
+          },
+          {
+            "nm": "FMDP",
+            "rel": [
+              "mw-fmdp",
+              "lead-fmdp"
+            ]
+          },
+          {
+            "nm": "Conflicthantering",
+            "rel": [
+              "mw-conflict",
+              "ss-conflict"
+            ]
+          },
+          {
+            "nm": "Intervisie",
+            "rel": [
+              "mw-intervisie"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Impact & Kennisdeling",
+        "icon": "✍️",
+        "items": [
+          {
+            "nm": "Gilde bijdrage",
+            "rel": [
+              "mw-gilde"
+            ]
+          },
+          {
+            "nm": "Mentorschap",
+            "rel": [
+              "mw-mentor"
+            ]
+          },
+          {
+            "nm": "Thought leadership",
+            "rel": [
+              "mw-blog"
+            ]
+          },
+          {
+            "nm": "Power BI",
+            "rel": [
+              "mw-powerbi",
+              "lead-powerbi"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Business & Stakeholders",
+        "icon": "💼",
+        "items": [
+          {
+            "nm": "Stakeholdermanagement",
+            "rel": [
+              "mw-stake",
+              "lead-stake"
+            ]
+          },
+          {
+            "nm": "Insights Discovery",
+            "rel": [
+              "ss-insights",
+              "ac-insights"
+            ]
+          },
+          {
+            "nm": "Feedback communiceren",
+            "rel": [
+              "ss-feedback"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "Security Expert",
+        "icon": "🔐",
+        "items": [
+          {
+            "nm": "OSCP",
+            "rel": [
+              "mw-oscp"
+            ]
+          },
+          {
+            "nm": "CISM",
+            "rel": [
+              "sec-cism"
+            ]
+          }
+        ]
+      },
+      {
+        "cat": "AI & Innovatie",
+        "icon": "🤖",
+        "items": [
+          {
+            "nm": "AI Fundament & Prompting",
+            "rel": [
+              "ai-fundament-mw"
+            ]
+          },
+          {
+            "nm": "AI in QA strategie",
+            "rel": [
+              "ai-strategie-mw"
+            ]
+          },
+          {
+            "nm": "AI Tooling",
+            "rel": [
+              "ai-tooling-mw"
+            ]
+          },
+          {
+            "nm": "AI & Testing",
+            "rel": [
+              "test-ai"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "fases": {
+    "engineer": [
+      {
+        "num": 1,
+        "name": "Engineering Fundament",
+        "desc": "Cloud, containers, CI/CD en programmeren",
+        "prefix": [
+          "qa2"
+        ]
+      },
+      {
+        "num": 2,
+        "name": "Test Automatisering",
+        "desc": "Tooling, frameworks en API testing",
+        "prefix": [
+          "ta"
+        ]
+      },
+      {
+        "num": 3,
+        "name": "Specialisatie",
+        "desc": "Security, performance en testmethoden",
+        "prefix": [
+          "sec",
+          "perf",
+          "test",
+          "ai-fundament",
+          "ai-testen-eng",
+          "ai-tooling"
+        ]
+      }
+    ],
+    "enabler": [
+      {
+        "num": 1,
+        "name": "Enabler Basis",
+        "desc": "QA Enabler programma en testmethoden",
+        "prefix": [
+          "enab"
+        ]
+      },
+      {
+        "num": 2,
+        "name": "Soft Skills & Agile",
+        "desc": "Communicatie, samenwerken en agile frameworks",
+        "prefix": [
+          "ss",
+          "agile"
+        ]
+      },
+      {
+        "num": 3,
+        "name": "Leiderschap",
+        "desc": "FLOW, FMDP, stakeholders en kennisdeling",
+        "prefix": [
+          "lead",
+          "ai-fundament-en",
+          "ai-strategie",
+          "ai-tooling-en"
+        ]
+      }
+    ],
+    "academy": [
+      {
+        "num": 1,
+        "name": "Jaar 1 – Fundament",
+        "desc": "Masterclasses, ISTQB en basisvaardigheden",
+        "prefix": [
+          "ac-key",
+          "ac-tmap",
+          "ac-istqb",
+          "ac-psmi",
+          "ac-swat",
+          "ac-vragen",
+          "ac-context"
+        ]
+      },
+      {
+        "num": 2,
+        "name": "Jaar 2 – Doorontwikkelen",
+        "desc": "Soft skills, tooling en eerste automatisering",
+        "prefix": [
+          "ac-insights",
+          "ac-weerb",
+          "ac-js",
+          "ac-python",
+          "ac-playwright",
+          "ac-api"
+        ]
+      },
+      {
+        "num": 3,
+        "name": "Jaar 3 – Impact vergroten",
+        "desc": "QA Engineering, specialisaties en zichtbaarheid",
+        "prefix": [
+          "ac-qae1",
+          "ac-qae2",
+          "ac-sec",
+          "ac-perf",
+          "ac-pubspeek",
+          "ac-ttrain",
+          "ai-fundament-ac",
+          "ai-testen-ac",
+          "ai-tooling-ac"
+        ]
+      }
+    ],
+    "security": [
+      {
+        "num": 1,
+        "name": "Niveau 0 – Instap",
+        "desc": "Masterclass, PortSwigger Apprentice, Linux en eerste certificering",
+        "prefix": [
+          "sx-masterclass",
+          "sx-portswigger0",
+          "sx-linux0",
+          "sx-meekijken0",
+          "sx-cert0"
+        ]
+      },
+      {
+        "num": 2,
+        "name": "Niveau 1-2 – Praktijk",
+        "desc": "Certificaat, meelopen, zelfstandig draaien en PortSwigger Advanced",
+        "prefix": [
+          "sx-cert1",
+          "sx-portswigger1",
+          "sx-meelopen1",
+          "sx-bevindingen1",
+          "sx-htb1",
+          "sx-rapportage1",
+          "sx-portswigger2",
+          "sx-cpts-start",
+          "sx-mobile-basis",
+          "sx-desktop-basis",
+          "sx-actief2"
+        ]
+      },
+      {
+        "num": 3,
+        "name": "Niveau 3-4 – Specialist/Expert",
+        "desc": "CPTS/OSCP certificaat, specialisaties en eigen research",
+        "prefix": [
+          "sx-cpts-cert",
+          "sx-mobile-full",
+          "sx-desktop-full",
+          "sx-mentoring3",
+          "sx-specialisatie",
+          "sx-extra-cert",
+          "sx-cism",
+          "sx-research",
+          "ai-fundament-sx",
+          "ai-testen-sx",
+          "ai-security",
+          "ai-tooling-sx"
+        ]
+      }
+    ],
+    "maatwerk": [
+      {
+        "num": 1,
+        "name": "Verdieping & Certificering",
+        "desc": "Gerichte certificeringen op basis van jouw profiel",
+        "prefix": [
+          "mw-tmap",
+          "mw-dasa",
+          "mw-pspo",
+          "mw-oscp",
+          "mw-ireb"
+        ]
+      },
+      {
+        "num": 2,
+        "name": "Leiderschap & Groei",
+        "desc": "FLOW, FMDP, conflicthantering en intervisie",
+        "prefix": [
+          "mw-flow",
+          "mw-fmdp",
+          "mw-conflict",
+          "mw-intervisie",
+          "ai-fundament-mw",
+          "ai-strategie-mw",
+          "ai-tooling-mw"
+        ]
+      },
+      {
+        "num": 3,
+        "name": "Impact & Zichtbaarheid",
+        "desc": "Kennisdeling, mentorschap en thought leadership",
+        "prefix": [
+          "mw-gilde",
+          "mw-blog",
+          "mw-mentor",
+          "mw-powerbi",
+          "mw-stake"
+        ]
+      }
+    ]
+  }
+}
