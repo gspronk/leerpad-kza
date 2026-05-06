@@ -1,0 +1,183 @@
+# views/beheer.py
+import streamlit as st
+
+PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security"]
+PROFIEL_LABELS = {
+    "engineer": "QA Engineer",
+    "enabler":  "QA Enabler",
+    "academy":  "KZAcademy",
+    "maatwerk": "Op maat",
+    "security": "Security",
+}
+
+
+def render(data: dict, gist_client) -> None:
+    st.markdown("### ⚙️ Catalogus beheren")
+    st.caption("Wijzigingen worden direct opgeslagen naar GitHub Gist. Alle gebruikers zien de nieuwe catalogus na een refresh.")
+
+    col_zoek, col_filter = st.columns([2, 1])
+    with col_zoek:
+        zoek = st.text_input("Zoek cursus", placeholder="naam of id...")
+    with col_filter:
+        filter_profiel = st.selectbox(
+            "Profiel", ["Alle"] + PROFIELEN,
+            format_func=lambda k: "Alle profielen" if k == "Alle" else PROFIEL_LABELS[k]
+        )
+
+    alle_items = []
+    for profiel, secties in data.get("blokken", {}).items():
+        for sectie in secties:
+            for item in sectie.get("items", []):
+                alle_items.append({
+                    **item,
+                    "_profiel": profiel,
+                    "_sectie": sectie["sectie"],
+                    "_badge": sectie.get("badge", "")
+                })
+
+    gefilterd = [
+        i for i in alle_items
+        if (filter_profiel == "Alle" or i["_profiel"] == filter_profiel)
+        and (not zoek or zoek.lower() in i["naam"].lower() or zoek.lower() in i["id"])
+    ]
+
+    st.caption(f"{len(gefilterd)} cursussen")
+
+    if "beheer_actief_id" not in st.session_state:
+        st.session_state["beheer_actief_id"] = None
+    if "beheer_nieuw" not in st.session_state:
+        st.session_state["beheer_nieuw"] = False
+
+    col_lijst, col_form = st.columns([1, 2])
+
+    with col_lijst:
+        if st.button("+ Nieuwe cursus", use_container_width=True, type="primary"):
+            st.session_state["beheer_nieuw"] = True
+            st.session_state["beheer_actief_id"] = None
+
+        for item in gefilterd:
+            actief = st.session_state["beheer_actief_id"] == item["id"]
+            label = f"{'▶ ' if actief else ''}{item.get('icon','')} {item['naam']}"
+            if st.button(label, key=f"beheer_sel_{item['id']}", use_container_width=True):
+                st.session_state["beheer_actief_id"] = item["id"]
+                st.session_state["beheer_nieuw"] = False
+                st.rerun()
+
+    with col_form:
+        if st.session_state["beheer_nieuw"]:
+            _render_nieuw_formulier(data, gist_client)
+        elif st.session_state["beheer_actief_id"]:
+            actief_item = next(
+                (i for i in alle_items if i["id"] == st.session_state["beheer_actief_id"]), None
+            )
+            if actief_item:
+                _render_bewerk_formulier(actief_item, data, gist_client)
+        else:
+            st.info("Selecteer een cursus om te bewerken, of voeg een nieuwe toe.")
+
+
+def _render_nieuw_formulier(data: dict, gist_client) -> None:
+    st.markdown("#### Nieuwe cursus")
+    with st.form("nieuw_cursus_form"):
+        nieuw_id  = st.text_input("ID (uniek, geen spaties)", placeholder="bijv. sec-pentest-2")
+        naam      = st.text_input("Naam")
+        icon      = st.text_input("Icoon (emoji)", value="📋")
+        desc      = st.text_area("Beschrijving", height=80)
+        profiel   = st.selectbox("Profiel", PROFIELEN, format_func=lambda k: PROFIEL_LABELS[k])
+        sectie    = st.text_input("Sectie", placeholder="bijv. Security")
+        badge     = st.text_input("Badge", placeholder="bijv. Specialisatie")
+        duur      = st.text_input("Duur", placeholder="bijv. 2 sessies")
+        kern      = st.checkbox("Essentieel")
+        cross_str = st.text_input("Cross-functioneel (komma-gescheiden)", placeholder="bijv. enabler, maatwerk")
+        tags_str  = st.text_input("Tags (komma-gescheiden)", placeholder="bijv. Security, OWASP")
+        opgeslagen = st.form_submit_button("✓ Opslaan", use_container_width=True)
+
+    if opgeslagen:
+        if not nieuw_id.strip() or not naam.strip():
+            st.error("ID en naam zijn verplicht.")
+            return
+        alle_ids = {
+            i["id"]
+            for secties in data.get("blokken", {}).values()
+            for sec in secties
+            for i in sec.get("items", [])
+        }
+        if nieuw_id.strip() in alle_ids:
+            st.error(f"ID '{nieuw_id.strip()}' bestaat al.")
+            return
+
+        nieuw_item = {
+            "id":    nieuw_id.strip(),
+            "naam":  naam.strip(),
+            "icon":  icon.strip(),
+            "desc":  desc.strip(),
+            "tags":  [t.strip() for t in tags_str.split(",") if t.strip()],
+            "duur":  duur.strip(),
+            "kern":  kern,
+            "cross": [c.strip() for c in cross_str.split(",") if c.strip()],
+        }
+
+        blokken = data.get("blokken", {})
+        prof_blokken = blokken.setdefault(profiel, [])
+        sectie_match = next((s for s in prof_blokken if s["sectie"] == sectie.strip()), None)
+        if sectie_match:
+            sectie_match["items"].append(nieuw_item)
+        else:
+            prof_blokken.append({"sectie": sectie.strip(), "badge": badge.strip(), "items": [nieuw_item]})
+
+        gist_client.write_cursussen(data)
+        st.success(f"✓ '{naam}' toegevoegd en opgeslagen.")
+        st.session_state["beheer_nieuw"] = False
+        st.rerun()
+
+
+def _render_bewerk_formulier(item: dict, data: dict, gist_client) -> None:
+    st.markdown(f"#### Bewerk: {item.get('icon','')} {item['naam']}")
+    with st.form(f"bewerk_form_{item['id']}"):
+        naam      = st.text_input("Naam",        value=item.get("naam", ""))
+        icon      = st.text_input("Icoon",       value=item.get("icon", ""))
+        desc      = st.text_area("Beschrijving", value=item.get("desc", ""), height=80)
+        duur      = st.text_input("Duur",        value=item.get("duur", ""))
+        kern      = st.checkbox("Essentieel",    value=item.get("kern", False))
+        cross_str = st.text_input("Cross-functioneel", value=", ".join(item.get("cross", [])))
+        tags_str  = st.text_input("Tags",        value=", ".join(item.get("tags", [])))
+
+        col1, col2 = st.columns(2)
+        opgeslagen  = col1.form_submit_button("✓ Opslaan",     use_container_width=True)
+        verwijderen = col2.form_submit_button("🗑 Verwijderen", use_container_width=True)
+
+    if opgeslagen:
+        _update_item_in_data(data, item["id"], {
+            "naam":  naam.strip(),
+            "icon":  icon.strip(),
+            "desc":  desc.strip(),
+            "duur":  duur.strip(),
+            "kern":  kern,
+            "cross": [c.strip() for c in cross_str.split(",") if c.strip()],
+            "tags":  [t.strip() for t in tags_str.split(",") if t.strip()],
+        })
+        gist_client.write_cursussen(data)
+        st.success("✓ Opgeslagen.")
+        st.rerun()
+
+    if verwijderen:
+        _verwijder_item_uit_data(data, item["id"])
+        gist_client.write_cursussen(data)
+        st.success(f"🗑 '{item['naam']}' verwijderd.")
+        st.session_state["beheer_actief_id"] = None
+        st.rerun()
+
+
+def _update_item_in_data(data: dict, item_id: str, updates: dict) -> None:
+    for secties in data.get("blokken", {}).values():
+        for sectie in secties:
+            for item in sectie.get("items", []):
+                if item["id"] == item_id:
+                    item.update(updates)
+                    return
+
+
+def _verwijder_item_uit_data(data: dict, item_id: str) -> None:
+    for secties in data.get("blokken", {}).values():
+        for sectie in secties:
+            sectie["items"] = [i for i in sectie.get("items", []) if i["id"] != item_id]
