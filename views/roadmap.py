@@ -39,7 +39,7 @@ def render(data: dict, plan: dict) -> None:
         with col_card:
             with st.container(border=True):
                 st.markdown(f"<span style='font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#E5007D'>Fase {fase['num']}</span>", unsafe_allow_html=True)
-                st.markdown(f"**{fase['naam']}**")
+                st.markdown(f"**{fase.get('naam', fase.get('name', ''))}**")
                 st.caption(fase.get("desc", ""))
 
                 # Toon items voor deze fase op basis van prefix

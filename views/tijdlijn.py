@@ -52,7 +52,7 @@ def render(data: dict, plan: dict) -> None:
             f'<span style="font-family:monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;'
             f'padding:3px 10px;border-radius:99px;background:{kleur}22;color:{kleur};border:1px solid {kleur}44">'
             f'Fase {fase["num"]}</span>'
-            f'<span style="font-weight:700;color:#f0f6ff;font-size:16px">{fase["naam"]}</span>'
+            f'<span style="font-weight:700;color:#f0f6ff;font-size:16px">{fase.get("naam", fase.get("name", ""))}</span>'
             f'<span style="font-size:11px;color:#8b949e">{fase.get("desc","")}</span>'
             f'</div>',
             unsafe_allow_html=True
