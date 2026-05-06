@@ -58,12 +58,12 @@ def render(data: dict, plan: dict) -> None:
             unsafe_allow_html=True
         )
 
-        fase_prefix = fase.get("prefix", [])
-        fase_items = [
-            alle_items[iid]
-            for iid in alle_items
-            if any(iid.startswith(p) for p in fase_prefix)
-        ]
+        # Nieuw: items-lijst heeft prioriteit, prefix als fallback voor andere profielen
+        fase_ids = set(fase.get("items", []))
+        if not fase_ids:
+            fase_prefix = fase.get("prefix", [])
+            fase_ids = {iid for iid in alle_items if any(iid.startswith(p) for p in fase_prefix)}
+        fase_items = [alle_items[iid] for iid in fase_ids if iid in alle_items]
 
         if not fase_items:
             st.caption("*Geen blokken in deze fase.*")

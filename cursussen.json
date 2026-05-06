@@ -2746,68 +2746,85 @@
     "engineer": [
       {
         "num": 1,
-        "name": "Engineering Fundament",
-        "desc": "Cloud, containers, CI/CD en programmeren",
-        "prefix": [
-          "qa2"
+        "naam": "Fundament",
+        "desc": "De basis om als QA Engineer aan de slag te gaan.",
+        "items": [
+          "qa2-cloud",
+          "qa2-linux",
+          "qa2-cicd",
+          "qa2-git",
+          "qa2-mocks",
+          "qa2-spring"
         ]
       },
       {
         "num": 2,
-        "name": "Test Automatisering",
-        "desc": "Tooling, frameworks en API testing",
-        "prefix": [
-          "ta"
+        "naam": "Vakmanschap",
+        "desc": "Test automatisering en tooling om zelfstandig inzetbaar te worden.",
+        "items": [
+          "ta-js",
+          "ta-java",
+          "ta-python",
+          "ta-python2",
+          "ta-wdio",
+          "ta-robot",
+          "ta-appium",
+          "ta-contract",
+          "ta-cucumber"
         ]
       },
       {
         "num": 3,
-        "name": "Specialisatie",
-        "desc": "Security, performance en testmethoden",
-        "prefix": [
-          "sec",
-          "perf",
-          "test",
-          "ai-fundament",
-          "ai-testen-eng",
-          "ai-tooling"
+        "naam": "Expert & Impact",
+        "desc": "Verdieping in security, performance, AI en geavanceerde testmethoden.",
+        "items": [
+          "sec-pipeline",
+          "sec-ceh",
+          "sec-ejpt",
+          "sec-ewpt",
+          "perf-k6",
+          "perf-jmeter",
+          "perf-artillery",
+          "test-mut",
+          "test-ai",
+          "test-bdd",
+          "ai-testen-eng"
         ]
       }
     ],
     "enabler": [
       {
         "num": 1,
-        "name": "Enabler Basis",
         "desc": "QA Enabler programma en testmethoden",
         "prefix": [
           "enab"
-        ]
+        ],
+        "naam": "Enabler Basis"
       },
       {
         "num": 2,
-        "name": "Soft Skills & Agile",
         "desc": "Communicatie, samenwerken en agile frameworks",
         "prefix": [
           "ss",
           "agile"
-        ]
+        ],
+        "naam": "Soft Skills & Agile"
       },
       {
         "num": 3,
-        "name": "Leiderschap",
         "desc": "FLOW, FMDP, stakeholders en kennisdeling",
         "prefix": [
           "lead",
           "ai-fundament-en",
           "ai-strategie",
           "ai-tooling-en"
-        ]
+        ],
+        "naam": "Leiderschap"
       }
     ],
     "academy": [
       {
         "num": 1,
-        "name": "Jaar 1 – Fundament",
         "desc": "Masterclasses, ISTQB en basisvaardigheden",
         "prefix": [
           "ac-key",
@@ -2817,11 +2834,11 @@
           "ac-swat",
           "ac-vragen",
           "ac-context"
-        ]
+        ],
+        "naam": "Jaar 1 – Fundament"
       },
       {
         "num": 2,
-        "name": "Jaar 2 – Doorontwikkelen",
         "desc": "Soft skills, tooling en eerste automatisering",
         "prefix": [
           "ac-insights",
@@ -2830,11 +2847,11 @@
           "ac-python",
           "ac-playwright",
           "ac-api"
-        ]
+        ],
+        "naam": "Jaar 2 – Doorontwikkelen"
       },
       {
         "num": 3,
-        "name": "Jaar 3 – Impact vergroten",
         "desc": "QA Engineering, specialisaties en zichtbaarheid",
         "prefix": [
           "ac-qae1",
@@ -2846,13 +2863,13 @@
           "ai-fundament-ac",
           "ai-testen-ac",
           "ai-tooling-ac"
-        ]
+        ],
+        "naam": "Jaar 3 – Impact vergroten"
       }
     ],
     "security": [
       {
         "num": 1,
-        "name": "Niveau 0 – Instap",
         "desc": "Masterclass, PortSwigger Apprentice, Linux en eerste certificering",
         "prefix": [
           "sx-masterclass",
@@ -2860,11 +2877,11 @@
           "sx-linux0",
           "sx-meekijken0",
           "sx-cert0"
-        ]
+        ],
+        "naam": "Niveau 0 – Instap"
       },
       {
         "num": 2,
-        "name": "Niveau 1-2 – Praktijk",
         "desc": "Certificaat, meelopen, zelfstandig draaien en PortSwigger Advanced",
         "prefix": [
           "sx-cert1",
@@ -2878,11 +2895,11 @@
           "sx-mobile-basis",
           "sx-desktop-basis",
           "sx-actief2"
-        ]
+        ],
+        "naam": "Niveau 1-2 – Praktijk"
       },
       {
         "num": 3,
-        "name": "Niveau 3-4 – Specialist/Expert",
         "desc": "CPTS/OSCP certificaat, specialisaties en eigen research",
         "prefix": [
           "sx-cpts-cert",
@@ -2897,13 +2914,13 @@
           "ai-testen-sx",
           "ai-security",
           "ai-tooling-sx"
-        ]
+        ],
+        "naam": "Niveau 3-4 – Specialist/Expert"
       }
     ],
     "maatwerk": [
       {
         "num": 1,
-        "name": "Verdieping & Certificering",
         "desc": "Gerichte certificeringen op basis van jouw profiel",
         "prefix": [
           "mw-tmap",
@@ -2911,11 +2928,11 @@
           "mw-pspo",
           "mw-oscp",
           "mw-ireb"
-        ]
+        ],
+        "naam": "Verdieping & Certificering"
       },
       {
         "num": 2,
-        "name": "Leiderschap & Groei",
         "desc": "FLOW, FMDP, conflicthantering en intervisie",
         "prefix": [
           "mw-flow",
@@ -2925,11 +2942,11 @@
           "ai-fundament-mw",
           "ai-strategie-mw",
           "ai-tooling-mw"
-        ]
+        ],
+        "naam": "Leiderschap & Groei"
       },
       {
         "num": 3,
-        "name": "Impact & Zichtbaarheid",
         "desc": "Kennisdeling, mentorschap en thought leadership",
         "prefix": [
           "mw-gilde",
@@ -2937,7 +2954,8 @@
           "mw-mentor",
           "mw-powerbi",
           "mw-stake"
-        ]
+        ],
+        "naam": "Impact & Zichtbaarheid"
       }
     ]
   }

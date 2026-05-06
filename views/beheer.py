@@ -10,70 +10,159 @@ PROFIEL_LABELS = {
     "security": "Security",
 }
 
+# Profielen waarvoor fase-beheer beschikbaar is (items-gebaseerd)
+FASES_PROFIELEN = ["engineer"]
+
 
 def render(data: dict, gist_client) -> None:
     st.markdown("### ⚙️ Catalogus beheren")
     st.caption("Wijzigingen worden direct opgeslagen naar GitHub Gist. Alle gebruikers zien de nieuwe catalogus na een refresh.")
 
-    col_zoek, col_filter = st.columns([2, 1])
-    with col_zoek:
-        zoek = st.text_input("Zoek cursus", placeholder="naam of id...")
-    with col_filter:
-        filter_profiel = st.selectbox(
-            "Profiel", ["Alle"] + PROFIELEN,
-            format_func=lambda k: "Alle profielen" if k == "Alle" else PROFIEL_LABELS[k]
-        )
+    tab_cursussen, tab_fases = st.tabs(["📋 Cursussen", "📍 Fases"])
 
-    alle_items = []
-    for profiel, secties in data.get("blokken", {}).items():
-        for sectie in secties:
-            for item in sectie.get("items", []):
-                alle_items.append({
-                    **item,
-                    "_profiel": profiel,
-                    "_sectie": sectie["sectie"],
-                    "_badge": sectie.get("badge", "")
-                })
+    with tab_fases:
+        _render_fases_beheer(data, gist_client)
 
-    gefilterd = [
-        i for i in alle_items
-        if (filter_profiel == "Alle" or i["_profiel"] == filter_profiel)
-        and (not zoek or zoek.lower() in i["naam"].lower() or zoek.lower() in i["id"])
-    ]
-
-    st.caption(f"{len(gefilterd)} cursussen")
-
-    if "beheer_actief_id" not in st.session_state:
-        st.session_state["beheer_actief_id"] = None
-    if "beheer_nieuw" not in st.session_state:
-        st.session_state["beheer_nieuw"] = False
-
-    col_lijst, col_form = st.columns([1, 2])
-
-    with col_lijst:
-        if st.button("+ Nieuwe cursus", use_container_width=True, type="primary"):
-            st.session_state["beheer_nieuw"] = True
-            st.session_state["beheer_actief_id"] = None
-
-        for item in gefilterd:
-            actief = st.session_state["beheer_actief_id"] == item["id"]
-            label = f"{'▶ ' if actief else ''}{item.get('icon','')} {item['naam']}"
-            if st.button(label, key=f"beheer_sel_{item['id']}", use_container_width=True):
-                st.session_state["beheer_actief_id"] = item["id"]
-                st.session_state["beheer_nieuw"] = False
-                st.rerun()
-
-    with col_form:
-        if st.session_state["beheer_nieuw"]:
-            _render_nieuw_formulier(data, gist_client)
-        elif st.session_state["beheer_actief_id"]:
-            actief_item = next(
-                (i for i in alle_items if i["id"] == st.session_state["beheer_actief_id"]), None
+    with tab_cursussen:
+        col_zoek, col_filter = st.columns([2, 1])
+        with col_zoek:
+            zoek = st.text_input("Zoek cursus", placeholder="naam of id...")
+        with col_filter:
+            filter_profiel = st.selectbox(
+                "Profiel", ["Alle"] + PROFIELEN,
+                format_func=lambda k: "Alle profielen" if k == "Alle" else PROFIEL_LABELS[k]
             )
-            if actief_item:
-                _render_bewerk_formulier(actief_item, data, gist_client)
+
+        alle_items = []
+        for profiel, secties in data.get("blokken", {}).items():
+            for sectie in secties:
+                for item in sectie.get("items", []):
+                    alle_items.append({
+                        **item,
+                        "_profiel": profiel,
+                        "_sectie": sectie["sectie"],
+                        "_badge": sectie.get("badge", "")
+                    })
+
+        gefilterd = [
+            i for i in alle_items
+            if (filter_profiel == "Alle" or i["_profiel"] == filter_profiel)
+            and (not zoek or zoek.lower() in i["naam"].lower() or zoek.lower() in i["id"])
+        ]
+
+        st.caption(f"{len(gefilterd)} cursussen")
+
+        if "beheer_actief_id" not in st.session_state:
+            st.session_state["beheer_actief_id"] = None
+        if "beheer_nieuw" not in st.session_state:
+            st.session_state["beheer_nieuw"] = False
+
+        col_lijst, col_form = st.columns([1, 2])
+
+        with col_lijst:
+            if st.button("+ Nieuwe cursus", use_container_width=True, type="primary"):
+                st.session_state["beheer_nieuw"] = True
+                st.session_state["beheer_actief_id"] = None
+
+            for item in gefilterd:
+                actief = st.session_state["beheer_actief_id"] == item["id"]
+                label = f"{'▶ ' if actief else ''}{item.get('icon','')} {item['naam']}"
+                if st.button(label, key=f"beheer_sel_{item['id']}", use_container_width=True):
+                    st.session_state["beheer_actief_id"] = item["id"]
+                    st.session_state["beheer_nieuw"] = False
+                    st.rerun()
+
+        with col_form:
+            if st.session_state["beheer_nieuw"]:
+                _render_nieuw_formulier(data, gist_client)
+            elif st.session_state["beheer_actief_id"]:
+                actief_item = next(
+                    (i for i in alle_items if i["id"] == st.session_state["beheer_actief_id"]), None
+                )
+                if actief_item:
+                    _render_bewerk_formulier(actief_item, data, gist_client)
+            else:
+                st.info("Selecteer een cursus om te bewerken, of voeg een nieuwe toe.")
+
+
+def _render_fases_beheer(data: dict, gist_client) -> None:
+    st.markdown("#### Fases per profiel")
+    st.caption("Koppel cursussen aan een fase. De volgorde in de roadmap volgt de fase-nummering.")
+
+    # Profielkeuze (alleen profielen met items-gebaseerde fases)
+    profiel = st.selectbox(
+        "Profiel",
+        FASES_PROFIELEN,
+        format_func=lambda k: PROFIEL_LABELS[k],
+        key="fases_profiel_select"
+    )
+
+    fases = data.get("fases", {}).get(profiel, [])
+    if not fases:
+        st.info(f"Geen fases gedefinieerd voor {PROFIEL_LABELS[profiel]}.")
+        return
+
+    # Alle cursus-IDs voor dit profiel
+    alle_profiel_ids = {
+        item["id"]: item
+        for sectie in data.get("blokken", {}).get(profiel, [])
+        for item in sectie.get("items", [])
+    }
+
+    # IDs die al in een fase zitten
+    ids_in_fase = {iid for fase in fases for iid in fase.get("items", [])}
+
+    # Niet-gekoppelde cursussen
+    ontkoppeld = [item for iid, item in alle_profiel_ids.items() if iid not in ids_in_fase]
+
+    wijziging = False
+
+    for fase in fases:
+        fase_items = fase.get("items", [])
+        st.markdown(f"---\n**Fase {fase['num']} — {fase.get('naam', '')}**")
+        st.caption(fase.get("desc", ""))
+
+        # Toon gekoppelde cursussen met verwijderknop
+        if fase_items:
+            for iid in list(fase_items):
+                item = alle_profiel_ids.get(iid)
+                naam_label = f"{item.get('icon','')} {item['naam']}" if item else iid
+                col_naam, col_btn = st.columns([6, 1])
+                col_naam.markdown(f"<span style='font-size:13px'>{naam_label}</span>", unsafe_allow_html=True)
+                if col_btn.button("✕", key=f"fase_rm_{fase['num']}_{iid}", help="Verwijder uit fase"):
+                    fase_items.remove(iid)
+                    wijziging = True
         else:
-            st.info("Selecteer een cursus om te bewerken, of voeg een nieuwe toe.")
+            st.caption("*Nog geen cursussen gekoppeld.*")
+
+        # Voeg cursus toe aan deze fase
+        beschikbaar = [item for item in ontkoppeld if item["id"] not in fase_items]
+        if beschikbaar:
+            opties = {f"{i.get('icon','')} {i['naam']}": i["id"] for i in beschikbaar}
+            col_sel, col_add = st.columns([5, 1])
+            keuze = col_sel.selectbox(
+                "Cursus toevoegen",
+                ["— kies —"] + list(opties.keys()),
+                key=f"fase_add_sel_{fase['num']}",
+                label_visibility="collapsed"
+            )
+            if col_add.button("＋", key=f"fase_add_btn_{fase['num']}", help="Toevoegen aan fase"):
+                if keuze != "— kies —":
+                    toe_te_voegen = opties[keuze]
+                    fase_items.append(toe_te_voegen)
+                    # Verwijder uit ontkoppeld zodat je hem niet dubbel kunt toevoegen
+                    ontkoppeld = [i for i in ontkoppeld if i["id"] != toe_te_voegen]
+                    wijziging = True
+
+    if ontkoppeld:
+        st.markdown("---")
+        st.caption(f"**{len(ontkoppeld)} cursussen niet gekoppeld aan een fase:** " +
+                   ", ".join(f"{i.get('icon','')} {i['naam']}" for i in ontkoppeld))
+
+    if wijziging:
+        gist_client.write_cursussen(data)
+        st.success("✓ Fases opgeslagen.")
+        st.rerun()
 
 
 def _render_nieuw_formulier(data: dict, gist_client) -> None:

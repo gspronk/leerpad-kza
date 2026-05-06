@@ -42,12 +42,16 @@ def render(data: dict, plan: dict) -> None:
                 st.markdown(f"**{fase.get('naam', fase.get('name', ''))}**")
                 st.caption(fase.get("desc", ""))
 
-                # Toon items voor deze fase op basis van prefix
-                fase_prefix = fase.get("prefix", [])
+                # Toon geselecteerde items voor deze fase
+                # Nieuw: items-lijst heeft prioriteit, prefix als fallback voor andere profielen
+                fase_ids = set(fase.get("items", []))
+                if not fase_ids:
+                    fase_prefix = fase.get("prefix", [])
+                    fase_ids = {iid for iid in alle_items if any(iid.startswith(p) for p in fase_prefix)}
                 fase_items = [
                     alle_items[iid]
                     for iid in geselecteerd
-                    if iid in alle_items and any(iid.startswith(p) for p in fase_prefix)
+                    if iid in alle_items and iid in fase_ids
                 ]
 
                 if fase_items:
