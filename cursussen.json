@@ -203,22 +203,6 @@
             "cross": []
           },
           {
-            "id": "ta-api",
-            "naam": "API Testing Training",
-            "icon": "🔌",
-            "desc": "4 sessies API testing via Bas Dijkstra (bas@ontestautomation.com). Opnieuw op de kalender zetten.",
-            "tags": [
-              "API",
-              "REST",
-              "Postman"
-            ],
-            "duur": "4 sessies",
-            "kern": true,
-            "cross": [
-              "academy"
-            ]
-          },
-          {
             "id": "ta-robot",
             "naam": "Robot Framework",
             "icon": "🤖",
@@ -276,22 +260,6 @@
             "cross": [
               "enabler"
             ]
-          },
-          {
-            "id": "ta-playwright",
-            "naam": "Playwright",
-            "icon": "🎭",
-            "desc": "E2E testautomatisering met Playwright. Zit in de Playground en op de cursuskalender. Docent: Wilco.",
-            "tags": [
-              "Playwright",
-              "E2E",
-              "Web"
-            ],
-            "duur": "1 sessie",
-            "kern": true,
-            "cross": [
-              "academy"
-            ]
           }
         ]
       },
@@ -299,22 +267,6 @@
         "sectie": "Security",
         "badge": "Specialisatie",
         "items": [
-          {
-            "id": "sec-basics",
-            "naam": "Security Context Training",
-            "icon": "🔒",
-            "desc": "Basistraining security context voor testers via Remy. FN T, 1 sessie. JB: aanvullende training op kalender.",
-            "tags": [
-              "Security",
-              "OWASP",
-              "Basis"
-            ],
-            "duur": "1 sessie",
-            "kern": true,
-            "cross": [
-              "academy"
-            ]
-          },
           {
             "id": "sec-pipeline",
             "naam": "Shift Left & Security in Pipeline",
@@ -370,23 +322,6 @@
             "duur": "~8 wkn",
             "kern": false,
             "cross": []
-          },
-          {
-            "id": "sec-cism",
-            "naam": "CISM – Risicomanagement",
-            "icon": "🔐",
-            "desc": "Certified Information Security Manager. Governance, risicomanagement en compliance.",
-            "tags": [
-              "CISM",
-              "Risk",
-              "Governance"
-            ],
-            "duur": "~10 wkn",
-            "kern": false,
-            "cross": [
-              "enabler",
-              "maatwerk"
-            ]
           }
         ]
       },
@@ -394,20 +329,6 @@
         "sectie": "Performance Testing",
         "badge": "Specialisatie",
         "items": [
-          {
-            "id": "perf-ctx",
-            "naam": "Context Performance Testing",
-            "icon": "⚡",
-            "desc": "Intro/praktijksessie performance testing via Roland van Leusden. Verdiepende training wordt georganiseerd.",
-            "tags": [
-              "Performance",
-              "Strategie",
-              "SLA"
-            ],
-            "duur": "1 sessie",
-            "kern": true,
-            "cross": []
-          },
           {
             "id": "perf-k6",
             "naam": "K6 – Load Testing",
@@ -471,22 +392,6 @@
             "cross": []
           },
           {
-            "id": "test-exp",
-            "naam": "Exploratory Testing",
-            "icon": "🔭",
-            "desc": "Exploratief testen: technieken, charters en sessie-based test management.",
-            "tags": [
-              "Exploratory",
-              "Sessie-based",
-              "Heuristics"
-            ],
-            "duur": "1 sessie",
-            "kern": false,
-            "cross": [
-              "enabler"
-            ]
-          },
-          {
             "id": "test-ai",
             "naam": "AI & Testing",
             "icon": "🤖",
@@ -526,21 +431,6 @@
         "badge": "AI",
         "items": [
           {
-            "id": "ai-fundament",
-            "naam": "AI Fundament & Prompt Engineering",
-            "icon": "🤖",
-            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
-            "tags": [
-              "AI",
-              "LLM",
-              "Prompting",
-              "ChatGPT"
-            ],
-            "duur": "1-2 dgn",
-            "kern": true,
-            "cross": []
-          },
-          {
             "id": "ai-testen-eng",
             "naam": "AI-ondersteund Testen",
             "icon": "⚗️",
@@ -554,26 +444,6 @@
             "kern": true,
             "cross": [
               "academy",
-              "security"
-            ]
-          },
-          {
-            "id": "ai-tooling",
-            "naam": "AI Tooling in de Praktijk",
-            "icon": "🧰",
-            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
-            "tags": [
-              "Copilot",
-              "Cursor",
-              "Claude",
-              "Gemini"
-            ],
-            "duur": "1 dag",
-            "kern": false,
-            "cross": [
-              "enabler",
-              "academy",
-              "maatwerk",
               "security"
             ]
           }
@@ -683,22 +553,6 @@
         "badge": "Specialisatie",
         "items": [
           {
-            "id": "ss-context",
-            "naam": "Context is Key",
-            "icon": "🔑",
-            "desc": "Contextueel denken en communiceren via Jeroen Gouwentak. FN T.",
-            "tags": [
-              "Context",
-              "Communicatie",
-              "Mindset"
-            ],
-            "duur": "nvt",
-            "kern": true,
-            "cross": [
-              "academy"
-            ]
-          },
-          {
             "id": "ss-feedback",
             "naam": "Feedback Effectief Communiceren",
             "icon": "💬",
@@ -712,22 +566,6 @@
             "kern": true,
             "cross": [
               "maatwerk"
-            ]
-          },
-          {
-            "id": "ss-vragen",
-            "naam": "Vaardig Vragen Stellen",
-            "icon": "❓",
-            "desc": "Gerichte vragen stellen via Ivo Rog of Jan Hage. 1 sessie, FN T.",
-            "tags": [
-              "Vragen",
-              "Communicatie",
-              "Analyse"
-            ],
-            "duur": "1 sessie",
-            "kern": true,
-            "cross": [
-              "academy"
             ]
           },
           {
@@ -758,23 +596,6 @@
             "duur": "2 avonden",
             "kern": false,
             "cross": [
-              "maatwerk"
-            ]
-          },
-          {
-            "id": "ss-insights",
-            "naam": "Insights Discovery",
-            "icon": "🌈",
-            "desc": "Persoonlijkheidsprofiel en zelfinzicht via Marriet. FN 1, 1 sessie.",
-            "tags": [
-              "Insights",
-              "Persoonlijkheid",
-              "Team"
-            ],
-            "duur": "1 sessie",
-            "kern": true,
-            "cross": [
-              "academy",
               "maatwerk"
             ]
           }
@@ -971,21 +792,6 @@
         "badge": "AI",
         "items": [
           {
-            "id": "ai-fundament-en",
-            "naam": "AI Fundament & Prompt Engineering",
-            "icon": "🤖",
-            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
-            "tags": [
-              "AI",
-              "LLM",
-              "Prompting",
-              "ChatGPT"
-            ],
-            "duur": "1-2 dgn",
-            "kern": true,
-            "cross": []
-          },
-          {
             "id": "ai-strategie",
             "naam": "AI in QA Processen & Strategie",
             "icon": "📐",
@@ -999,26 +805,6 @@
             "kern": true,
             "cross": [
               "maatwerk"
-            ]
-          },
-          {
-            "id": "ai-tooling-en",
-            "naam": "AI Tooling in de Praktijk",
-            "icon": "🧰",
-            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
-            "tags": [
-              "Copilot",
-              "Cursor",
-              "Claude",
-              "Gemini"
-            ],
-            "duur": "1 dag",
-            "kern": false,
-            "cross": [
-              "engineer",
-              "academy",
-              "maatwerk",
-              "security"
             ]
           }
         ]
@@ -1168,38 +954,6 @@
             "cross": []
           },
           {
-            "id": "ac-js",
-            "naam": "JavaScript voor testers",
-            "icon": "📜",
-            "desc": "4 avonden JavaScript voor testers via Roy de Kleijne. Plannen in Q2.",
-            "tags": [
-              "JavaScript",
-              "TA",
-              "Scripting"
-            ],
-            "duur": "4 avonden",
-            "kern": false,
-            "cross": [
-              "engineer"
-            ]
-          },
-          {
-            "id": "ac-python",
-            "naam": "Python voor testers",
-            "icon": "🐍",
-            "desc": "4 avonden Python via Erik Droogh of Tycho. Loopt of wordt ingepland.",
-            "tags": [
-              "Python",
-              "Scripting",
-              "Automatisering"
-            ],
-            "duur": "4 avonden",
-            "kern": false,
-            "cross": [
-              "engineer"
-            ]
-          },
-          {
             "id": "ac-playwright",
             "naam": "Playwright",
             "icon": "🎭",
@@ -1300,38 +1054,6 @@
             "cross": [
               "engineer"
             ]
-          },
-          {
-            "id": "ac-pubspeek",
-            "naam": "Public Speaking",
-            "icon": "🎤",
-            "desc": "2 avonden presenteren en spreken via Reinout Bosman. FN 2.",
-            "tags": [
-              "Presenteren",
-              "Spreken",
-              "Impact"
-            ],
-            "duur": "2 avonden",
-            "kern": false,
-            "cross": [
-              "enabler"
-            ]
-          },
-          {
-            "id": "ac-ttrain",
-            "naam": "Train de Trainer",
-            "icon": "📢",
-            "desc": "4 avonden trainingen ontwerpen en begeleiden via Gunter. FN 1.",
-            "tags": [
-              "Training",
-              "Didactiek",
-              "Faciliteren"
-            ],
-            "duur": "4 avonden",
-            "kern": false,
-            "cross": [
-              "enabler"
-            ]
           }
         ]
       },
@@ -1353,23 +1075,6 @@
             "duur": "1-2 dgn",
             "kern": true,
             "cross": []
-          },
-          {
-            "id": "ai-testen-ac",
-            "naam": "AI-ondersteund Testen",
-            "icon": "⚗️",
-            "desc": "AI inzetten bij testautomatisering: testscripts genereren met Copilot of ChatGPT, testdata aanmaken, exploratory testing met AI-assistentie. Valideren van AI-gegenereerde testcases.",
-            "tags": [
-              "Copilot",
-              "Testautomatisering",
-              "AI"
-            ],
-            "duur": "1-2 dgn",
-            "kern": true,
-            "cross": [
-              "engineer",
-              "security"
-            ]
           },
           {
             "id": "ai-tooling-ac",
@@ -1430,22 +1135,6 @@
             ]
           },
           {
-            "id": "mw-pspo",
-            "naam": "PSPO – Product Owner",
-            "icon": "🎯",
-            "desc": "Product Owner certificering via Joost Janssen. Geschikt voor senioren met Agile scope.",
-            "tags": [
-              "PSPO",
-              "Agile",
-              "Product"
-            ],
-            "duur": "1 sessie",
-            "kern": false,
-            "cross": [
-              "enabler"
-            ]
-          },
-          {
             "id": "mw-oscp",
             "naam": "OSCP – Offensive Security",
             "icon": "🔓",
@@ -1459,22 +1148,6 @@
             "kern": false,
             "cross": [
               "engineer"
-            ]
-          },
-          {
-            "id": "mw-ireb",
-            "naam": "IREB",
-            "icon": "📋",
-            "desc": "Requirements engineering certificering via Stefan Staal.",
-            "tags": [
-              "IREB",
-              "Requirements",
-              "Analyse"
-            ],
-            "duur": "Flexibel",
-            "kern": false,
-            "cross": [
-              "enabler"
             ]
           }
         ]
@@ -1510,21 +1183,6 @@
               "TSS"
             ],
             "duur": "~2 jaar",
-            "kern": false,
-            "cross": [
-              "enabler"
-            ]
-          },
-          {
-            "id": "mw-conflict",
-            "naam": "Conflicthantering",
-            "icon": "🤜",
-            "desc": "2 avonden conflicthantering via Dirk van Uffelen. Voor FN 3.",
-            "tags": [
-              "Conflict",
-              "Gesprekstechnieken"
-            ],
-            "duur": "2 avonden",
             "kern": false,
             "cross": [
               "enabler"
@@ -1592,22 +1250,6 @@
             ]
           },
           {
-            "id": "mw-powerbi",
-            "naam": "Power BI",
-            "icon": "📊",
-            "desc": "Power BI voor rapportage en inzicht via Jan Hage. Geschikt voor senioren met data-scope.",
-            "tags": [
-              "Power BI",
-              "Rapportage",
-              "Data"
-            ],
-            "duur": "nvt",
-            "kern": false,
-            "cross": [
-              "enabler"
-            ]
-          },
-          {
             "id": "mw-stake",
             "naam": "Stakeholdermanagement Workshop",
             "icon": "💼",
@@ -1620,63 +1262,6 @@
             "kern": false,
             "cross": [
               "enabler"
-            ]
-          }
-        ]
-      },
-      {
-        "sectie": "AI & Innovatie",
-        "badge": "AI",
-        "items": [
-          {
-            "id": "ai-fundament-mw",
-            "naam": "AI Fundament & Prompt Engineering",
-            "icon": "🤖",
-            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
-            "tags": [
-              "AI",
-              "LLM",
-              "Prompting",
-              "ChatGPT"
-            ],
-            "duur": "1-2 dgn",
-            "kern": true,
-            "cross": []
-          },
-          {
-            "id": "ai-strategie-mw",
-            "naam": "AI in QA Processen & Strategie",
-            "icon": "📐",
-            "desc": "AI-tools integreren in een QA-proces. Risicos van AI in het testproces, kwaliteitsborging van AI-gedreven systemen en non-deterministische systemen testen.",
-            "tags": [
-              "AI-strategie",
-              "Non-deterministisch",
-              "Kwaliteit"
-            ],
-            "duur": "1-2 dgn",
-            "kern": false,
-            "cross": [
-              "enabler"
-            ]
-          },
-          {
-            "id": "ai-tooling-mw",
-            "naam": "AI Tooling in de Praktijk",
-            "icon": "🧰",
-            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
-            "tags": [
-              "Copilot",
-              "Cursor",
-              "Claude",
-              "Gemini"
-            ],
-            "duur": "1 dag",
-            "kern": false,
-            "cross": [
-              "engineer",
-              "enabler",
-              "academy",
-              "security"
             ]
           }
         ]
@@ -2090,38 +1675,6 @@
         "badge": "AI",
         "items": [
           {
-            "id": "ai-fundament-sx",
-            "naam": "AI Fundament & Prompt Engineering",
-            "icon": "🤖",
-            "desc": "Wat is AI, hoe werkt een LLM, en hoe gebruik je het in je dagelijkse QA-werk? Praktisch prompten voor testcases, code review en documentatie. Inclusief kritisch omgaan met AI-output.",
-            "tags": [
-              "AI",
-              "LLM",
-              "Prompting",
-              "ChatGPT"
-            ],
-            "duur": "1-2 dgn",
-            "kern": true,
-            "cross": []
-          },
-          {
-            "id": "ai-testen-sx",
-            "naam": "AI-ondersteund Testen",
-            "icon": "⚗️",
-            "desc": "AI inzetten bij testautomatisering: testscripts genereren, testdata aanmaken en exploratory testing met AI-assistentie. Valideren van AI-gegenereerde testcases.",
-            "tags": [
-              "Copilot",
-              "Testautomatisering",
-              "AI"
-            ],
-            "duur": "1-2 dgn",
-            "kern": true,
-            "cross": [
-              "engineer",
-              "academy"
-            ]
-          },
-          {
             "id": "ai-security",
             "naam": "Security & AI",
             "icon": "🔐",
@@ -2136,26 +1689,6 @@
             "kern": true,
             "cross": [
               "engineer",
-              "maatwerk"
-            ]
-          },
-          {
-            "id": "ai-tooling-sx",
-            "naam": "AI Tooling in de Praktijk",
-            "icon": "🧰",
-            "desc": "Hands-on met GitHub Copilot, Cursor, ChatGPT, Claude en Gemini. Wat zet je wanneer in? Privacy-overwegingen bij gebruik op klantdata.",
-            "tags": [
-              "Copilot",
-              "Cursor",
-              "Claude",
-              "Gemini"
-            ],
-            "duur": "1 dag",
-            "kern": false,
-            "cross": [
-              "engineer",
-              "enabler",
-              "academy",
               "maatwerk"
             ]
           }
