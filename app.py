@@ -19,7 +19,29 @@ def get_gist_client() -> GistClient:
     )
 
 
+def check_wachtwoord() -> bool:
+    """Toont een wachtwoordscherm. Geeft True terug als de gebruiker is ingelogd."""
+    if st.session_state.get("wachtwoord_ok"):
+        return True
+
+    col_mid = st.columns([1, 2, 1])[1]
+    with col_mid:
+        st.markdown("## 🎓 KZA Leerpad Verkenner")
+        st.markdown("---")
+        ww = st.text_input("Wachtwoord", type="password", placeholder="Voer het wachtwoord in")
+        if st.button("→ Inloggen", use_container_width=True):
+            if ww == st.secrets.get("PASSWORD", ""):
+                st.session_state["wachtwoord_ok"] = True
+                st.rerun()
+            else:
+                st.error("Onjuist wachtwoord.")
+    return False
+
+
 def main():
+    if not check_wachtwoord():
+        st.stop()
+
     client = get_gist_client()
     naam, profiel, plan = render_sidebar(client)
 
