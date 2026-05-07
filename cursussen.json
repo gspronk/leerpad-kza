@@ -122,6 +122,38 @@
             "duur": "nvt",
             "kern": false,
             "cross": []
+          },
+          {
+            "id": "ac-qae1",
+            "naam": "QA Engineering Module 1",
+            "icon": "⚙️",
+            "desc": "Meerdere avonden toepassen van de testpiramide. FN 1, 10 dagdelen. April starten.",
+            "tags": [
+              "CI/CD",
+              "Testpiramide",
+              "Engineering"
+            ],
+            "duur": "10 dagdelen",
+            "kern": true,
+            "cross": [
+              "engineer"
+            ]
+          },
+          {
+            "id": "ac-qae2",
+            "naam": "QA Engineering Module 2",
+            "icon": "🔧",
+            "desc": "1 week pipeline en development. Opfrissen na QA Engineering 1. Nieuw programma, later in het jaar.",
+            "tags": [
+              "Pipeline",
+              "Development",
+              "DevOps"
+            ],
+            "duur": "1 week",
+            "kern": false,
+            "cross": [
+              "engineer"
+            ]
           }
         ]
       },
@@ -991,38 +1023,6 @@
         "sectie": "Jaar 3 – Impact vergroten",
         "badge": "Jaar 3",
         "items": [
-          {
-            "id": "ac-qae1",
-            "naam": "QA Engineering Module 1",
-            "icon": "⚙️",
-            "desc": "Meerdere avonden toepassen van de testpiramide. FN 1, 10 dagdelen. April starten.",
-            "tags": [
-              "CI/CD",
-              "Testpiramide",
-              "Engineering"
-            ],
-            "duur": "10 dagdelen",
-            "kern": true,
-            "cross": [
-              "engineer"
-            ]
-          },
-          {
-            "id": "ac-qae2",
-            "naam": "QA Engineering Module 2",
-            "icon": "🔧",
-            "desc": "1 week pipeline en development. Opfrissen na QA Engineering 1. Nieuw programma, later in het jaar.",
-            "tags": [
-              "Pipeline",
-              "Development",
-              "DevOps"
-            ],
-            "duur": "1 week",
-            "kern": false,
-            "cross": [
-              "engineer"
-            ]
-          },
           {
             "id": "ac-sec",
             "naam": "Security Context Training",
@@ -2770,7 +2770,9 @@
           "ta-robot",
           "ta-appium",
           "ta-contract",
-          "ta-cucumber"
+          "ta-cucumber",
+          "ac-qae1",
+          "ac-qae2"
         ]
       },
       {
@@ -2867,8 +2869,6 @@
         "desc": "QA Engineering, specialisaties en zichtbaarheid",
         "naam": "Jaar 3 – Impact vergroten",
         "items": [
-          "ac-qae1",
-          "ac-qae2",
           "ac-sec",
           "ac-perf",
           "ai-fundament-ac",

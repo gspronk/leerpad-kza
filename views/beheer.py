@@ -222,6 +222,9 @@ def _render_nieuw_formulier(data: dict, gist_client) -> None:
 
 def _render_bewerk_formulier(item: dict, data: dict, gist_client) -> None:
     st.markdown(f"#### Bewerk: {item.get('icon','')} {item['naam']}")
+    huidig_profiel = item.get("_profiel", "engineer")
+    huidig_sectie  = item.get("_sectie", "")
+
     with st.form(f"bewerk_form_{item['id']}"):
         naam      = st.text_input("Naam",        value=item.get("naam", ""))
         icon      = st.text_input("Icoon",       value=item.get("icon", ""))
@@ -231,12 +234,21 @@ def _render_bewerk_formulier(item: dict, data: dict, gist_client) -> None:
         cross_str = st.text_input("Cross-functioneel", value=", ".join(item.get("cross", [])))
         tags_str  = st.text_input("Tags",        value=", ".join(item.get("tags", [])))
 
+        st.markdown("---")
+        nieuw_profiel = st.selectbox(
+            "Profiel",
+            PROFIELEN,
+            index=PROFIELEN.index(huidig_profiel) if huidig_profiel in PROFIELEN else 0,
+            format_func=lambda k: PROFIEL_LABELS[k],
+        )
+        nieuw_sectie = st.text_input("Sectie", value=huidig_sectie)
+
         col1, col2 = st.columns(2)
         opgeslagen  = col1.form_submit_button("✓ Opslaan",     use_container_width=True)
         verwijderen = col2.form_submit_button("🗑 Verwijderen", use_container_width=True)
 
     if opgeslagen:
-        _update_item_in_data(data, item["id"], {
+        updates = {
             "naam":  naam.strip(),
             "icon":  icon.strip(),
             "desc":  desc.strip(),
@@ -244,9 +256,27 @@ def _render_bewerk_formulier(item: dict, data: dict, gist_client) -> None:
             "kern":  kern,
             "cross": [c.strip() for c in cross_str.split(",") if c.strip()],
             "tags":  [t.strip() for t in tags_str.split(",") if t.strip()],
-        })
+        }
+        if nieuw_profiel != huidig_profiel or nieuw_sectie.strip() != huidig_sectie:
+            # Verplaats naar nieuw profiel / sectie
+            _verwijder_item_uit_data(data, item["id"])
+            nieuw_item = {**item, **updates}
+            # Verwijder interne velden
+            for k in ["_profiel", "_sectie", "_badge"]:
+                nieuw_item.pop(k, None)
+            blokken = data.get("blokken", {})
+            prof_blokken = blokken.setdefault(nieuw_profiel, [])
+            sectie_match = next((s for s in prof_blokken if s["sectie"] == nieuw_sectie.strip()), None)
+            if sectie_match:
+                sectie_match["items"].append(nieuw_item)
+            else:
+                prof_blokken.append({"sectie": nieuw_sectie.strip(), "badge": "", "items": [nieuw_item]})
+        else:
+            _update_item_in_data(data, item["id"], updates)
+
         gist_client.write_cursussen(data)
         st.success("✓ Opgeslagen.")
+        st.session_state["beheer_actief_id"] = None
         st.rerun()
 
     if verwijderen:
