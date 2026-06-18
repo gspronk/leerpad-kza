@@ -9,6 +9,7 @@ PROFIEL_META = {
     "academy":  {"label": "KZAcademy",      "kleur": "#F0A500", "icon": "📚"},
     "maatwerk": {"label": "Op maat",        "kleur": "#A371F7", "icon": "✨"},
     "security": {"label": "Security",       "kleur": "#FF6B35", "icon": "🔒"},
+    "ai":       {"label": "AI",             "kleur": "#10B981", "icon": "🤖"},
 }
 
 

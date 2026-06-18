@@ -24,6 +24,11 @@
       "kleur": "#FF6B35",
       "titel": "Security",
       "sub": "Vijf niveaus van security-tester tot pentest-specialist. Van Portswigger Apprentice tot OSCP/CPTS en specialisatie in Mobile of Desktop."
+    },
+    "ai": {
+      "kleur": "#10B981",
+      "titel": "AI",
+      "sub": "Leer werken met AI-tools, begrijp de onderliggende concepten en pas ze toe in jouw dagelijkse QA-werk."
     }
   },
   "blokken": {
@@ -106,7 +111,7 @@
               "Unit testing"
             ],
             "duur": "1 sessie",
-            "kern": false,
+            "kern": true,
             "cross": []
           },
           {
@@ -150,7 +155,7 @@
               "DevOps"
             ],
             "duur": "1 week",
-            "kern": false,
+            "kern": true,
             "cross": [
               "engineer"
             ]
@@ -202,7 +207,7 @@
               "Automatisering"
             ],
             "duur": "4 avonden",
-            "kern": true,
+            "kern": false,
             "cross": [
               "academy"
             ]
@@ -288,7 +293,7 @@
               "Gherkin"
             ],
             "duur": "1 sessie",
-            "kern": false,
+            "kern": true,
             "cross": [
               "enabler"
             ]
@@ -526,7 +531,7 @@
               "Teams"
             ],
             "duur": "4 avonden",
-            "kern": true,
+            "kern": false,
             "cross": [
               "academy"
             ]
@@ -539,22 +544,6 @@
             "tags": [
               "Exploratory",
               "Sessie-based"
-            ],
-            "duur": "1 sessie",
-            "kern": false,
-            "cross": [
-              "engineer"
-            ]
-          },
-          {
-            "id": "enab-bdd",
-            "naam": "BDD & Cucumber",
-            "icon": "🥒",
-            "desc": "BDD aanpak en Cucumber implementatie. Jeroen Diks. Komt in de TA Playground.",
-            "tags": [
-              "BDD",
-              "Cucumber",
-              "Gherkin"
             ],
             "duur": "1 sessie",
             "kern": false,
@@ -732,7 +721,7 @@
               "Intervisie"
             ],
             "duur": "~1 jaar",
-            "kern": false,
+            "kern": true,
             "cross": [
               "maatwerk"
             ]
@@ -1690,6 +1679,70 @@
             "cross": [
               "engineer",
               "maatwerk"
+            ]
+          }
+        ]
+      }
+    ],
+    "ai": [
+      {
+        "sectie": "AI",
+        "badge": "AI Fundament",
+        "items": [
+          {
+            "id": "ai-vibecoding",
+            "naam": "Vibecodingscursus",
+            "icon": "🤖",
+            "desc": "Leer de basisconcepten van AI zoals skills, tools en agents. Gegeven door Gerson en Joost.",
+            "tags": [
+              "AI",
+              "Vibe Coding",
+              "Basisconcepten",
+              "Skills"
+            ],
+            "duur": "1 sessie (4u)",
+            "kern": true,
+            "cross": [
+              "maatwerk"
+            ]
+          },
+          {
+            "id": "ai-concepts",
+            "naam": "AI Concepts",
+            "icon": "🧠",
+            "desc": "Conceptuele cursus over de kernbouwstenen van AI: MCP’s, Agents & Tools, Prompt Engineering, RAG en LLM-basics. Gegeven door Gerson.",
+            "tags": [
+              "MCP",
+              "Agents",
+              "Prompt Engineering",
+              "RAG",
+              "LLM"
+            ],
+            "duur": "2 sessies (4u)",
+            "kern": true,
+            "cross": []
+          }
+        ]
+      },
+      {
+        "sectie": "AI",
+        "badge": "AI in de Praktijk",
+        "items": [
+          {
+            "id": "ai-playwright",
+            "naam": "Playwright CLI x AI",
+            "icon": "🎭",
+            "desc": "Hoe ga je om met testautomatisering en AI, en hoe implementeer je dit in de praktijk. Gebaseerd op een 9-laagse les. Gegeven door Gerson.",
+            "tags": [
+              "Playwright",
+              "AI",
+              "Testautomatisering",
+              "CLI"
+            ],
+            "duur": "2 sessies (4u)",
+            "kern": true,
+            "cross": [
+              "engineer"
             ]
           }
         ]
@@ -2754,7 +2807,8 @@
           "qa2-cicd",
           "qa2-git",
           "qa2-mocks",
-          "qa2-spring"
+          "qa2-spring",
+          "ac-qae1"
         ]
       },
       {
@@ -2771,7 +2825,6 @@
           "ta-appium",
           "ta-contract",
           "ta-cucumber",
-          "ac-qae1",
           "ac-qae2"
         ]
       },

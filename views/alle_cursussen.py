@@ -7,6 +7,7 @@ PROFIEL_LABELS = {
     "academy":  "KZAcademy",
     "maatwerk": "Op maat",
     "security": "Security",
+    "ai":       "AI",
 }
 
 

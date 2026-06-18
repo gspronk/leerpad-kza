@@ -1,17 +1,18 @@
 # views/beheer.py
 import streamlit as st
 
-PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security"]
+PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security", "ai"]
 PROFIEL_LABELS = {
     "engineer": "QA Engineer",
     "enabler":  "QA Enabler",
     "academy":  "KZAcademy",
     "maatwerk": "Op maat",
     "security": "Security",
+    "ai":       "AI",
 }
 
 # Profielen waarvoor fase-beheer beschikbaar is (items-gebaseerd)
-FASES_PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security"]
+FASES_PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security", "ai"]
 
 
 def render(data: dict, gist_client) -> None:
