@@ -1,9 +1,8 @@
 # tests/test_migrate.py
-import json
 import sys
 import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
-from scripts.migrate import extract_js_object, transform_blocks, transform_profiles
+from scripts.migrate import transform_blocks, transform_profiles
 
 HTML_SNIPPET = """
 const PROFILES = {

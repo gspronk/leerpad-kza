@@ -34,7 +34,7 @@ def render(data: dict, plan: dict) -> None:
     for fase in fases:
         col_spine, col_card = st.columns([1, 12])
         with col_spine:
-            st.markdown(f"<div style='text-align:center;padding-top:18px'><div style='width:11px;height:11px;border-radius:50%;background:#E5007D;margin:auto'></div></div>", unsafe_allow_html=True)
+            st.markdown("<div style='text-align:center;padding-top:18px'><div style='width:11px;height:11px;border-radius:50%;background:#E5007D;margin:auto'></div></div>", unsafe_allow_html=True)
 
         with col_card:
             with st.container(border=True):

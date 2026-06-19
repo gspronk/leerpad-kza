@@ -8,7 +8,6 @@ Gebruik: python scripts/migrate.py --html pad/naar/kza_leerpad_verkenner.html --
 import argparse
 import json
 import re
-import sys
 
 
 def transform_profiles(raw: dict) -> dict:
