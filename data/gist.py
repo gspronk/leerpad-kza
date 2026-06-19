@@ -89,7 +89,7 @@ class GistClient:
         plannen[key] = plan
         self.write_plannen(plannen)
 
-    # ── sessies ────────────────────────────────────────────────
+    # ── sessies (legacy) ───────────────────────────────────────
 
     def read_sessies(self) -> dict:
         try:
@@ -133,6 +133,54 @@ class GistClient:
     def get_sessies_voor_medewerker(self, naam: str) -> list[dict]:
         sessies = self.read_sessies()
         return [s for s in sessies.get("sessies", []) if naam in s["deelnemers"]]
+
+    # ── edities ────────────────────────────────────────────────
+
+    def read_edities(self) -> dict:
+        try:
+            data = self._read_file("sessies.json")
+            if "edities" not in data:
+                return {"edities": []}
+            return data
+        except (KeyError, AttributeError, TypeError):
+            return {"edities": []}
+
+    def write_edities(self, data: dict) -> None:
+        self._write_file("sessies.json", data)
+
+    def _vind_editie(self, data: dict, editie_id: str) -> dict:
+        for e in data.get("edities", []):
+            if e["id"] == editie_id:
+                return e
+        raise ValueError(f"Editie '{editie_id}' niet gevonden")
+
+    def inschrijven_editie(self, editie_id: str, naam: str) -> None:
+        data = self.read_edities()
+        editie = self._vind_editie(data, editie_id)
+        if naam in editie["deelnemers"]:
+            raise ValueError(f"'{naam}' is al ingeschreven voor deze editie")
+        if len(editie["deelnemers"]) >= editie["max_deelnemers"]:
+            raise ValueError("Editie is vol")
+        editie["deelnemers"].append(naam)
+        self.write_edities(data)
+
+    def annuleren_editie(self, editie_id: str, naam: str, vandaag: date) -> None:
+        data = self.read_edities()
+        editie = self._vind_editie(data, editie_id)
+        if naam not in editie["deelnemers"]:
+            raise ValueError(f"'{naam}' is niet ingeschreven voor deze editie")
+        eerste_datum = date.fromisoformat(editie["sessies"][0]["datum"])
+        if (eerste_datum - vandaag).days < ANNULERING_DEADLINE_DAGEN:
+            raise ValueError(
+                f"Annuleren is niet meer mogelijk — deadline was "
+                f"{ANNULERING_DEADLINE_DAGEN} dagen voor de eerste sessie"
+            )
+        editie["deelnemers"].remove(naam)
+        self.write_edities(data)
+
+    def get_edities_voor_medewerker(self, naam: str) -> list[dict]:
+        data = self.read_edities()
+        return [e for e in data.get("edities", []) if naam in e["deelnemers"]]
 
     def lijst_gebruikers(self) -> list[dict]:
         """Geeft lijst van {naam, profiel} gesorteerd op naam."""

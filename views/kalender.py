@@ -1,7 +1,7 @@
 # views/kalender.py
 import streamlit as st
 from datetime import date
-from data.sessie_utils import genereer_ics, stuur_bevestigingsmail
+from data.sessie_utils import genereer_ics_editie, stuur_bevestigingsmail
 
 PROFIEL_LABELS = {
     "engineer": "QA Engineer",
@@ -15,16 +15,15 @@ PROFIEL_LABELS = {
 
 def render(data: dict, plan: dict, gist_client, naam: str) -> None:
     st.markdown("### 📅 Cursuskalender")
-    st.caption("Geplande sessies. Schrijf je in en download een agenda-uitnodiging (.ics).")
+    st.caption("Geplande edities. Schrijf je in en download een agenda-uitnodiging (.ics).")
 
-    sessies_data = gist_client.read_sessies()
-    alle_sessies = sessies_data.get("sessies", [])
+    edities_data = gist_client.read_edities()
+    alle_edities = edities_data.get("edities", [])
 
-    if not alle_sessies:
-        st.info("Er zijn nog geen sessies ingepland. Vraag een beheerder om sessies toe te voegen.")
+    if not alle_edities:
+        st.info("Er zijn nog geen edities ingepland. Vraag een beheerder om edities toe te voegen.")
         return
 
-    # Bouw cursus-lookup: id → {naam, icon}
     cursus_lookup: dict[str, dict] = {
         item["id"]: item
         for secties in data.get("blokken", {}).values()
@@ -32,7 +31,6 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
         for item in sectie.get("items", [])
     }
 
-    # Bouw profiel → set van cursus_ids
     profiel_cursus_ids: dict[str, set] = {
         profiel: {
             item["id"]
@@ -42,7 +40,6 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
         for profiel, secties in data.get("blokken", {}).items()
     }
 
-    # Filter bovenaan
     profielen = list(data.get("profielen", {}).keys())
     mijn_profiel = plan.get("profiel", profielen[0] if profielen else "engineer")
     ALLE = "Alle profielen"
@@ -57,43 +54,48 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
         label_visibility="collapsed",
     )
 
-    # Sorteer en filter
     vandaag = date.today()
-    sessies = sorted(
-        [s for s in alle_sessies if date.fromisoformat(s["datum"]) >= vandaag],
-        key=lambda s: s["datum"],
+
+    def eerste_datum(editie):
+        return editie["sessies"][0]["datum"] if editie["sessies"] else "9999-99-99"
+
+    edities = sorted(
+        [e for e in alle_edities if eerste_datum(e) >= vandaag.isoformat()],
+        key=eerste_datum,
     )
     if filter_profiel != ALLE:
         cursus_ids_voor_profiel = profiel_cursus_ids.get(filter_profiel, set())
-        sessies = [s for s in sessies if s["cursus_id"] in cursus_ids_voor_profiel]
+        edities = [e for e in edities if e["cursus_id"] in cursus_ids_voor_profiel]
 
-    if not sessies:
-        st.info("Geen aankomende sessies voor dit profiel.")
+    if not edities:
+        st.info("Geen aankomende edities voor dit profiel.")
         return
 
-    mijn_inschrijvingen = {s["id"] for s in gist_client.get_sessies_voor_medewerker(naam)}
+    mijn_inschrijvingen = {e["id"] for e in gist_client.get_edities_voor_medewerker(naam)}
 
-    for sessie in sessies:
-        cursus = cursus_lookup.get(sessie["cursus_id"], {})
-        cursus_naam = f"{cursus.get('icon', '📋')} {cursus.get('naam', sessie['cursus_id'])}"
-        bezet = len(sessie["deelnemers"])
-        max_d = sessie["max_deelnemers"]
+    for editie in edities:
+        cursus = cursus_lookup.get(editie["cursus_id"], {})
+        cursus_naam = cursus.get("naam", editie["cursus_id"])
+        cursus_label = f"{cursus.get('icon', '📋')} {cursus_naam}"
+        bezet = len(editie["deelnemers"])
+        max_d = editie["max_deelnemers"]
         vrij = max(0, max_d - bezet)
         is_vol = vrij == 0
-        is_ingeschreven = sessie["id"] in mijn_inschrijvingen
-        sessiedatum = date.fromisoformat(sessie["datum"])
-        na_deadline = (sessiedatum - vandaag).days < 7
+        is_ingeschreven = editie["id"] in mijn_inschrijvingen
+        na_deadline = (date.fromisoformat(eerste_datum(editie)) - vandaag).days < 7
 
         with st.container(border=True):
             col_info, col_acties = st.columns([3, 2])
 
             with col_info:
-                st.markdown(f"**{cursus_naam}**")
-                st.caption(
-                    f"📅 {sessie['datum']}  ·  "
-                    f"🕐 {sessie.get('tijd', '–')}  ·  "
-                    f"📍 {sessie.get('locatie', '–')}"
-                )
+                st.markdown(f"**{cursus_label}**")
+                st.caption(editie["naam"])
+                for sessie in editie["sessies"]:
+                    st.caption(
+                        f"📅 {sessie['datum']}  ·  "
+                        f"🕐 {sessie.get('tijd', '–')}  ·  "
+                        f"📍 {sessie.get('locatie', '–')}"
+                    )
                 if is_vol:
                     st.markdown("🔴 **Vol**")
                 else:
@@ -103,25 +105,25 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
                 if is_ingeschreven:
                     st.success("✓ Ingeschreven")
 
-                    ics_inhoud = genereer_ics(sessie, cursus.get("naam", sessie["cursus_id"]))
+                    ics_inhoud = genereer_ics_editie(editie, cursus_naam)
                     st.download_button(
                         "📥 Download .ics",
                         data=ics_inhoud,
-                        file_name=f"{sessie['id']}.ics",
+                        file_name=f"{editie['id']}.ics",
                         mime="text/calendar",
-                        key=f"ics_{sessie['id']}",
+                        key=f"ics_{editie['id']}",
                         use_container_width=True,
                     )
 
                     annuleer_label = "Annuleren (deadline verstreken)" if na_deadline else "Afmelden"
                     if st.button(
                         annuleer_label,
-                        key=f"annuleer_{sessie['id']}",
+                        key=f"annuleer_{editie['id']}",
                         disabled=na_deadline,
                         use_container_width=True,
                     ):
                         try:
-                            gist_client.annuleren(sessie["id"], naam, vandaag)
+                            gist_client.annuleren_editie(editie["id"], naam, vandaag)
                             st.success("Je inschrijving is geannuleerd.")
                             st.rerun()
                         except ValueError as e:
@@ -129,21 +131,21 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
                 else:
                     if st.button(
                         "Inschrijven" if not is_vol else "Vol",
-                        key=f"inschr_{sessie['id']}",
+                        key=f"inschr_{editie['id']}",
                         disabled=is_vol,
                         type="primary" if not is_vol else "secondary",
                         use_container_width=True,
                     ):
                         try:
-                            gist_client.inschrijven(sessie["id"], naam)
-                            _verstuur_bevestiging(plan, naam, sessie, cursus.get("naam", sessie["cursus_id"]))
+                            gist_client.inschrijven_editie(editie["id"], naam)
+                            _verstuur_bevestiging(plan, naam, editie, cursus_naam)
                             st.success("✓ Ingeschreven! Download hieronder je agenda-uitnodiging.")
                             st.rerun()
                         except ValueError as e:
                             st.error(str(e))
 
 
-def _verstuur_bevestiging(plan: dict, naam: str, sessie: dict, cursus_naam: str) -> None:
+def _verstuur_bevestiging(plan: dict, naam: str, editie: dict, cursus_naam: str) -> None:
     email = plan.get("email", "").strip()
     if not email:
         return
@@ -154,6 +156,6 @@ def _verstuur_bevestiging(plan: dict, naam: str, sessie: dict, cursus_naam: str)
             "user": st.secrets["SMTP_USER"],
             "password": st.secrets["SMTP_PASSWORD"],
         }
-        stuur_bevestigingsmail(naam, email, sessie, cursus_naam, smtp_config)
+        stuur_bevestigingsmail(naam, email, editie, cursus_naam, smtp_config)
     except Exception:
         pass
