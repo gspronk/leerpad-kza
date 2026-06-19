@@ -18,8 +18,6 @@ class GistClient:
         self._cursussen_cache_time: float = 0
         self._plannen_cache: dict | None = None
         self._plannen_cache_time: float = 0
-        self._sessies_cache: dict | None = None
-        self._sessies_cache_time: float = 0
         self._cache_ttl: float = CACHE_TTL
 
     def _get_gist(self):
@@ -94,20 +92,13 @@ class GistClient:
     # ── sessies ────────────────────────────────────────────────
 
     def read_sessies(self) -> dict:
-        now = time.time()
-        if self._sessies_cache is not None and (now - self._sessies_cache_time) < self._cache_ttl:
-            return self._sessies_cache
         try:
-            self._sessies_cache = self._read_file("sessies.json")
+            return self._read_file("sessies.json")
         except (KeyError, AttributeError, TypeError):
-            self._sessies_cache = {"sessies": []}
-        self._sessies_cache_time = time.time()
-        return self._sessies_cache
+            return {"sessies": []}
 
     def write_sessies(self, data: dict) -> None:
         self._write_file("sessies.json", data)
-        self._sessies_cache = None
-        self._sessies_cache_time = 0
 
     def _vind_sessie(self, sessies: dict, sessie_id: str) -> dict:
         for s in sessies.get("sessies", []):
