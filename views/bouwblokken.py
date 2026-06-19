@@ -96,7 +96,6 @@ def _render_blok_card(item: dict, geselecteerd: set, statussen: dict,
                        cross_items: set, cross_label: str = "") -> bool:
     """Rendert een blok-card. Geeft True terug als de gebruiker erop klikt."""
     is_sel = item["id"] in geselecteerd
-    status = statussen.get(item["id"], "gepland")
     is_cross = item["id"] in cross_items
 
     border_kleur = "#0072B8" if is_sel and not is_cross else ("#A371F7" if is_cross else "#21262D")

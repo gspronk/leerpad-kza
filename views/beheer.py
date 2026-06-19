@@ -19,10 +19,13 @@ def render(data: dict, gist_client) -> None:
     st.markdown("### ⚙️ Catalogus beheren")
     st.caption("Wijzigingen worden direct opgeslagen naar GitHub Gist. Alle gebruikers zien de nieuwe catalogus na een refresh.")
 
-    tab_cursussen, tab_fases = st.tabs(["📋 Cursussen", "📍 Fases"])
+    tab_cursussen, tab_fases, tab_sessies = st.tabs(["📋 Cursussen", "📍 Fases", "📅 Sessies"])
 
     with tab_fases:
         _render_fases_beheer(data, gist_client)
+
+    with tab_sessies:
+        _render_sessies_beheer(data, gist_client)
 
     with tab_cursussen:
         col_zoek, col_filter = st.columns([2, 1])
@@ -309,3 +312,90 @@ def _verwijder_item_uit_data(data: dict, item_id: str) -> None:
     for secties in data.get("blokken", {}).values():
         for sectie in secties:
             sectie["items"] = [i for i in sectie.get("items", []) if i["id"] != item_id]
+
+
+def _render_sessies_beheer(data: dict, gist_client) -> None:
+    import streamlit as st
+    from datetime import date
+
+    st.markdown("#### Sessiebeheer")
+    st.caption("Voeg geplande uitvoeringen toe per cursus. Deelnemers kunnen zich inschrijven via de Kalender-tab.")
+
+    sessies_data = gist_client.read_sessies()
+    alle_sessies = sessies_data.get("sessies", [])
+
+    cursus_lookup: dict[str, dict] = {
+        item["id"]: item
+        for secties in data.get("blokken", {}).values()
+        for sectie in secties
+        for item in sectie.get("items", [])
+    }
+
+    # Groepeer sessies per cursus
+    sessies_per_cursus: dict[str, list] = {}
+    for sessie in alle_sessies:
+        sessies_per_cursus.setdefault(sessie["cursus_id"], []).append(sessie)
+
+    # Nieuwe sessie toevoegen
+    st.markdown("##### Nieuwe sessie toevoegen")
+    with st.form("nieuwe_sessie_form"):
+        cursus_opties = {
+            f"{c.get('icon', '📋')} {c['naam']} ({cid})": cid
+            for cid, c in sorted(cursus_lookup.items(), key=lambda x: x[1].get("naam", ""))
+        }
+        cursus_keuze = st.selectbox("Cursus", list(cursus_opties.keys()))
+        col1, col2 = st.columns(2)
+        datum = col1.date_input("Datum", min_value=date.today())
+        tijd = col2.text_input("Tijd", value="09:00", placeholder="09:00")
+        locatie = st.text_input("Locatie", placeholder="KZA kantoor")
+        max_d = st.number_input("Max. deelnemers", min_value=1, max_value=100, value=12)
+        opgeslagen = st.form_submit_button("＋ Sessie toevoegen", use_container_width=True)
+
+    if opgeslagen and cursus_keuze:
+        cursus_id = cursus_opties[cursus_keuze]
+        datum_str = datum.strftime("%Y-%m-%d")
+        sessie_id = f"sess-{cursus_id}-{datum_str.replace('-', '')}"
+        if any(s["id"] == sessie_id for s in alle_sessies):
+            st.error("Er bestaat al een sessie voor deze cursus op die datum.")
+        else:
+            alle_sessies.append({
+                "id": sessie_id,
+                "cursus_id": cursus_id,
+                "datum": datum_str,
+                "tijd": tijd.strip(),
+                "locatie": locatie.strip(),
+                "max_deelnemers": int(max_d),
+                "deelnemers": [],
+            })
+            gist_client.write_sessies({"sessies": alle_sessies})
+            st.success(f"✓ Sessie toegevoegd voor {datum_str}.")
+            st.rerun()
+
+    # Overzicht bestaande sessies
+    if not alle_sessies:
+        st.info("Nog geen sessies aangemaakt.")
+        return
+
+    st.markdown("##### Bestaande sessies")
+    sessies_gesorteerd = sorted(alle_sessies, key=lambda s: s["datum"])
+    for sessie in sessies_gesorteerd:
+        cursus = cursus_lookup.get(sessie["cursus_id"], {})
+        cursus_naam = f"{cursus.get('icon', '📋')} {cursus.get('naam', sessie['cursus_id'])}"
+        bezet = len(sessie["deelnemers"])
+        max_d = sessie["max_deelnemers"]
+
+        with st.expander(f"{cursus_naam} — {sessie['datum']} ({bezet}/{max_d} ingeschreven)"):
+            st.caption(f"ID: `{sessie['id']}` · Locatie: {sessie.get('locatie', '–')} · Tijd: {sessie.get('tijd', '–')}")
+            if sessie["deelnemers"]:
+                st.markdown("**Ingeschreven:** " + ", ".join(sessie["deelnemers"]))
+            else:
+                st.caption("Nog geen inschrijvingen.")
+
+            if bezet == 0:
+                if st.button("🗑 Sessie verwijderen", key=f"del_sess_{sessie['id']}"):
+                    sessies_data["sessies"] = [s for s in alle_sessies if s["id"] != sessie["id"]]
+                    gist_client.write_sessies(sessies_data)
+                    st.success("Sessie verwijderd.")
+                    st.rerun()
+            else:
+                st.caption("⚠️ Sessie kan niet worden verwijderd zolang er inschrijvingen zijn.")

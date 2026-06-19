@@ -52,7 +52,7 @@ def main():
     # Laad catalogus
     data = client.read_cursussen()
 
-    # 7 tabs
+    # 8 tabs
     tabs = st.tabs([
         "◈ Bouwblokken",
         "→ Roadmap",
@@ -60,6 +60,7 @@ def main():
         "★ Mijn Plan",
         "≡ Alle cursussen",
         "⏱ Tijdlijn",
+        "📅 Kalender",
         "⚙️ Beheer",
     ])
 
@@ -88,6 +89,10 @@ def main():
         render_tijdlijn(data, plan)
 
     with tabs[6]:
+        from views.kalender import render as render_kalender
+        render_kalender(data, plan, client, naam)
+
+    with tabs[7]:
         from views.beheer import render as render_beheer
         render_beheer(data, client)
 
