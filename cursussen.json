@@ -2805,6 +2805,173 @@
           }
         ]
       }
+    ],
+    "ai": [
+      {
+        "icon": "🧠",
+        "cat": "AI Fundament",
+        "items": [
+          {
+            "nm": "LLM-basics & tokens",
+            "rel": [
+              "ai-vibecoding",
+              "ai-concepts",
+              "ai-fundament-ac"
+            ]
+          },
+          {
+            "nm": "Prompt Engineering",
+            "rel": [
+              "ai-concepts",
+              "ai-fundament-ac",
+              "test-ai"
+            ]
+          },
+          {
+            "nm": "Context windows & limieten",
+            "rel": [
+              "ai-concepts",
+              "ai-fundament-ac"
+            ]
+          },
+          {
+            "nm": "AI-modellen vergelijken",
+            "rel": [
+              "ai-tooling-ac",
+              "ai-vibecoding"
+            ]
+          }
+        ]
+      },
+      {
+        "icon": "🛠️",
+        "cat": "AI Tooling",
+        "items": [
+          {
+            "nm": "GitHub Copilot / Cursor",
+            "rel": [
+              "ai-tooling-ac",
+              "ai-testen-eng"
+            ]
+          },
+          {
+            "nm": "ChatGPT / Claude / Gemini",
+            "rel": [
+              "ai-tooling-ac",
+              "ai-fundament-ac"
+            ]
+          },
+          {
+            "nm": "Vibe Coding",
+            "rel": [
+              "ai-vibecoding"
+            ]
+          },
+          {
+            "nm": "Privacy & verantwoord gebruik",
+            "rel": [
+              "ai-tooling-ac",
+              "ai-strategie"
+            ]
+          }
+        ]
+      },
+      {
+        "icon": "⚙️",
+        "cat": "AI Architectuur",
+        "items": [
+          {
+            "nm": "MCP's (Model Context Protocol)",
+            "rel": [
+              "ai-concepts"
+            ]
+          },
+          {
+            "nm": "Agents & Tools",
+            "rel": [
+              "ai-concepts",
+              "ai-vibecoding"
+            ]
+          },
+          {
+            "nm": "RAG (Retrieval-Augmented Gen.)",
+            "rel": [
+              "ai-concepts"
+            ]
+          },
+          {
+            "nm": "Skills & automatisering",
+            "rel": [
+              "ai-vibecoding",
+              "ai-concepts"
+            ]
+          }
+        ]
+      },
+      {
+        "icon": "🎭",
+        "cat": "AI in Testing",
+        "items": [
+          {
+            "nm": "Testscripts genereren met AI",
+            "rel": [
+              "ai-playwright",
+              "ai-testen-eng"
+            ]
+          },
+          {
+            "nm": "Playwright CLI x AI",
+            "rel": [
+              "ai-playwright"
+            ]
+          },
+          {
+            "nm": "AI & testdata aanmaken",
+            "rel": [
+              "ai-testen-eng",
+              "test-ai"
+            ]
+          },
+          {
+            "nm": "Do's & don'ts AI in QA",
+            "rel": [
+              "test-ai",
+              "ai-strategie"
+            ]
+          }
+        ]
+      },
+      {
+        "icon": "📋",
+        "cat": "AI & Strategie",
+        "items": [
+          {
+            "nm": "AI in QA-processen integreren",
+            "rel": [
+              "ai-strategie"
+            ]
+          },
+          {
+            "nm": "Non-deterministisch testen",
+            "rel": [
+              "ai-strategie"
+            ]
+          },
+          {
+            "nm": "Kwaliteitsborging van AI-gedrag",
+            "rel": [
+              "ai-strategie",
+              "ai-security"
+            ]
+          },
+          {
+            "nm": "Prompt injection & LLM OWASP",
+            "rel": [
+              "ai-security"
+            ]
+          }
+        ]
+      }
     ]
   },
   "fases": {
@@ -3019,6 +3186,38 @@
           "mw-blog",
           "mw-mentor",
           "mw-stake"
+        ]
+      }
+    ],
+    "ai": [
+      {
+        "num": 1,
+        "naam": "Fase 1 — AI Fundament",
+        "desc": "Basisconcepten van AI: hoe werken LLMs, wat zijn MCP's, agents en prompt engineering.",
+        "items": [
+          "ai-vibecoding",
+          "ai-concepts",
+          "ai-fundament-ac"
+        ]
+      },
+      {
+        "num": 2,
+        "naam": "Fase 2 — AI Tooling & Toepassing",
+        "desc": "AI-tools inzetten in de dagelijkse praktijk: Copilot, Cursor, Claude en AI-ondersteund testen.",
+        "items": [
+          "ai-tooling-ac",
+          "ai-testen-eng",
+          "test-ai",
+          "ai-strategie"
+        ]
+      },
+      {
+        "num": 3,
+        "naam": "Fase 3 — AI in de Praktijk",
+        "desc": "Testautomatisering met AI en AI-specifieke security: van Playwright CLI tot prompt injection.",
+        "items": [
+          "ai-playwright",
+          "ai-security"
         ]
       }
     ]
