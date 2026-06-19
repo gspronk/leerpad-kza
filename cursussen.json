@@ -3192,7 +3192,7 @@
     "ai": [
       {
         "num": 1,
-        "naam": "Fase 1 — AI Fundament",
+        "naam": "AI Fundament",
         "desc": "Basisconcepten van AI: hoe werken LLMs, wat zijn MCP's, agents en prompt engineering.",
         "items": [
           "ai-vibecoding",
@@ -3202,7 +3202,7 @@
       },
       {
         "num": 2,
-        "naam": "Fase 2 — AI Tooling & Toepassing",
+        "naam": "AI Tooling & Toepassing",
         "desc": "AI-tools inzetten in de dagelijkse praktijk: Copilot, Cursor, Claude en AI-ondersteund testen.",
         "items": [
           "ai-tooling-ac",
@@ -3213,7 +3213,7 @@
       },
       {
         "num": 3,
-        "naam": "Fase 3 — AI in de Praktijk",
+        "naam": "AI in de Praktijk",
         "desc": "Testautomatisering met AI en AI-specifieke security: van Playwright CLI tot prompt injection.",
         "items": [
           "ai-playwright",

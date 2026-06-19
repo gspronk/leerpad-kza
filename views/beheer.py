@@ -103,10 +103,11 @@ def _render_fases_beheer(data: dict, gist_client) -> None:
         st.info(f"Geen fases gedefinieerd voor {PROFIEL_LABELS[profiel]}.")
         return
 
-    # Alle cursus-IDs voor dit profiel
+    # Alle cursus-IDs (alle profielen, zodat cross-linked cursussen ook opgezocht kunnen worden)
     alle_profiel_ids = {
         item["id"]: item
-        for sectie in data.get("blokken", {}).get(profiel, [])
+        for secties in data.get("blokken", {}).values()
+        for sectie in secties
         for item in sectie.get("items", [])
     }
 
