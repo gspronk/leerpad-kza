@@ -103,8 +103,15 @@ def _render_fases_beheer(data: dict, gist_client) -> None:
         st.info(f"Geen fases gedefinieerd voor {PROFIEL_LABELS[profiel]}.")
         return
 
-    # Alle cursus-IDs (alle profielen, zodat cross-linked cursussen ook opgezocht kunnen worden)
+    # Alle cursus-IDs voor dit profiel
     alle_profiel_ids = {
+        item["id"]: item
+        for sectie in data.get("blokken", {}).get(profiel, [])
+        for item in sectie.get("items", [])
+    }
+
+    # Globale lookup voor naam-weergave van cross-linked cursussen
+    alle_ids_global = {
         item["id"]: item
         for secties in data.get("blokken", {}).values()
         for sectie in secties
@@ -127,7 +134,7 @@ def _render_fases_beheer(data: dict, gist_client) -> None:
         # Toon gekoppelde cursussen met verwijderknop
         if fase_items:
             for iid in list(fase_items):
-                item = alle_profiel_ids.get(iid)
+                item = alle_profiel_ids.get(iid) or alle_ids_global.get(iid)
                 naam_label = f"{item.get('icon','')} {item['naam']}" if item else iid
                 col_naam, col_btn = st.columns([6, 1])
                 col_naam.markdown(f"<span style='font-size:13px'>{naam_label}</span>", unsafe_allow_html=True)
