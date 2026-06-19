@@ -327,7 +327,6 @@ def _editie_naam_default(cursus_id: str, eerste_datum: str) -> str:
 
 def _render_sessies_beheer(data: dict, gist_client) -> None:
     import streamlit as st
-    from datetime import date
 
     st.markdown("#### Editiebeheer")
     st.caption("Beheer geplande edities per cursus. Een editie bestaat uit één of meer bijeenkomsten.")
@@ -449,7 +448,6 @@ def _render_bewerk_editie(editie, cursus_lookup, alle_edities, edities_data, gis
 
     # ── Bijeenkomsten ──
     st.markdown("**Bijeenkomsten**")
-    gewijzigd = False
     for i, sessie in enumerate(list(editie["sessies"])):
         with st.expander(f"Sessie {i+1} — {sessie['datum']} · {sessie.get('tijd','–')} · {sessie.get('locatie','–')}"):
             with st.form(f"sessie_edit_{editie['id']}_{i}"):

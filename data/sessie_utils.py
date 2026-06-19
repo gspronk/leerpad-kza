@@ -1,5 +1,4 @@
 import smtplib
-import textwrap
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
