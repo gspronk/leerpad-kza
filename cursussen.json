@@ -442,7 +442,8 @@
             "kern": false,
             "cross": [
               "academy",
-              "maatwerk"
+              "maatwerk",
+              "ai"
             ]
           },
           {
@@ -466,25 +467,7 @@
       {
         "sectie": "AI & Automatisering",
         "badge": "AI",
-        "items": [
-          {
-            "id": "ai-testen-eng",
-            "naam": "AI-ondersteund Testen",
-            "icon": "⚗️",
-            "desc": "AI inzetten bij testautomatisering: testscripts genereren met Copilot of ChatGPT, testdata aanmaken, exploratory testing met AI-assistentie. Valideren van AI-gegenereerde testcases.",
-            "tags": [
-              "Copilot",
-              "Testautomatisering",
-              "AI"
-            ],
-            "duur": "1-2 dgn",
-            "kern": true,
-            "cross": [
-              "academy",
-              "security"
-            ]
-          }
-        ]
+        "items": []
       }
     ],
     "enabler": [
@@ -825,7 +808,9 @@
             "duur": "1-2 dgn",
             "kern": true,
             "cross": [
-              "maatwerk"
+              "maatwerk",
+              "AI",
+              "ai"
             ]
           }
         ]
@@ -1063,7 +1048,10 @@
             ],
             "duur": "1-2 dgn",
             "kern": true,
-            "cross": []
+            "cross": [
+              "AI",
+              "ai"
+            ]
           },
           {
             "id": "ai-tooling-ac",
@@ -1082,7 +1070,8 @@
               "engineer",
               "enabler",
               "maatwerk",
-              "security"
+              "security",
+              "ai"
             ]
           }
         ]
@@ -1678,7 +1667,8 @@
             "kern": true,
             "cross": [
               "engineer",
-              "maatwerk"
+              "maatwerk",
+              "ai"
             ]
           }
         ]
@@ -1743,6 +1733,28 @@
             "kern": true,
             "cross": [
               "engineer"
+            ]
+          }
+        ]
+      },
+      {
+        "sectie": "AI & Automatisering",
+        "badge": "",
+        "items": [
+          {
+            "id": "ai-testen-eng",
+            "naam": "AI-ondersteund Testen",
+            "icon": "⚗️",
+            "desc": "AI inzetten bij testautomatisering: testscripts genereren met Copilot of ChatGPT, testdata aanmaken, exploratory testing met AI-assistentie. Valideren van AI-gegenereerde testcases.",
+            "tags": [
+              "Copilot",
+              "Testautomatisering",
+              "AI"
+            ],
+            "duur": "1-2 dgn",
+            "kern": true,
+            "cross": [
+              "security"
             ]
           }
         ]
