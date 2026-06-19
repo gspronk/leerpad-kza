@@ -314,15 +314,23 @@ def _verwijder_item_uit_data(data: dict, item_id: str) -> None:
             sectie["items"] = [i for i in sectie.get("items", []) if i["id"] != item_id]
 
 
+MAX_DEELNEMERS_VERWIJDER_LIMIET = 4
+
+
+def _editie_naam_default(cursus_id: str, eerste_datum: str) -> str:
+    from datetime import date
+    MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni",
+               "juli", "augustus", "september", "oktober", "november", "december"]
+    d = date.fromisoformat(eerste_datum)
+    return f"Editie {MAANDEN[d.month - 1]} {d.year}"
+
+
 def _render_sessies_beheer(data: dict, gist_client) -> None:
     import streamlit as st
     from datetime import date
 
-    st.markdown("#### Sessiebeheer")
-    st.caption("Voeg geplande uitvoeringen toe per cursus. Deelnemers kunnen zich inschrijven via de Kalender-tab.")
-
-    sessies_data = gist_client.read_sessies()
-    alle_sessies = sessies_data.get("sessies", [])
+    st.markdown("#### Editiebeheer")
+    st.caption("Beheer geplande edities per cursus. Een editie bestaat uit één of meer bijeenkomsten.")
 
     cursus_lookup: dict[str, dict] = {
         item["id"]: item
@@ -331,71 +339,184 @@ def _render_sessies_beheer(data: dict, gist_client) -> None:
         for item in sectie.get("items", [])
     }
 
-    # Groepeer sessies per cursus
-    sessies_per_cursus: dict[str, list] = {}
-    for sessie in alle_sessies:
-        sessies_per_cursus.setdefault(sessie["cursus_id"], []).append(sessie)
+    edities_data = gist_client.read_edities()
+    alle_edities = edities_data.get("edities", [])
 
-    # Nieuwe sessie toevoegen
-    st.markdown("##### Nieuwe sessie toevoegen")
-    with st.form("nieuwe_sessie_form"):
-        cursus_opties = {
-            f"{c.get('icon', '📋')} {c['naam']} ({cid})": cid
-            for cid, c in sorted(cursus_lookup.items(), key=lambda x: x[1].get("naam", ""))
-        }
-        cursus_keuze = st.selectbox("Cursus", list(cursus_opties.keys()))
-        col1, col2 = st.columns(2)
-        datum = col1.date_input("Datum", min_value=date.today())
-        tijd = col2.text_input("Tijd", value="09:00", placeholder="09:00")
-        locatie = st.text_input("Locatie", placeholder="KZA kantoor")
-        max_d = st.number_input("Max. deelnemers", min_value=1, max_value=100, value=12)
-        opgeslagen = st.form_submit_button("＋ Sessie toevoegen", use_container_width=True)
+    # ── Selectie/aanmaak ──
+    NIEUW = "__nieuw__"
+    if "editie_actief_id" not in st.session_state:
+        st.session_state["editie_actief_id"] = None
 
-    if opgeslagen and cursus_keuze:
-        cursus_id = cursus_opties[cursus_keuze]
-        datum_str = datum.strftime("%Y-%m-%d")
-        sessie_id = f"sess-{cursus_id}-{datum_str.replace('-', '')}"
-        if any(s["id"] == sessie_id for s in alle_sessies):
-            st.error("Er bestaat al een sessie voor deze cursus op die datum.")
+    col_lijst, col_detail = st.columns([1, 2])
+
+    with col_lijst:
+        if st.button("＋ Nieuwe editie", use_container_width=True, type="primary"):
+            st.session_state["editie_actief_id"] = NIEUW
+
+        edities_gesorteerd = sorted(
+            alle_edities,
+            key=lambda e: e["sessies"][0]["datum"] if e["sessies"] else "",
+        )
+        for editie in edities_gesorteerd:
+            cursus = cursus_lookup.get(editie["cursus_id"], {})
+            label = f"{cursus.get('icon', '📋')} {editie['naam']}"
+            actief = st.session_state["editie_actief_id"] == editie["id"]
+            if actief:
+                label = f"▶ {label}"
+            if st.button(label, key=f"editie_sel_{editie['id']}", use_container_width=True):
+                st.session_state["editie_actief_id"] = editie["id"]
+                st.rerun()
+
+    with col_detail:
+        actief_id = st.session_state["editie_actief_id"]
+        if actief_id == NIEUW:
+            _render_nieuwe_editie(cursus_lookup, alle_edities, edities_data, gist_client)
+        elif actief_id:
+            editie = next((e for e in alle_edities if e["id"] == actief_id), None)
+            if editie:
+                _render_bewerk_editie(editie, cursus_lookup, alle_edities, edities_data, gist_client)
         else:
-            alle_sessies.append({
-                "id": sessie_id,
-                "cursus_id": cursus_id,
-                "datum": datum_str,
-                "tijd": tijd.strip(),
-                "locatie": locatie.strip(),
-                "max_deelnemers": int(max_d),
-                "deelnemers": [],
-            })
-            gist_client.write_sessies({"sessies": alle_sessies})
-            st.success(f"✓ Sessie toegevoegd voor {datum_str}.")
-            st.rerun()
+            st.info("Selecteer een editie om te bewerken, of maak een nieuwe aan.")
 
-    # Overzicht bestaande sessies
-    if not alle_sessies:
-        st.info("Nog geen sessies aangemaakt.")
-        return
 
-    st.markdown("##### Bestaande sessies")
-    sessies_gesorteerd = sorted(alle_sessies, key=lambda s: s["datum"])
-    for sessie in sessies_gesorteerd:
-        cursus = cursus_lookup.get(sessie["cursus_id"], {})
-        cursus_naam = f"{cursus.get('icon', '📋')} {cursus.get('naam', sessie['cursus_id'])}"
-        bezet = len(sessie["deelnemers"])
-        max_d = sessie["max_deelnemers"]
+def _render_nieuwe_editie(cursus_lookup, alle_edities, edities_data, gist_client) -> None:
+    import streamlit as st
+    from datetime import date
 
-        with st.expander(f"{cursus_naam} — {sessie['datum']} ({bezet}/{max_d} ingeschreven)"):
-            st.caption(f"ID: `{sessie['id']}` · Locatie: {sessie.get('locatie', '–')} · Tijd: {sessie.get('tijd', '–')}")
-            if sessie["deelnemers"]:
-                st.markdown("**Ingeschreven:** " + ", ".join(sessie["deelnemers"]))
-            else:
-                st.caption("Nog geen inschrijvingen.")
+    st.markdown("##### Nieuwe editie")
 
-            if bezet == 0:
-                if st.button("🗑 Sessie verwijderen", key=f"del_sess_{sessie['id']}"):
-                    sessies_data["sessies"] = [s for s in alle_sessies if s["id"] != sessie["id"]]
-                    gist_client.write_sessies(sessies_data)
+    cursus_opties = {
+        f"{c.get('icon', '📋')} {c['naam']} ({cid})": cid
+        for cid, c in sorted(cursus_lookup.items(), key=lambda x: x[1].get("naam", ""))
+    }
+
+    with st.form("nieuwe_editie_form"):
+        cursus_keuze = st.selectbox("Cursus", list(cursus_opties.keys()))
+        max_d = st.number_input("Max. deelnemers", min_value=1, max_value=100, value=12)
+        st.markdown("**Bijeenkomsten** (voeg er minimaal één toe na aanmaken)")
+        col1, col2, col3 = st.columns(3)
+        datum1 = col1.date_input("Datum 1e sessie", min_value=date.today())
+        tijd1 = col2.text_input("Tijd", value="09:00")
+        locatie1 = col3.text_input("Locatie", placeholder="KZA kantoor")
+        opgeslagen = st.form_submit_button("＋ Editie aanmaken", use_container_width=True)
+
+    if opgeslagen:
+        cursus_id = cursus_opties[cursus_keuze]
+        datum_str = datum1.strftime("%Y-%m-%d")
+        editie_id = f"edit-{cursus_id}-{datum_str[:7].replace('-', '')}"
+        # Uniek maken als id al bestaat
+        if any(e["id"] == editie_id for e in alle_edities):
+            editie_id = f"{editie_id}-b"
+        naam_default = _editie_naam_default(cursus_id, datum_str)
+        nieuwe_editie = {
+            "id": editie_id,
+            "cursus_id": cursus_id,
+            "naam": naam_default,
+            "max_deelnemers": int(max_d),
+            "deelnemers": [],
+            "sessies": [{"datum": datum_str, "tijd": tijd1.strip(), "locatie": locatie1.strip()}],
+        }
+        alle_edities.append(nieuwe_editie)
+        gist_client.write_edities({"edities": alle_edities})
+        st.success(f"✓ Editie '{naam_default}' aangemaakt.")
+        st.session_state["editie_actief_id"] = editie_id
+        st.rerun()
+
+
+def _render_bewerk_editie(editie, cursus_lookup, alle_edities, edities_data, gist_client) -> None:
+    import streamlit as st
+    from datetime import date
+
+    cursus = cursus_lookup.get(editie["cursus_id"], {})
+    st.markdown(f"##### {cursus.get('icon','📋')} {editie['naam']}")
+    st.caption(f"Cursus: {cursus.get('naam', editie['cursus_id'])}  ·  ID: `{editie['id']}`")
+
+    bezet = len(editie["deelnemers"])
+    max_d = editie["max_deelnemers"]
+
+    # ── Basisgegevens bewerken ──
+    with st.form(f"editie_basis_{editie['id']}"):
+        nieuwe_naam = st.text_input("Naam editie", value=editie["naam"])
+        nieuwe_max = st.number_input("Max. deelnemers", min_value=1, max_value=100, value=max_d)
+        opslaan_basis = st.form_submit_button("✓ Opslaan", use_container_width=True)
+
+    if opslaan_basis:
+        editie["naam"] = nieuwe_naam.strip()
+        editie["max_deelnemers"] = int(nieuwe_max)
+        gist_client.write_edities({"edities": alle_edities})
+        st.success("✓ Opgeslagen.")
+        st.rerun()
+
+    # ── Bijeenkomsten ──
+    st.markdown("**Bijeenkomsten**")
+    gewijzigd = False
+    for i, sessie in enumerate(list(editie["sessies"])):
+        with st.expander(f"Sessie {i+1} — {sessie['datum']} · {sessie.get('tijd','–')} · {sessie.get('locatie','–')}"):
+            with st.form(f"sessie_edit_{editie['id']}_{i}"):
+                col1, col2 = st.columns(2)
+                datum = col1.date_input("Datum", value=date.fromisoformat(sessie["datum"]))
+                tijd = col2.text_input("Tijd", value=sessie.get("tijd", "09:00"))
+                locatie = st.text_input("Locatie", value=sessie.get("locatie", ""))
+                col_save, col_del = st.columns(2)
+                sla_op = col_save.form_submit_button("✓ Opslaan", use_container_width=True)
+                verwijder = col_del.form_submit_button("✕ Verwijderen", use_container_width=True)
+
+            if sla_op:
+                editie["sessies"][i] = {
+                    "datum": datum.strftime("%Y-%m-%d"),
+                    "tijd": tijd.strip(),
+                    "locatie": locatie.strip(),
+                }
+                gist_client.write_edities({"edities": alle_edities})
+                st.success("✓ Sessie bijgewerkt.")
+                st.rerun()
+
+            if verwijder:
+                if len(editie["sessies"]) <= 1:
+                    st.error("Een editie moet minimaal één sessie hebben.")
+                else:
+                    editie["sessies"].pop(i)
+                    gist_client.write_edities({"edities": alle_edities})
                     st.success("Sessie verwijderd.")
                     st.rerun()
-            else:
-                st.caption("⚠️ Sessie kan niet worden verwijderd zolang er inschrijvingen zijn.")
+
+    # ── Sessie toevoegen ──
+    with st.expander("＋ Sessie toevoegen"):
+        with st.form(f"sessie_add_{editie['id']}"):
+            col1, col2 = st.columns(2)
+            datum_nieuw = col1.date_input("Datum", min_value=date.today(), key=f"add_datum_{editie['id']}")
+            tijd_nieuw = col2.text_input("Tijd", value="09:00", key=f"add_tijd_{editie['id']}")
+            locatie_nieuw = st.text_input("Locatie", placeholder="KZA kantoor", key=f"add_loc_{editie['id']}")
+            toevoegen = st.form_submit_button("＋ Toevoegen", use_container_width=True)
+
+        if toevoegen:
+            editie["sessies"].append({
+                "datum": datum_nieuw.strftime("%Y-%m-%d"),
+                "tijd": tijd_nieuw.strip(),
+                "locatie": locatie_nieuw.strip(),
+            })
+            gist_client.write_edities({"edities": alle_edities})
+            st.success("✓ Sessie toegevoegd.")
+            st.rerun()
+
+    # ── Ingeschreven deelnemers ──
+    st.markdown(f"**Ingeschreven ({bezet}/{max_d})**")
+    if editie["deelnemers"]:
+        st.write(", ".join(editie["deelnemers"]))
+    else:
+        st.caption("Nog geen inschrijvingen.")
+
+    # ── Verwijderen ──
+    st.markdown("---")
+    if bezet >= MAX_DEELNEMERS_VERWIJDER_LIMIET + 1:
+        st.warning(
+            f"⚠️ Verwijderen geblokkeerd — {bezet} deelnemers ingeschreven "
+            f"(limiet: {MAX_DEELNEMERS_VERWIJDER_LIMIET})."
+        )
+    else:
+        if st.button("🗑 Editie verwijderen", key=f"del_editie_{editie['id']}"):
+            edities_data["edities"] = [e for e in alle_edities if e["id"] != editie["id"]]
+            gist_client.write_edities(edities_data)
+            st.success("Editie verwijderd.")
+            st.session_state["editie_actief_id"] = None
+            st.rerun()
