@@ -3036,7 +3036,6 @@
           "enab-prog2",
           "enab-tmap",
           "enab-exptest",
-          "enab-bdd",
           "enab-risk"
         ]
       },
