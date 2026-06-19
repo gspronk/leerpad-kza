@@ -30,8 +30,10 @@ class GistClient:
     def _read_file(self, filename: str) -> dict:
         gist = self._gh.get_gist(self._gist_id)  # altijd verse gist voor reads
         self._gist = gist
-        content = gist.files[filename].content
-        return json.loads(content)
+        file = gist.files.get(filename)
+        if file is None:
+            raise KeyError(filename)
+        return json.loads(file.content)
 
     def _write_file(self, filename: str, data: dict) -> None:
         from github import InputFileContent

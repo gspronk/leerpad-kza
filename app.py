@@ -11,8 +11,11 @@ st.set_page_config(
 )
 
 
+_CACHE_VERSION = "v2"  # verhoog bij breaking changes in GistClient
+
+
 @st.cache_resource
-def get_gist_client() -> GistClient:
+def get_gist_client(_version: str = _CACHE_VERSION) -> GistClient:
     return GistClient(
         token=st.secrets["GITHUB_TOKEN"],
         gist_id=st.secrets["GIST_ID"],
@@ -42,7 +45,7 @@ def main():
     if not check_wachtwoord():
         st.stop()
 
-    client = get_gist_client()
+    client = get_gist_client(_CACHE_VERSION)
     naam, profiel, plan = render_sidebar(client)
 
     if naam is None:
