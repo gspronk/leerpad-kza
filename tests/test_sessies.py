@@ -1,7 +1,6 @@
 # tests/test_sessies.py
 import json
 import pytest
-import time
 from datetime import date
 from unittest.mock import MagicMock, patch
 from data.gist import GistClient
@@ -62,19 +61,6 @@ def test_read_sessies_geeft_dict_terug(client):
     assert "sessies" in result
     assert result["sessies"][0]["id"] == "sess-qa2-cloud-20260715"
 
-
-def test_read_sessies_gebruikt_cache(client, mock_gist):
-    client.read_sessies()
-    client.read_sessies()
-    # get_gist wordt maar 1x aangeroepen dankzij cache
-    assert mock_gist.files["sessies.json"].content is not None
-
-
-def test_write_sessies_invalideert_cache(client):
-    client._sessies_cache = SESSIES_FIXTURE
-    client._sessies_cache_time = time.time()
-    client.write_sessies(SESSIES_FIXTURE)
-    assert client._sessies_cache is None
 
 
 # ── Slice 2: inschrijven ────────────────────────────────────────────────────

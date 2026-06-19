@@ -11,12 +11,13 @@ st.set_page_config(
 )
 
 
-@st.cache_resource
 def get_gist_client() -> GistClient:
-    return GistClient(
-        token=st.secrets["GITHUB_TOKEN"],
-        gist_id=st.secrets["GIST_ID"],
-    )
+    if "gist_client" not in st.session_state:
+        st.session_state.gist_client = GistClient(
+            token=st.secrets["GITHUB_TOKEN"],
+            gist_id=st.secrets["GIST_ID"],
+        )
+    return st.session_state.gist_client
 
 
 def check_wachtwoord() -> bool:
