@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(python -m pytest *)",
+      "PowerShell(python -m pytest)",
+      "PowerShell(ruff check *)",
+      "PowerShell(ruff check .)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(netstat *)"
+    ]
+  }
+}
