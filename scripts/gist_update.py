@@ -6,7 +6,6 @@ Leest GITHUB_TOKEN en GIST_ID uit .streamlit/secrets.toml.
 """
 import json
 import sys
-import os
 import tomllib
 from pathlib import Path
 

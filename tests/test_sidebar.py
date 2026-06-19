@@ -1,6 +1,4 @@
 # tests/test_sidebar.py
-import pytest
-from unittest.mock import MagicMock, patch
 from components.sidebar import normalize_naam, kern_ids_voor_profiel
 
 CURSUSSEN_FIXTURE = {

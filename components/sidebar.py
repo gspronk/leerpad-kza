@@ -44,6 +44,7 @@ def render_sidebar(gist_client) -> tuple[str | None, str, dict]:
         if naam:
             _render_profiel_knoppen(profiel)
             _render_voortgang(plan)
+            _render_email_veld(plan, naam, gist_client)
             _render_persoonlijke_link(naam)
 
     return naam, profiel, plan
@@ -174,6 +175,22 @@ def _render_voortgang(plan: dict) -> None:
         st.metric("Geselecteerd", f"{totaal} blokken")
         st.progress(afgerond / totaal if totaal else 0, text=f"{afgerond} afgerond")
     st.divider()
+
+
+def _render_email_veld(plan: dict, naam: str, gist_client) -> None:
+    email = plan.get("email", "").strip()
+    if not email:
+        with st.expander("📧 Emailadres instellen"):
+            nieuw_email = st.text_input("Jouw emailadres", placeholder="naam@kza.nl", key="email_input")
+            if st.button("Opslaan", key="email_opslaan"):
+                if "@" in nieuw_email and "." in nieuw_email:
+                    plan["email"] = nieuw_email.strip()
+                    gist_client.save_plan(naam, plan)
+                    st.session_state["plan"] = plan
+                    st.success("✓ Emailadres opgeslagen.")
+                    st.rerun()
+                else:
+                    st.error("Vul een geldig emailadres in.")
 
 
 def _render_persoonlijke_link(naam: str) -> None:
