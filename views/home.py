@@ -60,7 +60,7 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
         plan, naam, alle_edities, kern_cursus_ids, vandaag
     )
     mijlpaal = hoogste_mijlpaal(plan, data)
-    volgende_stap = _bepaal_volgende_stap(plan, cursus_lookup)
+    volgende_stap = _bepaal_volgende_stap(plan, data, cursus_lookup)
 
     col1, col2, col3 = st.columns(3)
 
@@ -248,9 +248,13 @@ def _bepaal_huidige_fase(plan: dict, data: dict):
     return fases[-1] if fases else None
 
 
-def _bepaal_volgende_stap(plan: dict, cursus_lookup: dict):
+def _bepaal_volgende_stap(plan: dict, data: dict, cursus_lookup: dict):
+    fase = _bepaal_huidige_fase(plan, data)
+    if not fase:
+        return None
+    fase_items = set(fase.get("items", []))
     statussen = plan.get("statussen", {})
     for iid in plan.get("geselecteerd", []):
-        if statussen.get(iid, "gepland") == "gepland":
+        if iid in fase_items and statussen.get(iid, "gepland") == "gepland":
             return cursus_lookup.get(iid)
     return None
