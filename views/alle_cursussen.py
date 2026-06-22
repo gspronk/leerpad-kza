@@ -1,14 +1,6 @@
 # views/alle_cursussen.py
 import streamlit as st
-
-PROFIEL_LABELS = {
-    "engineer": "QA Engineer",
-    "enabler":  "QA Enabler",
-    "academy":  "KZAcademy",
-    "maatwerk": "Op maat",
-    "security": "Security",
-    "ai":       "AI",
-}
+from data.profielen import PROFIEL_LABELS
 
 
 def render(data: dict, plan: dict) -> None:

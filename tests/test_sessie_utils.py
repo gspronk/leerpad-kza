@@ -37,12 +37,14 @@ def test_genereer_ics_editie_bevat_verplichte_velden():
 
 def test_genereer_ics_editie_eerste_sessie_dtstart():
     ics = genereer_ics_editie(EDITIE, "Introductie Cloud")
-    assert "DTSTART:20260715T090000" in ics
+    assert "DTSTART;TZID=Europe/Amsterdam:20260715T090000" in ics
+    assert "DTEND;TZID=Europe/Amsterdam:20260715T170000" in ics
 
 
 def test_genereer_ics_editie_tweede_sessie_dtstart():
     ics = genereer_ics_editie(EDITIE, "Introductie Cloud")
-    assert "DTSTART:20260716T100000" in ics
+    assert "DTSTART;TZID=Europe/Amsterdam:20260716T100000" in ics
+    assert "DTEND;TZID=Europe/Amsterdam:20260716T180000" in ics
 
 
 def test_genereer_ics_editie_locaties():
@@ -73,7 +75,9 @@ def test_stuur_bevestigingsmail_verstuurt_via_smtp():
         assert args[1] == "gerson@kza.nl"
 
 
-def test_stuur_bevestigingsmail_slikt_smtp_fout():
+def test_stuur_bevestigingsmail_gooit_bij_smtp_fout():
+    import pytest
     smtp_config = {"host": "smtp.office365.com", "port": 587, "user": "x", "password": "y"}
     with patch("smtplib.SMTP", side_effect=Exception("verbinding geweigerd")):
-        stuur_bevestigingsmail("Gerson", "gerson@kza.nl", EDITIE, "Introductie Cloud", smtp_config)
+        with pytest.raises(Exception, match="verbinding geweigerd"):
+            stuur_bevestigingsmail("Gerson", "gerson@kza.nl", EDITIE, "Introductie Cloud", smtp_config)

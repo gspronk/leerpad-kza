@@ -89,51 +89,6 @@ class GistClient:
         plannen[key] = plan
         self.write_plannen(plannen)
 
-    # ── sessies (legacy) ───────────────────────────────────────
-
-    def read_sessies(self) -> dict:
-        try:
-            return self._read_file("sessies.json")
-        except (KeyError, AttributeError, TypeError):
-            return {"sessies": []}
-
-    def write_sessies(self, data: dict) -> None:
-        self._write_file("sessies.json", data)
-
-    def _vind_sessie(self, sessies: dict, sessie_id: str) -> dict:
-        for s in sessies.get("sessies", []):
-            if s["id"] == sessie_id:
-                return s
-        raise ValueError(f"Sessie '{sessie_id}' niet gevonden")
-
-    def inschrijven(self, sessie_id: str, naam: str) -> None:
-        sessies = self.read_sessies()
-        sessie = self._vind_sessie(sessies, sessie_id)
-        if naam in sessie["deelnemers"]:
-            raise ValueError(f"'{naam}' is al ingeschreven voor deze sessie")
-        if len(sessie["deelnemers"]) >= sessie["max_deelnemers"]:
-            raise ValueError("Sessie is vol")
-        sessie["deelnemers"].append(naam)
-        self.write_sessies(sessies)
-
-    def annuleren(self, sessie_id: str, naam: str, vandaag: date) -> None:
-        sessies = self.read_sessies()
-        sessie = self._vind_sessie(sessies, sessie_id)
-        if naam not in sessie["deelnemers"]:
-            raise ValueError(f"'{naam}' is niet ingeschreven voor deze sessie")
-        sessiedatum = date.fromisoformat(sessie["datum"])
-        if (sessiedatum - vandaag).days < ANNULERING_DEADLINE_DAGEN:
-            raise ValueError(
-                f"Annuleren is niet meer mogelijk — deadline was "
-                f"{ANNULERING_DEADLINE_DAGEN} dagen voor de sessie"
-            )
-        sessie["deelnemers"].remove(naam)
-        self.write_sessies(sessies)
-
-    def get_sessies_voor_medewerker(self, naam: str) -> list[dict]:
-        sessies = self.read_sessies()
-        return [s for s in sessies.get("sessies", []) if naam in s["deelnemers"]]
-
     # ── edities ────────────────────────────────────────────────
 
     def read_edities(self) -> dict:

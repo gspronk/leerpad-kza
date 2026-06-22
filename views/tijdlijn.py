@@ -1,23 +1,6 @@
 # views/tijdlijn.py
 import streamlit as st
-
-PROFIEL_LABELS = {
-    "engineer": "QA Engineer",
-    "enabler":  "QA Enabler",
-    "academy":  "KZAcademy",
-    "maatwerk": "Op maat",
-    "security": "Security",
-    "ai":       "AI",
-}
-
-PROFIEL_KLEUREN = {
-    "engineer": "#0072B8",
-    "enabler":  "#E5007D",
-    "academy":  "#F0A500",
-    "maatwerk": "#A371F7",
-    "security": "#FF6B35",
-    "ai":       "#10B981",
-}
+from data.profielen import PROFIEL_LABELS, PROFIEL_KLEUREN
 
 
 def render(data: dict, plan: dict) -> None:

@@ -1,16 +1,7 @@
 # components/sidebar.py
 import streamlit as st
 from datetime import date
-
-
-PROFIEL_META = {
-    "engineer": {"label": "QA Engineer",    "kleur": "#0072B8", "icon": "⚙️"},
-    "enabler":  {"label": "QA Enabler",     "kleur": "#E5007D", "icon": "🎓"},
-    "academy":  {"label": "KZAcademy",      "kleur": "#F0A500", "icon": "📚"},
-    "maatwerk": {"label": "Op maat",        "kleur": "#A371F7", "icon": "✨"},
-    "security": {"label": "Security",       "kleur": "#FF6B35", "icon": "🔒"},
-    "ai":       {"label": "AI",             "kleur": "#10B981", "icon": "🤖"},
-}
+from data.profielen import PROFIEL_META
 
 
 def normalize_naam(naam: str) -> str:
