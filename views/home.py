@@ -4,13 +4,12 @@ import html as _html
 from datetime import date
 from data.milestones import hoogste_mijlpaal
 from data.sessie_utils import genereer_ics_editie, stuur_bevestigingsmail
-from data.profielen import PROFIEL_KLEUREN, PROFIEL_LABELS
+from data.profielen import PROFIEL_KLEUREN
 
 
 def render(data: dict, plan: dict, gist_client, naam: str) -> None:
     profiel = plan.get("profiel", "engineer")
     kleur = PROFIEL_KLEUREN.get(profiel, "#0072B8")
-    label = PROFIEL_LABELS.get(profiel, profiel)
     geselecteerd = plan.get("geselecteerd", [])
     statussen = plan.get("statussen", {})
 
@@ -30,15 +29,13 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
     afgerond_count = sum(1 for s in statussen.values() if s == "afgerond")
     totaal = len(geselecteerd)
     pct = min(int(afgerond_count / totaal * 100), 100) if totaal else 0
-    huidige_fase = _bepaal_huidige_fase(plan, data)
-    fase_label = f"Fase {huidige_fase['num']} — {huidige_fase['naam']}" if huidige_fase else ""
 
     st.markdown(
         f"""
         <div style="background:{kleur};border-radius:10px;padding:18px 20px;
                     color:#fff;margin-bottom:16px;">
           <div style="font-size:13px;opacity:.8;margin-bottom:4px;">
-            Jouw voortgang · {label}
+            Jouw leerplan
           </div>
           <div style="font-size:22px;font-weight:700;">
             {afgerond_count} van {totaal} cursussen afgerond
@@ -48,7 +45,7 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
             <div style="background:#fff;border-radius:4px;height:8px;width:{pct}%;"></div>
           </div>
           <div style="font-size:12px;opacity:.7;margin-top:6px;">
-            {pct}%{"  ·  " + fase_label if fase_label else ""}
+            {pct}%
           </div>
         </div>
         """,
@@ -61,7 +58,7 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
         plan, naam, alle_edities, kern_cursus_ids, vandaag
     )
     mijlpaal = hoogste_mijlpaal(plan, data)
-    volgende_stap = _bepaal_volgende_stap(plan, data, cursus_lookup)
+    volgende_stap = _bepaal_volgende_stap(plan, cursus_lookup)
 
     col1, col2, col3 = st.columns(3)
 
@@ -249,13 +246,9 @@ def _bepaal_huidige_fase(plan: dict, data: dict):
     return None
 
 
-def _bepaal_volgende_stap(plan: dict, data: dict, cursus_lookup: dict):
-    fase = _bepaal_huidige_fase(plan, data)
-    if not fase:
-        return None
-    fase_items = set(fase.get("items", []))
+def _bepaal_volgende_stap(plan: dict, cursus_lookup: dict):
     statussen = plan.get("statussen", {})
     for iid in plan.get("geselecteerd", []):
-        if iid in fase_items and statussen.get(iid, "gepland") == "gepland":
+        if statussen.get(iid, "gepland") == "gepland":
             return cursus_lookup.get(iid)
     return None
