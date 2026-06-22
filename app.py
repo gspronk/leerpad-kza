@@ -53,8 +53,9 @@ def main():
     # Laad catalogus
     data = client.read_cursussen()
 
-    # 8 tabs
+    # 9 tabs
     tabs = st.tabs([
+        "🏠 Home",
         "◈ Bouwblokken",
         "→ Roadmap",
         "◉ Skill Map",
@@ -66,34 +67,38 @@ def main():
     ])
 
     with tabs[0]:
+        from views.home import render as render_home
+        render_home(data, plan, client, naam)
+
+    with tabs[1]:
         from views.bouwblokken import render as render_bouwblokken
         render_bouwblokken(data, plan, client, naam)
 
-    with tabs[1]:
+    with tabs[2]:
         from views.roadmap import render as render_roadmap
         render_roadmap(data, plan)
 
-    with tabs[2]:
+    with tabs[3]:
         from views.skillmap import render as render_skillmap
         render_skillmap(data, plan)
 
-    with tabs[3]:
+    with tabs[4]:
         from views.mijn_plan import render as render_plan
         render_plan(data, plan, client, naam)
 
-    with tabs[4]:
+    with tabs[5]:
         from views.alle_cursussen import render as render_overzicht
         render_overzicht(data, plan)
 
-    with tabs[5]:
+    with tabs[6]:
         from views.tijdlijn import render as render_tijdlijn
         render_tijdlijn(data, plan)
 
-    with tabs[6]:
+    with tabs[7]:
         from views.kalender import render as render_kalender
         render_kalender(data, plan, client, naam)
 
-    with tabs[7]:
+    with tabs[8]:
         from views.beheer import render as render_beheer
         render_beheer(data, client)
 
