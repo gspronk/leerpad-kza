@@ -2,15 +2,7 @@
 import streamlit as st
 from datetime import date
 from data.sessie_utils import genereer_ics_editie, stuur_bevestigingsmail
-
-PROFIEL_LABELS = {
-    "engineer": "QA Engineer",
-    "enabler":  "QA Enabler",
-    "academy":  "KZAcademy",
-    "maatwerk": "Op maat",
-    "security": "Security",
-    "ai":       "AI",
-}
+from data.profielen import PROFIEL_LABELS
 
 
 def render(data: dict, plan: dict, gist_client, naam: str) -> None:
@@ -149,13 +141,13 @@ def _verstuur_bevestiging(plan: dict, naam: str, editie: dict, cursus_naam: str)
     email = plan.get("email", "").strip()
     if not email:
         return
+    smtp_config = {
+        "host": st.secrets.get("SMTP_HOST", "smtp.office365.com"),
+        "port": int(st.secrets.get("SMTP_PORT", 587)),
+        "user": st.secrets["SMTP_USER"],
+        "password": st.secrets["SMTP_PASSWORD"],
+    }
     try:
-        smtp_config = {
-            "host": st.secrets.get("SMTP_HOST", "smtp.office365.com"),
-            "port": int(st.secrets.get("SMTP_PORT", 587)),
-            "user": st.secrets["SMTP_USER"],
-            "password": st.secrets["SMTP_PASSWORD"],
-        }
         stuur_bevestigingsmail(naam, email, editie, cursus_naam, smtp_config)
-    except Exception:
-        pass
+    except Exception as e:
+        st.warning(f"Inschrijving gelukt, maar bevestigingsmail kon niet verzonden worden. ({e})")

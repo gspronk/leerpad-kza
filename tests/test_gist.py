@@ -44,12 +44,13 @@ def test_read_cursussen_returns_dict(client, mock_gist):
     assert result["profielen"]["engineer"]["titel"] == "QA Engineer"
 
 def test_read_cursussen_caches_result(client, mock_gist):
-    import json
-    mock_gist.files["cursussen.json"].content = json.dumps(CURSUSSEN_FIXTURE)
-    client.read_cursussen()
-    client.read_cursussen()
-    # Gist.files mag maar 1x worden gelezen door caching
-    assert mock_gist.files["cursussen.json"].content  # accessed once
+    with patch("data.gist.Github") as mock_github:
+        mock_github.return_value.get_gist.return_value = mock_gist
+        c = GistClient(token="fake-token", gist_id="fake-id")
+        c.read_cursussen()
+        c.read_cursussen()
+        # Door caching mag de Gist API maar 1x aangeroepen zijn
+        assert mock_github.return_value.get_gist.call_count == 1
 
 def test_cache_expires_after_ttl(client, mock_gist):
     import json

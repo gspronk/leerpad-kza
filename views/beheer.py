@@ -1,18 +1,9 @@
 # views/beheer.py
 import streamlit as st
+from datetime import date
+from data.profielen import PROFIEL_LABELS, PROFIEL_META
 
-PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security", "ai"]
-PROFIEL_LABELS = {
-    "engineer": "QA Engineer",
-    "enabler":  "QA Enabler",
-    "academy":  "KZAcademy",
-    "maatwerk": "Op maat",
-    "security": "Security",
-    "ai":       "AI",
-}
-
-# Profielen waarvoor fase-beheer beschikbaar is (items-gebaseerd)
-FASES_PROFIELEN = ["engineer", "enabler", "academy", "maatwerk", "security", "ai"]
+PROFIELEN = list(PROFIEL_META.keys())
 
 
 def render(data: dict, gist_client) -> None:
@@ -96,7 +87,7 @@ def _render_fases_beheer(data: dict, gist_client) -> None:
     # Profielkeuze (alleen profielen met items-gebaseerde fases)
     profiel = st.selectbox(
         "Profiel",
-        FASES_PROFIELEN,
+        PROFIELEN,
         format_func=lambda k: PROFIEL_LABELS[k],
         key="fases_profiel_select"
     )
@@ -318,7 +309,6 @@ MAX_DEELNEMERS_VERWIJDER_LIMIET = 4
 
 
 def _editie_naam_default(cursus_id: str, eerste_datum: str) -> str:
-    from datetime import date
     MAANDEN = ["januari", "februari", "maart", "april", "mei", "juni",
                "juli", "augustus", "september", "oktober", "november", "december"]
     d = date.fromisoformat(eerste_datum)
@@ -326,8 +316,6 @@ def _editie_naam_default(cursus_id: str, eerste_datum: str) -> str:
 
 
 def _render_sessies_beheer(data: dict, gist_client) -> None:
-    import streamlit as st
-
     st.markdown("#### Editiebeheer")
     st.caption("Beheer geplande edities per cursus. Een editie bestaat uit één of meer bijeenkomsten.")
 
@@ -379,9 +367,6 @@ def _render_sessies_beheer(data: dict, gist_client) -> None:
 
 
 def _render_nieuwe_editie(cursus_lookup, alle_edities, edities_data, gist_client) -> None:
-    import streamlit as st
-    from datetime import date
-
     st.markdown("##### Nieuwe editie")
 
     cursus_opties = {
@@ -423,9 +408,6 @@ def _render_nieuwe_editie(cursus_lookup, alle_edities, edities_data, gist_client
 
 
 def _render_bewerk_editie(editie, cursus_lookup, alle_edities, edities_data, gist_client) -> None:
-    import streamlit as st
-    from datetime import date
-
     cursus = cursus_lookup.get(editie["cursus_id"], {})
     st.markdown(f"##### {cursus.get('icon','📋')} {editie['naam']}")
     st.caption(f"Cursus: {cursus.get('naam', editie['cursus_id'])}  ·  ID: `{editie['id']}`")

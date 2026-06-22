@@ -1,18 +1,22 @@
 import smtplib
+from datetime import datetime, timedelta
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+
+_SESSIE_DUUR = timedelta(hours=8)  # hele dag als default; geen duur in datamodel
 
 
 def genereer_ics_editie(editie: dict, cursus_naam: str) -> str:
     vevents = []
     for i, sessie in enumerate(editie["sessies"]):
-        datum = sessie["datum"].replace("-", "")
-        tijd = sessie["tijd"].replace(":", "") + "00"
-        dtstart = f"{datum}T{tijd}"
+        dt = datetime.strptime(f"{sessie['datum']} {sessie['tijd']}", "%Y-%m-%d %H:%M")
+        dt_end = dt + _SESSIE_DUUR
+        fmt = "%Y%m%dT%H%M%S"
         vevents.append(
             f"BEGIN:VEVENT\r\n"
             f"UID:{editie['id']}-{i}@kza.nl\r\n"
-            f"DTSTART:{dtstart}\r\n"
+            f"DTSTART;TZID=Europe/Amsterdam:{dt.strftime(fmt)}\r\n"
+            f"DTEND;TZID=Europe/Amsterdam:{dt_end.strftime(fmt)}\r\n"
             f"SUMMARY:{cursus_naam}\r\n"
             f"LOCATION:{sessie.get('locatie', '')}\r\n"
             f"DESCRIPTION:KZA cursus - {cursus_naam}\r\n"
@@ -35,25 +39,22 @@ def stuur_bevestigingsmail(
     cursus_naam: str,
     smtp_config: dict,
 ) -> None:
-    try:
-        sessie_regels = "\n".join(
-            f"  - {s['datum']} om {s.get('tijd', '')} · {s.get('locatie', '')}"
-            for s in editie.get("sessies", [])
-        )
-        msg = MIMEMultipart()
-        msg["From"] = smtp_config["user"]
-        msg["To"] = email
-        msg["Subject"] = f"Inschrijving bevestigd: {cursus_naam}"
-        body = (
-            f"Hoi {naam},\n\n"
-            f"Je bent ingeschreven voor '{cursus_naam}' ({editie.get('naam', '')}).\n\n"
-            f"Bijeenkomsten:\n{sessie_regels}\n\n"
-            f"Tot dan!\nKZA Leerpad"
-        )
-        msg.attach(MIMEText(body, "plain"))
-        with smtplib.SMTP(smtp_config["host"], smtp_config["port"]) as server:
-            server.starttls()
-            server.login(smtp_config["user"], smtp_config["password"])
-            server.sendmail(smtp_config["user"], email, msg.as_string())
-    except Exception:
-        pass
+    sessie_regels = "\n".join(
+        f"  - {s['datum']} om {s.get('tijd', '')} · {s.get('locatie', '')}"
+        for s in editie.get("sessies", [])
+    )
+    msg = MIMEMultipart()
+    msg["From"] = smtp_config["user"]
+    msg["To"] = email
+    msg["Subject"] = f"Inschrijving bevestigd: {cursus_naam}"
+    body = (
+        f"Hoi {naam},\n\n"
+        f"Je bent ingeschreven voor '{cursus_naam}' ({editie.get('naam', '')}).\n\n"
+        f"Bijeenkomsten:\n{sessie_regels}\n\n"
+        f"Tot dan!\nKZA Leerpad"
+    )
+    msg.attach(MIMEText(body, "plain"))
+    with smtplib.SMTP(smtp_config["host"], smtp_config["port"]) as server:
+        server.starttls()
+        server.login(smtp_config["user"], smtp_config["password"])
+        server.sendmail(smtp_config["user"], email, msg.as_string())
