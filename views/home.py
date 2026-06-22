@@ -1,5 +1,6 @@
 # views/home.py
 import streamlit as st
+import html as _html
 from datetime import date
 from data.milestones import hoogste_mijlpaal
 from data.sessie_utils import genereer_ics_editie, stuur_bevestigingsmail
@@ -28,7 +29,7 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
 
     afgerond_count = sum(1 for s in statussen.values() if s == "afgerond")
     totaal = len(geselecteerd)
-    pct = int(afgerond_count / totaal * 100) if totaal else 0
+    pct = min(int(afgerond_count / totaal * 100), 100) if totaal else 0
     huidige_fase = _bepaal_huidige_fase(plan, data)
     fase_label = f"Fase {huidige_fase['num']} — {huidige_fase['naam']}" if huidige_fase else ""
 
@@ -126,7 +127,7 @@ def _render_editie_kaart(
         st.markdown(f"**{cursus.get('icon', '📋')} {cursus_naam}**")
         st.markdown(
             f"<div style='font-size:22px;font-weight:700;color:{datum_kleur};'>"
-            f"{datum_str}</div>",
+            f"{_html.escape(datum_str)}</div>",
             unsafe_allow_html=True,
         )
         st.caption(
@@ -183,13 +184,13 @@ def _verstuur_bevestiging(
     email = plan.get("email", "").strip()
     if not email:
         return
-    smtp_config = {
-        "host": st.secrets.get("SMTP_HOST", "smtp.office365.com"),
-        "port": int(st.secrets.get("SMTP_PORT", 587)),
-        "user": st.secrets["SMTP_USER"],
-        "password": st.secrets["SMTP_PASSWORD"],
-    }
     try:
+        smtp_config = {
+            "host": st.secrets.get("SMTP_HOST", "smtp.office365.com"),
+            "port": int(st.secrets.get("SMTP_PORT", 587)),
+            "user": st.secrets["SMTP_USER"],
+            "password": st.secrets["SMTP_PASSWORD"],
+        }
         stuur_bevestigingsmail(naam, email, editie, cursus_naam, smtp_config)
     except Exception as e:
         st.warning(
@@ -245,7 +246,7 @@ def _bepaal_huidige_fase(plan: dict, data: dict):
         fase_items = set(fase.get("items", []))
         if fase_items and not fase_items.issubset(afgerond):
             return fase
-    return fases[-1] if fases else None
+    return None
 
 
 def _bepaal_volgende_stap(plan: dict, data: dict, cursus_lookup: dict):
