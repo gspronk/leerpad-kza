@@ -2,6 +2,7 @@
 import streamlit as st
 from datetime import date
 from components.export_pptx import generate_pptx
+from data.milestones import bereken_mijlpalen
 
 STATUS_OPTIES = ["gepland", "bezig", "afgerond"]
 STATUS_LABELS = {"gepland": "○ Gepland", "bezig": "◉ Bezig", "afgerond": "✓ Afgerond"}
@@ -56,10 +57,17 @@ def render(data: dict, plan: dict, gist_client, naam: str) -> None:
                     wijziging = True
 
     if wijziging:
+        mijlpalen_voor_ids = {m.id for m in bereken_mijlpalen(plan, data)}
         plan["statussen"] = statussen
         plan["laatst_actief"] = str(date.today())
         st.session_state["plan"] = plan
         gist_client.save_plan(naam, plan)
+        nieuwe_mijlpalen = [
+            m for m in bereken_mijlpalen(plan, data)
+            if m.id not in mijlpalen_voor_ids
+        ]
+        for m in nieuwe_mijlpalen:
+            st.toast(f"{m.icon} {m.label}!", icon="🎉")
         st.rerun()
 
     st.divider()
