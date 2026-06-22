@@ -98,6 +98,20 @@ def test_verleden_editie_wordt_overgeslagen():
     assert editie is None
 
 
+def test_editie_vandaag_wordt_meegenomen():
+    editie_vandaag = {
+        "id": "edit-today",
+        "cursus_id": "qa2-cloud",
+        "naam": "Editie vandaag",
+        "max_deelnemers": 12,
+        "deelnemers": ["Gerson"],
+        "sessies": [{"datum": "2026-06-22", "tijd": "09:00", "locatie": "KZA kantoor"}],
+    }
+    editie, is_inschr = _bepaal_editie_kaart(PLAN, "Gerson", [editie_vandaag], KERN_IDS, VANDAAG)
+    assert editie["id"] == "edit-today"
+    assert is_inschr is True
+
+
 def test_ingeschreven_heeft_prioriteit_boven_leerplan():
     editie, is_inschr = _bepaal_editie_kaart(
         PLAN, "Gerson", [EDITIE_LEERPLAN, EDITIE_INGESCHREVEN], KERN_IDS, VANDAAG
@@ -127,7 +141,7 @@ def test_aanbevelingen_geeft_kern_niet_geselecteerd():
 def test_aanbevelingen_max_3():
     plan = {"profiel": "engineer", "geselecteerd": [], "statussen": {}}
     resultaat = _bepaal_aanbevelingen(plan, DATA_AANBEVELINGEN)
-    assert len(resultaat) <= 3
+    assert len(resultaat) == 3
 
 
 def test_aanbevelingen_slaat_geselecteerde_over():
@@ -143,4 +157,9 @@ def test_aanbevelingen_leeg_als_alle_kern_geselecteerd():
         "geselecteerd": ["qa-basis", "qa-tools", "qa-adv", "qa-sec"],
         "statussen": {},
     }
+    assert _bepaal_aanbevelingen(plan, DATA_AANBEVELINGEN) == []
+
+
+def test_aanbevelingen_onbekend_profiel_geeft_lege_lijst():
+    plan = {"profiel": "onbekend", "geselecteerd": [], "statussen": {}}
     assert _bepaal_aanbevelingen(plan, DATA_AANBEVELINGEN) == []
